@@ -1,0 +1,361 @@
+{
+  "mode": "offline_test",
+  "real_model_tested": false,
+  "recorded_at": "2026-10-29T08:12:25.048163+00:00",
+  "checks": {
+    "automatic_lookup_before_human": true,
+    "invalid_input_preserves_interrupt": true,
+    "rechecks_then_waits_for_time": true,
+    "same_run_saved_after_both_inputs": true,
+    "metadata_and_time_audited": true,
+    "source_json_unchanged": true,
+    "nothing_published": true
+  },
+  "steps": [
+    {
+      "http_step": 1,
+      "run_id": "RUN-f5369437fae249388645d2463d80e6d1",
+      "status": "waiting_for_human",
+      "interrupt": {
+        "interrupt_id": "039d8abbb093cd2b8d7a077d04987683",
+        "kind": "provide_metadata",
+        "request_id": "REQ-HUMAN-METADATA",
+        "material_id": "M02",
+        "missing_fields": [
+          "authorization_status"
+        ],
+        "editable_fields": [
+          "authorization_status",
+          "authorization_evidence"
+        ],
+        "requirements": [
+          {
+            "field": "authorization_status",
+            "why": "用于判断素材是否有权使用，未知授权须人工复核。",
+            "request": "请提供 authorization_status 的非空有效值。"
+          },
+          {
+            "field": "authorization_evidence",
+            "why": "声明已授权时，需要提供可核验的授权凭证编号或资料。",
+            "request": "请提供 authorization_evidence 的非空有效值。"
+          }
+        ],
+        "required_channel": "wechat",
+        "message": "自动补查后仍缺少信息，请补充资料；系统会重新审核。",
+        "changes_requested": false
+      },
+      "execution_steps": [
+        {
+          "step": 1,
+          "model_step": 1,
+          "tool": "read_material",
+          "tool_call_id": "offline-2",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "return_summary": "status=ok; material_id=M02; authorization_status=None",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "check_rules",
+          "next_action_source": "model",
+          "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "cycle": 1
+        },
+        {
+          "step": 2,
+          "model_step": 2,
+          "tool": "check_rules",
+          "tool_call_id": "offline-4",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "return_summary": "status=needs_info; missing_fields=['authorization_status']; risks=[]",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "supplement_material",
+          "next_action_source": "model",
+          "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "cycle": 1
+        },
+        {
+          "step": 3,
+          "model_step": 3,
+          "tool": "supplement_material",
+          "tool_call_id": "offline-6",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。",
+            "fields": [
+              "authorization_status"
+            ]
+          },
+          "return_summary": "status=empty; returned_fields=[]",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "finish",
+          "next_action_source": "model",
+          "next_decision_reason": "离线测试分支结束。",
+          "cycle": 1
+        }
+      ],
+      "human_actions": []
+    },
+    {
+      "http_step": 2,
+      "run_id": null,
+      "status": null,
+      "interrupt": null,
+      "execution_steps": [],
+      "human_actions": []
+    },
+    {
+      "http_step": 3,
+      "run_id": "RUN-f5369437fae249388645d2463d80e6d1",
+      "status": "waiting_for_human",
+      "interrupt": {
+        "interrupt_id": "4a55e34e2d9be641b58500db1e96acb1",
+        "kind": "choose_time",
+        "request_id": "REQ-HUMAN-METADATA",
+        "original_at": "2026-10-30T18:00:00+08:00",
+        "message": "请选择一个可用时间；恢复时将重新检查占用，再按请求保存草稿。",
+        "candidates": [
+          {
+            "start_at": "2026-10-30T19:00:00+08:00",
+            "end_at": "2026-10-30T20:00:00+08:00",
+            "requires_confirmation": true,
+            "reason": "候选改变了硬性指定时间，需要用户确认。"
+          },
+          {
+            "start_at": "2026-10-30T20:00:00+08:00",
+            "end_at": "2026-10-30T21:00:00+08:00",
+            "requires_confirmation": true,
+            "reason": "候选改变了硬性指定时间，需要用户确认。"
+          }
+        ]
+      },
+      "execution_steps": [
+        {
+          "step": 1,
+          "model_step": 1,
+          "tool": "read_material",
+          "tool_call_id": "offline-2",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "return_summary": "status=ok; material_id=M02; authorization_status=None",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "check_rules",
+          "next_action_source": "model",
+          "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "cycle": 1
+        },
+        {
+          "step": 2,
+          "model_step": 2,
+          "tool": "check_rules",
+          "tool_call_id": "offline-4",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "return_summary": "status=needs_info; missing_fields=['authorization_status']; risks=[]",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "supplement_material",
+          "next_action_source": "model",
+          "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "cycle": 1
+        },
+        {
+          "step": 3,
+          "model_step": 3,
+          "tool": "supplement_material",
+          "tool_call_id": "offline-6",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。",
+            "fields": [
+              "authorization_status"
+            ]
+          },
+          "return_summary": "status=empty; returned_fields=[]",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "finish",
+          "next_action_source": "model",
+          "next_decision_reason": "离线测试分支结束。",
+          "cycle": 1
+        },
+        {
+          "step": 4,
+          "model_step": 5,
+          "tool": "read_material",
+          "tool_call_id": "offline-2",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "return_summary": "status=ok; material_id=M02; authorization_status=authorized",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "check_rules",
+          "next_action_source": "model",
+          "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "cycle": 2
+        },
+        {
+          "step": 5,
+          "model_step": 6,
+          "tool": "check_rules",
+          "tool_call_id": "offline-4",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "return_summary": "status=passed; missing_fields=[]; risks=[]",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "query_slots",
+          "next_action_source": "model",
+          "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "cycle": 2
+        },
+        {
+          "step": 6,
+          "model_step": 7,
+          "tool": "query_slots",
+          "tool_call_id": "offline-6",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "return_summary": "scheduling=alternative_proposed; candidates=['2026-10-30T19:00:00+08:00', '2026-10-30T20:00:00+08:00']",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "waiting_for_human",
+          "next_action_source": "workflow",
+          "next_decision_reason": "",
+          "cycle": 2
+        }
+      ],
+      "human_actions": [
+        {
+          "interrupt_id": "039d8abbb093cd2b8d7a077d04987683",
+          "fields": {
+            "authorization_status": "authorized",
+            "authorization_evidence": "AUTH-USER-M02"
+          },
+          "kind": "provide_metadata",
+          "status": "applied",
+          "recorded_at": "2026-10-29T08:12:24.960632+00:00"
+        }
+      ]
+    },
+    {
+      "http_step": 4,
+      "run_id": "RUN-f5369437fae249388645d2463d80e6d1",
+      "status": "completed",
+      "interrupt": null,
+      "execution_steps": [
+        {
+          "step": 1,
+          "model_step": 1,
+          "tool": "read_material",
+          "tool_call_id": "offline-2",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "return_summary": "status=ok; material_id=M02; authorization_status=None",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "check_rules",
+          "next_action_source": "model",
+          "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "cycle": 1
+        },
+        {
+          "step": 2,
+          "model_step": 2,
+          "tool": "check_rules",
+          "tool_call_id": "offline-4",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "return_summary": "status=needs_info; missing_fields=['authorization_status']; risks=[]",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "supplement_material",
+          "next_action_source": "model",
+          "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "cycle": 1
+        },
+        {
+          "step": 3,
+          "model_step": 3,
+          "tool": "supplement_material",
+          "tool_call_id": "offline-6",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。",
+            "fields": [
+              "authorization_status"
+            ]
+          },
+          "return_summary": "status=empty; returned_fields=[]",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "finish",
+          "next_action_source": "model",
+          "next_decision_reason": "离线测试分支结束。",
+          "cycle": 1
+        },
+        {
+          "step": 4,
+          "model_step": 5,
+          "tool": "read_material",
+          "tool_call_id": "offline-2",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "return_summary": "status=ok; material_id=M02; authorization_status=authorized",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "check_rules",
+          "next_action_source": "model",
+          "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "cycle": 2
+        },
+        {
+          "step": 5,
+          "model_step": 6,
+          "tool": "check_rules",
+          "tool_call_id": "offline-4",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "return_summary": "status=passed; missing_fields=[]; risks=[]",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "query_slots",
+          "next_action_source": "model",
+          "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "cycle": 2
+        },
+        {
+          "step": 6,
+          "model_step": 7,
+          "tool": "query_slots",
+          "tool_call_id": "offline-6",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "return_summary": "scheduling=alternative_proposed; candidates=['2026-10-30T19:00:00+08:00', '2026-10-30T20:00:00+08:00']",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "waiting_for_human",
+          "next_action_source": "workflow",
+          "next_decision_reason": "",
+          "cycle": 2
+        }
+      ],
+      "human_actions": [
+        {
+          "interrupt_id": "039d8abbb093cd2b8d7a077d04987683",
+          "fields": {
+            "authorization_status": "authorized",
+            "authorization_evidence": "AUTH-USER-M02"
+          },
+          "kind": "provide_metadata",
+          "status": "applied",
+          "recorded_at": "2026-10-29T08:12:24.960632+00:00"
+        },
+        {
+          "interrupt_id": "4a55e34e2d9be641b58500db1e96acb1",
+          "selected_at": "2026-10-30T20:00:00+08:00",
+          "kind": "choose_time",
+          "status": "recorded",
+          "recorded_at": "2026-10-29T08:12:25.017358+00:00"
+        }
+      ]
+    }
+  ]
+}

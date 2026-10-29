@@ -28,7 +28,7 @@ class SupplementArguments(DecisionArguments):
 
 
 class AgentTools:
-    def __init__(self, request, rules, source, store, evaluated_at=None, *, pause_on_conflict=False):
+    def __init__(self, request, rules, source, store, evaluated_at=None, *, pause_on_conflict=False, pause_on_review=False):
         self.request, self.rules = request, rules
         self.source, self.store = source, store
         self.evaluated_at = evaluated_at
@@ -40,10 +40,15 @@ class AgentTools:
         self.plan = None
         self.saved = None
         self.pause_on_conflict = pause_on_conflict
+        self.pause_on_review = pause_on_review
 
     def waiting_for_time(self):
         result = self.result()
         return self.pause_on_conflict and result is not None and needs_time_selection(result)
+
+    def waiting_for_review(self):
+        result = self.result()
+        return self.pause_on_review and result is not None and result.review.status == "needs_review" and not result.errors
 
     def now(self):
         return self.evaluated_at or datetime.now(timezone.utc)
@@ -193,6 +198,7 @@ class AgentTools:
             self.request, self.rules, DraftService(self.store, self.source),
             evaluated_at=self.evaluated_at,
             require_time_selection=self.pause_on_conflict,
+            require_human_review=self.pause_on_review,
         )
         return self.saved.model_dump(mode="json")
 

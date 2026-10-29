@@ -1,0 +1,167 @@
+{
+  "mode": "offline_test",
+  "catalog": "catalog.json",
+  "operations": [
+    {
+      "step": 1,
+      "method": "POST",
+      "path": "/schedule",
+      "arguments": {
+        "request_id": "REQ-HUMAN-APPROVE",
+        "material_id": "M04",
+        "channel": "wechat",
+        "time_requirement": {
+          "mode": "fixed",
+          "requested_at": "2026-10-30T18:00:00+08:00"
+        },
+        "search_window": {
+          "start": "2026-10-30T18:00:00+08:00",
+          "end": "2026-10-30T21:00:00+08:00"
+        },
+        "save_draft": true
+      }
+    },
+    {
+      "step": 2,
+      "method": "POST",
+      "path": "/runs/RUN-20b048df27ff44e7afded0cc9aca798e/resume",
+      "arguments": {
+        "interrupt_id": "57b25f503a1ec53fb96905ed8967dfd6",
+        "action": "approve",
+        "reviewer": "demo",
+        "note": "无凭证"
+      }
+    },
+    {
+      "step": 3,
+      "method": "POST",
+      "path": "/runs/RUN-20b048df27ff44e7afded0cc9aca798e/resume",
+      "arguments": {
+        "interrupt_id": "57b25f503a1ec53fb96905ed8967dfd6",
+        "action": "approve",
+        "reviewer": "reviewer-demo",
+        "note": "已核对合成演示资料。",
+        "authorization_evidence": "AUTH-REVIEW-M04"
+      }
+    },
+    {
+      "step": 4,
+      "method": "POST",
+      "path": "/runs/RUN-20b048df27ff44e7afded0cc9aca798e/resume",
+      "arguments": {
+        "interrupt_id": "b65b71100b1e3449663aae283e99bb0a",
+        "selected_at": "2026-10-30T20:00:00+08:00"
+      }
+    },
+    {
+      "step": 5,
+      "method": "POST",
+      "path": "/schedule",
+      "arguments": {
+        "request_id": "REQ-HUMAN-REJECT",
+        "material_id": "M04",
+        "channel": "wechat",
+        "time_requirement": {
+          "mode": "fixed",
+          "requested_at": "2026-10-30T18:00:00+08:00"
+        },
+        "search_window": {
+          "start": "2026-10-30T18:00:00+08:00",
+          "end": "2026-10-30T21:00:00+08:00"
+        },
+        "save_draft": true
+      }
+    },
+    {
+      "step": 6,
+      "method": "POST",
+      "path": "/runs/RUN-d3a3b62fae9743f9a63608f7f88d2536/resume",
+      "arguments": {
+        "interrupt_id": "2cc3b0e3a01ba91211a5f99fbd009fbf",
+        "action": "reject",
+        "reviewer": "reviewer-demo",
+        "note": "已核对合成演示资料。"
+      }
+    },
+    {
+      "step": 7,
+      "method": "POST",
+      "path": "/schedule",
+      "arguments": {
+        "request_id": "REQ-HUMAN-CHANGES",
+        "material_id": "M04",
+        "channel": "wechat",
+        "time_requirement": {
+          "mode": "fixed",
+          "requested_at": "2026-10-30T18:00:00+08:00"
+        },
+        "search_window": {
+          "start": "2026-10-30T18:00:00+08:00",
+          "end": "2026-10-30T21:00:00+08:00"
+        },
+        "save_draft": true
+      }
+    },
+    {
+      "step": 8,
+      "method": "POST",
+      "path": "/runs/RUN-d70be497ed9a477095c0887b9697cf46/resume",
+      "arguments": {
+        "interrupt_id": "048f81fc838fd5c4f1e66755b868dae0",
+        "action": "request_changes",
+        "reviewer": "reviewer-demo",
+        "note": "已核对合成演示资料。"
+      }
+    },
+    {
+      "step": 9,
+      "method": "POST",
+      "path": "/runs/RUN-d70be497ed9a477095c0887b9697cf46/resume",
+      "arguments": {
+        "interrupt_id": "3f09fc117816b7479d8f79364b03ea3c",
+        "fields": {
+          "authorization_evidence": "AUTH-MODIFIED-M04"
+        }
+      }
+    },
+    {
+      "step": 10,
+      "method": "POST",
+      "path": "/runs/RUN-d70be497ed9a477095c0887b9697cf46/resume",
+      "arguments": {
+        "interrupt_id": "abb467f89636dfc45e56e3ba658139e9",
+        "action": "approve",
+        "reviewer": "reviewer-demo",
+        "note": "已核对合成演示资料。"
+      }
+    },
+    {
+      "step": 11,
+      "method": "POST",
+      "path": "/runs/RUN-d70be497ed9a477095c0887b9697cf46/resume",
+      "arguments": {
+        "interrupt_id": "4483a7c83f876f6c73d4d07a8ee7a233",
+        "selected_at": "2026-10-30T20:00:00+08:00"
+      }
+    },
+    {
+      "step": 12,
+      "method": "POST",
+      "path": "/schedule",
+      "arguments": {
+        "request_id": "REQ-HUMAN-BLOCK",
+        "material_id": "M03",
+        "channel": "wechat",
+        "time_requirement": {
+          "mode": "fixed",
+          "requested_at": "2026-10-30T18:00:00+08:00"
+        },
+        "search_window": {
+          "start": "2026-10-30T18:00:00+08:00",
+          "end": "2026-10-30T21:00:00+08:00"
+        },
+        "save_draft": true
+      }
+    }
+  ]
+}

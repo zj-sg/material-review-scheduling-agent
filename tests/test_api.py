@@ -99,7 +99,7 @@ def test_http_conflict_duplicate_and_persisted_draft(tmp_path):
 @pytest.mark.parametrize("name,decisions,count", [
     ("01_normal", ["ready"], 1),
     ("02_missing_metadata", ["request_info"], 0),
-    ("03_rule_risk", ["block", "request_confirmation"], 1),
+    ("03_rule_risk", ["block", "request_confirmation"], 0),
     ("05_duplicate_request", ["ready", "ready"], 1),
     ("07_no_available_slot", ["request_info"], 1),
 ])

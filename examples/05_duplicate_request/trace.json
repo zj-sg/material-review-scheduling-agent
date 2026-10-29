@@ -1,7 +1,7 @@
 {
   "mode": "offline_test",
   "real_model_tested": false,
-  "recorded_at": "2026-10-29T07:09:52.410684+00:00",
+  "recorded_at": "2026-10-29T08:12:09.666449+00:00",
   "command": [
     "D:\\ProgramData\\material-review-scheduling-agent\\.venv\\Scripts\\python.exe",
     "-X",
@@ -12,7 +12,7 @@
     "examples/05_duplicate_request/input.json",
     "--offline",
     "--database",
-    "D:\\ProgramData\\material-review-scheduling-agent\\data\\submission-validation-3c5491a274cb42a79d180cdd97d7de40\\05_duplicate_request.sqlite3"
+    "D:\\ProgramData\\material-review-scheduling-agent\\data\\submission-validation-75d01dc9f66f4c1ca777cd1a810b218e\\05_duplicate_request.sqlite3"
   ],
   "exit_code": 0,
   "expected_exit_code": 0,
@@ -328,7 +328,7 @@
             },
             "persistence": {
               "status": "saved",
-              "draft_id": "DRAFT-862f06fbff774e259f035b271d0aa6dd",
+              "draft_id": "DRAFT-cc9a19419d2049e59225ac8f8fce20f5",
               "error": null
             },
             "errors": [],
@@ -388,7 +388,7 @@
           "arguments": {
             "reason": "离线测试动作说明，不代表真实模型决策。"
           },
-          "return_summary": "persistence=saved; draft_id=DRAFT-862f06fbff774e259f035b271d0aa6dd",
+          "return_summary": "persistence=saved; draft_id=DRAFT-cc9a19419d2049e59225ac8f8fce20f5",
           "decision_reason": "离线测试动作说明，不代表真实模型决策。",
           "next_action": "completed",
           "next_action_source": "workflow",
@@ -689,7 +689,7 @@
             },
             "persistence": {
               "status": "already_exists",
-              "draft_id": "DRAFT-862f06fbff774e259f035b271d0aa6dd",
+              "draft_id": "DRAFT-cc9a19419d2049e59225ac8f8fce20f5",
               "error": null
             },
             "errors": [],
@@ -749,7 +749,7 @@
           "arguments": {
             "reason": "离线测试动作说明，不代表真实模型决策。"
           },
-          "return_summary": "persistence=already_exists; draft_id=DRAFT-862f06fbff774e259f035b271d0aa6dd",
+          "return_summary": "persistence=already_exists; draft_id=DRAFT-cc9a19419d2049e59225ac8f8fce20f5",
           "decision_reason": "离线测试动作说明，不代表真实模型决策。",
           "next_action": "completed",
           "next_action_source": "workflow",

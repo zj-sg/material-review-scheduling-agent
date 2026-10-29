@@ -174,14 +174,16 @@ def main():
                         "exit_code": run.returncode, "draft_count": actual["draft_count"]})
         print(f"{case.name}: {'PASS' if passed else 'FAIL'}; exit={run.returncode}; drafts={actual['draft_count']}", flush=True)
     interactive = record_interactive(runtime_dir)
+    from examples.record_human_interrupts import record_human_interrupts
+    human_interrupts = record_human_interrupts(runtime_dir)
     manifest = {
         "mode": "offline_test", "real_model_tested": False,
         "recorded_at": datetime.now(timezone.utc).isoformat(), "python": sys.version,
         "platform": platform.platform(), "source_sha256": source_fingerprint(),
         "source_sha256_policy": "Relative paths and source bytes normalized to LF line endings.",
         "scenario_count": len(records), "request_count": sum(len(json.loads((ROOT / entry['actual']).read_text(encoding='utf-8'))['runs']) for entry in records),
-        "all_passed": all(entry["passed"] for entry in records) and interactive["passed"],
-        "scenarios": records, "interactive": interactive,
+        "all_passed": all(entry["passed"] for entry in records) and interactive["passed"] and all(entry["passed"] for entry in human_interrupts),
+        "scenarios": records, "interactive": interactive, "human_interrupts": human_interrupts,
     }
     write_json(ROOT / "examples/validation-manifest.json", manifest)
     return 0 if manifest["all_passed"] and len(records) == 7 else 1

@@ -30,4 +30,6 @@ agent-example --offline 使用显式可控模型运行 LangGraph 和业务工具
 真实 DeepSeek 的两条不同路径已保存在 [01_normal/live](01_normal/live/summary.md) 和 [02_missing_metadata/live](02_missing_metadata/live/summary.md)，包含 request.json、response.json、trace.json、execution-steps.json、inspection.json 和摘要。
 首次失败的真实模型记录在 02_missing_metadata/live-failure；它没有计为成功。
 人工时间选择与占用变化后重提的完整 HTTP 记录在 [04_time_conflict/interactive](04_time_conflict/interactive/summary.md)，该记录使用离线模型、真实服务和数据库。
+新增 [02_missing_metadata/human](02_missing_metadata/human/summary.md) 覆盖补查无果→资料输入校验→重审→时间选择→保存；[03_rule_risk/human](03_rule_risk/human/summary.md) 覆盖通过、驳回、要求修改后重审及明确阻断。这些为离线模型下实际执行的 HTTP/图/数据库记录。
+两条 live 记录采集于新增资料/风险人工中断前，保留为真实模型工具决策证据，不代表新增人工恢复已用真实模型验证。
 test-results.txt、test-results.xml 为实际测试输出；environment.json 记录验证环境。评审映射见 ../docs/03-evaluation.md。

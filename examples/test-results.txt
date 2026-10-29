@@ -1,13 +1,11 @@
-Clean submission checkout validation
-No .env, no existing virtual environment, no pre-existing runtime database.
-Command: D:\ProgramData\material-review-scheduling-agent\data\submission-env-615d01852f\Scripts\python.exe -X utf8 -m pytest -q -W error --junitxml=D:\ProgramData\material-review-scheduling-agent\examples\test-results.xml
-Working directory: D:\ProgramData\material-review-scheduling-agent\data\submission-checkout-6131494dd0
+Current working-tree regression, offline provider isolation in tests
+Command: D:\ProgramData\material-review-scheduling-agent\.venv\Scripts\python.exe -X utf8 -m pytest -q -W error --tb=short --junitxml=examples/test-results.xml
 
-........................................................................ [ 24%]
-........................................................................ [ 48%]
-........................................................................ [ 73%]
-........................................................................ [ 97%]
-.......                                                                  [100%]
-295 passed in 47.81s
+........................................................................ [ 22%]
+........................................................................ [ 44%]
+........................................................................ [ 66%]
+........................................................................ [ 88%]
+....................................                                     [100%]
+324 passed in 30.22s
 
 Exit code: 0

@@ -1,0 +1,57 @@
+{
+  "mode": "offline_test",
+  "catalog": "catalog.json",
+  "operations": [
+    {
+      "step": 1,
+      "method": "POST",
+      "path": "/schedule",
+      "arguments": {
+        "request_id": "REQ-HUMAN-METADATA",
+        "material_id": "M02",
+        "channel": "wechat",
+        "time_requirement": {
+          "mode": "fixed",
+          "requested_at": "2026-10-30T18:00:00+08:00"
+        },
+        "search_window": {
+          "start": "2026-10-30T18:00:00+08:00",
+          "end": "2026-10-30T21:00:00+08:00"
+        },
+        "save_draft": true
+      }
+    },
+    {
+      "step": 2,
+      "method": "POST",
+      "path": "/runs/RUN-f5369437fae249388645d2463d80e6d1/resume",
+      "arguments": {
+        "interrupt_id": "039d8abbb093cd2b8d7a077d04987683",
+        "fields": {
+          "authorization_status": ""
+        }
+      }
+    },
+    {
+      "step": 3,
+      "method": "POST",
+      "path": "/runs/RUN-f5369437fae249388645d2463d80e6d1/resume",
+      "arguments": {
+        "interrupt_id": "039d8abbb093cd2b8d7a077d04987683",
+        "fields": {
+          "authorization_status": "authorized",
+          "authorization_evidence": "AUTH-USER-M02"
+        }
+      }
+    },
+    {
+      "step": 4,
+      "method": "POST",
+      "path": "/runs/RUN-f5369437fae249388645d2463d80e6d1/resume",
+      "arguments": {
+        "interrupt_id": "4a55e34e2d9be641b58500db1e96acb1",
+        "selected_at": "2026-10-30T20:00:00+08:00"
+      }
+    }
+  ]
+}

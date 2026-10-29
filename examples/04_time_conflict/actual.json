@@ -47,7 +47,7 @@
         },
         "persistence": {
           "status": "saved",
-          "draft_id": "DRAFT-7509a7462ba8494195f12108bdfa4da4",
+          "draft_id": "DRAFT-0e0700172f9c4627abed0337c766c3d2",
           "error": null
         },
         "errors": [],
@@ -209,7 +209,7 @@
             },
             "persistence": {
               "status": "saved",
-              "draft_id": "DRAFT-7509a7462ba8494195f12108bdfa4da4",
+              "draft_id": "DRAFT-0e0700172f9c4627abed0337c766c3d2",
               "error": null
             },
             "errors": [],
@@ -456,7 +456,7 @@
           "arguments": {
             "reason": "离线测试动作说明，不代表真实模型决策。"
           },
-          "return_summary": "persistence=saved; draft_id=DRAFT-7509a7462ba8494195f12108bdfa4da4",
+          "return_summary": "persistence=saved; draft_id=DRAFT-0e0700172f9c4627abed0337c766c3d2",
           "decision_reason": "离线测试动作说明，不代表真实模型决策。",
           "next_action": "completed",
           "next_action_source": "workflow",

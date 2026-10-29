@@ -1,7 +1,7 @@
 {
   "mode": "offline_test",
   "real_model_tested": false,
-  "recorded_at": "2026-10-29T07:10:00.048133+00:00",
+  "recorded_at": "2026-10-29T08:12:19.348014+00:00",
   "command": [
     "D:\\ProgramData\\material-review-scheduling-agent\\.venv\\Scripts\\python.exe",
     "-X",
@@ -12,7 +12,7 @@
     "examples/07_no_available_slot/input.json",
     "--offline",
     "--database",
-    "D:\\ProgramData\\material-review-scheduling-agent\\data\\submission-validation-3c5491a274cb42a79d180cdd97d7de40\\07_no_available_slot.sqlite3"
+    "D:\\ProgramData\\material-review-scheduling-agent\\data\\submission-validation-75d01dc9f66f4c1ca777cd1a810b218e\\07_no_available_slot.sqlite3"
   ],
   "exit_code": 0,
   "expected_exit_code": 0,
@@ -395,7 +395,7 @@
             },
             "persistence": {
               "status": "saved",
-              "draft_id": "DRAFT-86aa4290a3814bca9d5d8d175a328620",
+              "draft_id": "DRAFT-ecf114db3f4e41ac888d6b7c4682898f",
               "error": null
             },
             "errors": [],
@@ -455,7 +455,7 @@
           "arguments": {
             "reason": "离线测试动作说明，不代表真实模型决策。"
           },
-          "return_summary": "persistence=saved; draft_id=DRAFT-86aa4290a3814bca9d5d8d175a328620",
+          "return_summary": "persistence=saved; draft_id=DRAFT-ecf114db3f4e41ac888d6b7c4682898f",
           "decision_reason": "离线测试动作说明，不代表真实模型决策。",
           "next_action": "completed",
           "next_action_source": "workflow",

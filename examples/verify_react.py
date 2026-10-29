@@ -51,7 +51,10 @@ def inspect_evidence(response, path="missing"):
             or str((step.get("metadata") or {}).get("model_name", "")).startswith("deepseek")
             for step in steps
         ),
-        "completed_without_error": response.get("status") == "completed" and response.get("error") is None,
+        "completed_without_error": response.get("error") is None and (
+            response.get("status") == "completed" or (path == "missing"
+            and response.get("status") == "waiting_for_human"
+            and (response.get("interrupt") or {}).get("kind") == "provide_metadata")),
         "model_observed_missing_fields_and_chose_supplement": supplement is not None,
         "supplement_tool_actually_returned_empty": executed is not None,
         "model_observed_empty_result_and_finished": observed_empty is not None and finish is not None,

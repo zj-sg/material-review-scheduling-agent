@@ -25,13 +25,15 @@ class DraftService:
 
     def save(
         self, request: ScheduleRequest, rules: RuleConfig,
-        *, evaluated_at: datetime | None = None, require_time_selection: bool = False,
+        *, evaluated_at: datetime | None = None, require_time_selection: bool = False, require_human_review: bool = False,
     ) -> ScheduleResult:
         reviewed = ReviewService(self.material_source).review(
             request, rules, evaluated_at=evaluated_at,
         )
         current = reviewed.result
         if not request.save_draft or current.review.status not in {"passed", "needs_review"}:
+            return current
+        if require_human_review and current.review.status == "needs_review":
             return current
 
         try:
@@ -149,6 +151,8 @@ class DraftService:
         saved = ScheduleResult.model_validate(payload)
         document = report.model_dump(mode="json")
         document["result"] = saved.model_dump(mode="json")
+        if getattr(self.material_source, "human_actions", None):
+            document["human_actions"] = self.material_source.human_actions
         self.store.write_draft(
             connection, draft_id=draft_id, request_id=request.request_id,
             canonical_request=request_key(request), rules_json=rules.model_dump_json(),

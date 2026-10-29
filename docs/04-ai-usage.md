@@ -14,6 +14,7 @@ DeepSeek 是项目运行时用于选择工具的模型，与辅助开发的 Code
 | 指出方案过于复杂，要求按题目精简 | 删除版本历史、复杂时间网格、多 Agent 等非必要范围 |
 | 选择 DeepSeek，自行填写本地密钥并启动服务 | 完成真实接口配置与演示运行条件 |
 | 要求 HTTP 入口和时间冲突人工中断 | 增加 FastAPI、候选选择、复查恢复 |
+| 要求资料缺失和风险人工审核也可中断 | 增加补资料、通过/驳回/要求修改、恢复重审与运行内上下文 |
 | 指出工具注册不直观，要求框架方式 | 改为 @tool、bind_tools 和 ToolNode |
 | 要求区分 ReAct 与固定分支，并保留两条记录及执行上限 | 增加模型观察/动作证据、公开 reason、incomplete 状态和实际运行验证 |
 | 提供 GitHub 交付规范 | 整理五份文档、合成数据、实际输出、Trace 和测试报告 |
@@ -25,6 +26,7 @@ DeepSeek 是项目运行时用于选择工具的模型，与辅助开发的 Code
 
 - 模型工具、规则、排期和保存代码：通过可执行测试及七类独立离线回放；实际输出保存在 examples，而非拿 expected.json 冒充结果。
 - 模型集成与暂停恢复：通过 HTTP Mock、实际 HTTP/SQLite、中断 ID、重复恢复和占用变化测试。
+- 新增资料/风险人工流程：通过离线模型、真实 LangGraph 中断、接口和 SQLite 验证，未追加真实模型调用；记录保存在 examples/02_missing_metadata/human 和 examples/03_rule_risk/human。
 - 真实决策证据：实际运行 DeepSeek 两条路径，保留原始输入/输出，模型实际选择 query_slots 或 supplement_material。
 - 文档与记录：以实际运行文件、状态和源代码为依据；首次失败、未实测范围、内存恢复限制均保留说明。
 

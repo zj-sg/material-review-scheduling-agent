@@ -1,7 +1,7 @@
 {
   "mode": "offline_test",
   "real_model_tested": false,
-  "recorded_at": "2026-10-29T07:09:40.953629+00:00",
+  "recorded_at": "2026-10-29T08:11:54.830068+00:00",
   "command": [
     "D:\\ProgramData\\material-review-scheduling-agent\\.venv\\Scripts\\python.exe",
     "-X",
@@ -12,7 +12,7 @@
     "examples/02_missing_metadata/input.json",
     "--offline",
     "--database",
-    "D:\\ProgramData\\material-review-scheduling-agent\\data\\submission-validation-3c5491a274cb42a79d180cdd97d7de40\\02_missing_metadata.sqlite3"
+    "D:\\ProgramData\\material-review-scheduling-agent\\data\\submission-validation-75d01dc9f66f4c1ca777cd1a810b218e\\02_missing_metadata.sqlite3"
   ],
   "exit_code": 0,
   "expected_exit_code": 0,

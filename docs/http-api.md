@@ -80,7 +80,7 @@ HTTP 使用当前真实时间，要求发布时间在未来；示例日期过期
 更换素材、时间或其他输入时使用新的 request_id；同一请求在等待期间重复提交返回同一运行与中断，不重复调用模型。
 已完成请求重新提交会重新检查当前占用，允许保存时仍复用同一草稿 ID。
 
-响应包含 mode、status、decision、result、model_calls、model_steps、tool_calls、execution_steps、execution_limits、error、run_id、interrupt。
+响应包含 mode、status、decision、result、model_calls、model_steps、tool_calls、execution_steps、execution_limits、error、run_id、interrupt、human_actions。
 result 中分别给出审核、排期、确认、实际保存及未发布状态；tool_calls 记录实际调用与返回。
 model_steps 记录各轮模型观察到的工具结果及模型实际返回的动作，真实调用验收与证据保存见 [ReAct 验收说明](react-acceptance.md)。
 execution_steps 另给出步骤、实际工具参数、返回摘要、后续动作及模型提供的简短 reason，不导出内部思维过程。
@@ -150,7 +150,76 @@ $result | ConvertTo-Json -Depth 50
 GET /runs/{run_id} 可查看当前运行状态。已经完成的运行再次恢复返回 409；旧中断 ID 返回 409；列表外时间返回 422。
 原请求的发布时间或查询起点已过期时，恢复返回 RUN_EXPIRED/409，需使用新请求 ID 和未来时间重新提交。
 
-本次只有时间选择会中断；信息不足、待复核、阻断和工具失败保持原来的业务处理方式。
+恢复时若发现新缺失或待复核风险，会转到下面对应的人工中断；明确阻断和工具失败直接返回结果。
+
+## 素材信息缺失：补充后重新审核
+
+以默认演示素材 M02 发起请求：将上面的 material_id 改为 M02，request_id 改为 REQ-HTTP-M02-001。自动补查没有找到信息后，返回 status=waiting_for_human、interrupt.kind=provide_metadata。
+interrupt.missing_fields 列出缺失字段，requirements 提供每个字段的用途和补充要求，editable_fields 限定本次可以提交的字段。
+
+在 POST /runs/{run_id}/resume 中选择 metadata 示例，替换实际 run_id 和 interrupt_id：
+
+~~~json
+{
+  "interrupt_id": "复制本次中断 ID",
+  "fields": {
+    "authorization_status": "authorized",
+    "authorization_evidence": "AUTH-M02-VERIFIED"
+  }
+}
+~~~
+
+如果缺少 channel，则提交 `"fields": {"channel": "wechat"}`。素材渠道必须匹配原请求的 channel，不能通过补资料改变请求渠道。
+空值、非法枚举、非本次允许的字段返回 422，原中断保留。可以分次补充，但每次恢复都会重新执行模型和相关工具，仍缺字段时再次中断。
+授权状态只提供 authorized、unknown 或 denied；authorized 需要凭证，unknown 转入风险审核，denied 直接阻断。
+资料补齐后重新读取、审核并查询排期；如 18:00 被占用，随后返回 choose_time，需继续选择候选，才可保存。
+
+## 风险待复核：通过、驳回或要求修改
+
+以 M04、一个新的 request_id 发起请求，返回 interrupt.kind=review_risk。risks 给出规则编号、级别、字段、相关值和内容摘要；material 展示本次待审素材，options 给出可选操作。
+当前待复核规则是 R_AUTH_REVIEW（授权状态 unknown）。配置中的禁用短语、明确 denied、渠道不符属于阻断规则，直接终止，不提供人工通过入口。
+
+人工通过时选择 review 示例，填实际 ID、审核人、说明及授权凭证：
+
+~~~json
+{
+  "interrupt_id": "复制本次中断 ID",
+  "action": "approve",
+  "reviewer": "reviewer-demo",
+  "note": "已核对素材与授权文件编号",
+  "authorization_evidence": "AUTH-M04-VERIFIED"
+}
+~~~
+
+approve 仅将本次运行的授权资料补齐，然后重新执行审核和排期，不直接把审核状态改为通过；没有新凭证时，可使用此前补充的非空凭证。没有凭证返回 422。
+驳回和要求修改的请求如下（二选一）：
+
+~~~json
+{
+  "interrupt_id": "复制本次中断 ID",
+  "action": "reject",
+  "reviewer": "reviewer-demo",
+  "note": "无法确认授权，驳回本次申请"
+}
+~~~
+
+~~~json
+{
+  "interrupt_id": "复制本次中断 ID",
+  "action": "request_changes",
+  "reviewer": "reviewer-demo",
+  "note": "请补充授权文件编号后重新提交审核"
+}
+~~~
+
+reject 返回 status=rejected、decision=reject，不继续调用模型、不新建草稿；保留原规则发现以便核对。
+request_changes 转为 provide_metadata，message 展示审核意见；按 editable_fields 提交修改后，重新审核。授权存疑不能通过把字段直接改成 authorized 绕过人工复核，需补充凭证后再次 approve。
+
+人工输入仅作用于当前 run_id，不写回共享 JSON 文件。素材来源发生变化时旧补充和旧通过结论失效，恢复时重新判断；新的阻断风险仍会被拦截。
+human_actions 记录补充资料、审核人/意见/操作和时间选择；保存成功时随草稿记录写入现有 drafts 表。待办和驳回记录目前只在内存中保存。
+reviewer 是调用方填写的演示身份，本项目未实现登录鉴权或独立审核权限。
+
+新增两类流程的实际离线运行材料见 [资料补充](../examples/02_missing_metadata/human/summary.md) 和 [人工风险审核](../examples/03_rule_risk/human/summary.md)。可运行 `python examples/record_human_interrupts.py` 复现，不会调用 DeepSeek。
 
 ## 查询草稿
 
@@ -173,20 +242,20 @@ data/api-data.json 保存规则、素材、可信补查信息和初始化正式�
 
 人工中断通过 LangGraph interrupt()、Command(resume=...) 和内存检查点实现。
 请使用单进程、单 worker 运行。服务重启、重载或进程退出会清除等待中的运行；旧 run_id 返回 404，需重新提交请求。
-已提交的 SQLite 草稿和正式排期保留。未增加检查点表、草稿版本历史或其他人工审批节点。
+已提交的 SQLite 草稿和正式排期保留。未增加检查点表、草稿版本历史或独立审批数据库。
 
 ## HTTP 状态
 
 | 状态码 | 含义 |
 | --- | --- |
-| 200 | 已完成或等待人工，需查看 status、decision、result 和 interrupt |
+| 200 | 已完成、等待人工或人工驳回，需查看 status、decision、result 和 interrupt |
 | 404 | 素材、草稿或运行不存在；服务重启后的内存运行也返回 404 |
 | 409 | 请求 ID 内容冲突、中断已失效、重复恢复或原请求时间过期 |
-| 422 | 请求字段、时间、JSON 校验失败，或选择不在当前候选列表中 |
+| 422 | 请求或人工输入校验失败、缺少审核凭证，或选择不在当前候选列表中 |
 | 500 | 工具、数据库保存或服务内部失败 |
 | 502 | 模型接口失败、响应无效或缺少必要工具步骤 |
 
 模型调用达到配置上限时返回 HTTP 409、status=incomplete、error.code=LIMIT_EXCEEDED；实际计数与已有执行记录保留，不返回成功。
-默认最多 12 轮模型调用，每轮至多执行一个模型选择的工具。该限制针对模型工具循环，人工恢复的业务复查单独记录。
+默认最多 12 轮模型调用，每轮至多执行一个模型选择的工具。补资料和风险审核后的模型重跑累计计数，不因恢复而重置；人工时间选择的确定性业务复查单独记录。较长的多轮演示可按需提高 MATERIAL_AGENT_MAX_MODEL_CALLS。
 
 实现参考 [FastAPI 官方入门](https://fastapi.tiangolo.com/tutorial/first-steps/) 与 [测试说明](https://fastapi.tiangolo.com/tutorial/testing/)。

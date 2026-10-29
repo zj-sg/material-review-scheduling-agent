@@ -28,9 +28,9 @@
       "step": 2,
       "operation": "HTTP",
       "method": "POST",
-      "path": "/runs/RUN-73c4ee5cbab84152a326c3243fd260a2/resume",
+      "path": "/runs/RUN-ba3382d05b9e49509cdcbb274accd5fe/resume",
       "arguments": {
-        "interrupt_id": "41c67e2426d0148cb86935edc10550f8",
+        "interrupt_id": "be3625a1915d9089e2452f6e20218874",
         "selected_at": "2026-10-30T20:00:00+08:00"
       }
     },
@@ -60,9 +60,9 @@
       "step": 4,
       "operation": "HTTP",
       "method": "POST",
-      "path": "/runs/RUN-2ea3ce19b5ff46dbac1046f869462d90/resume",
+      "path": "/runs/RUN-f63308fa2af14452a8591329693da543/resume",
       "arguments": {
-        "interrupt_id": "2c6eeef39933a1a187ca004a48926a8c",
+        "interrupt_id": "63bd4f62c97d206303e2b47de779ea43",
         "selected_at": "2026-10-30T20:00:00+08:00"
       }
     },
@@ -110,9 +110,9 @@
       "step": 7,
       "operation": "HTTP",
       "method": "POST",
-      "path": "/runs/RUN-fcc9d11aa3154d7d98d87e713b80c268/resume",
+      "path": "/runs/RUN-ce996f003d5e46dd8aa35b4513524226/resume",
       "arguments": {
-        "interrupt_id": "5013d6683beda38f82d022523a7dcb61",
+        "interrupt_id": "e4e3f209088ff75f80ed56c9765c202e",
         "selected_at": "2026-10-30T19:00:00+08:00"
       }
     },
@@ -120,9 +120,9 @@
       "step": 8,
       "operation": "HTTP",
       "method": "POST",
-      "path": "/runs/RUN-fcc9d11aa3154d7d98d87e713b80c268/resume",
+      "path": "/runs/RUN-ce996f003d5e46dd8aa35b4513524226/resume",
       "arguments": {
-        "interrupt_id": "5013d6683beda38f82d022523a7dcb61",
+        "interrupt_id": "e4e3f209088ff75f80ed56c9765c202e",
         "selected_at": "2026-10-30T19:00:00+08:00"
       }
     },
@@ -130,9 +130,9 @@
       "step": 9,
       "operation": "HTTP",
       "method": "POST",
-      "path": "/runs/RUN-fcc9d11aa3154d7d98d87e713b80c268/resume",
+      "path": "/runs/RUN-ce996f003d5e46dd8aa35b4513524226/resume",
       "arguments": {
-        "interrupt_id": "5b11f4d8d4f922b4fc623a56619ded19",
+        "interrupt_id": "3a408372cbc61f21ebaed848ddc692ee",
         "selected_at": "2026-10-30T20:00:00+08:00"
       }
     },

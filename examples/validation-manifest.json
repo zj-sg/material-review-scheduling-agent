@@ -1,10 +1,11 @@
 {
   "mode": "offline_test",
   "real_model_tested": false,
-  "recorded_at": "2026-10-29T07:10:03.933688+00:00",
+  "recorded_at": "2026-10-29T08:12:25.506114+00:00",
   "python": "3.12.4 | packaged by Anaconda, Inc. | (main, Jun 18 2024, 15:03:56) [MSC v.1929 64 bit (AMD64)]",
   "platform": "Windows-11-10.0.26200-SP0",
-  "source_sha256": "f7d13950e4fd9fe321af0d29390ad16fdf80a745eda85a616ac2763792b906d9",
+  "source_sha256": "bca087481ae0acc3be34757592afa0f4a2780ee2a66d3b33753a5e35bf3787a2",
+  "source_sha256_policy": "Relative paths and source bytes normalized to LF line endings.",
   "scenario_count": 7,
   "request_count": 9,
   "all_passed": true,
@@ -79,6 +80,18 @@
     "actual": "examples/04_time_conflict/interactive/actual.json",
     "trace": "examples/04_time_conflict/interactive/trace.json"
   },
-  "source_sha256_policy": "Relative paths and source bytes normalized to LF line endings.",
-  "source_fingerprint_recorded_at": "2026-10-29T07:21:38.111765+00:00"
+  "human_interrupts": [
+    {
+      "passed": true,
+      "input": "examples/02_missing_metadata/human/input.json",
+      "actual": "examples/02_missing_metadata/human/actual.json",
+      "trace": "examples/02_missing_metadata/human/trace.json"
+    },
+    {
+      "passed": true,
+      "input": "examples/03_rule_risk/human/input.json",
+      "actual": "examples/03_rule_risk/human/actual.json",
+      "trace": "examples/03_rule_risk/human/trace.json"
+    }
+  ]
 }

@@ -93,7 +93,7 @@ show-config 不导出 Key；模型异常只报告类型与 HTTP 状态，不回�
 循环参考 [LangGraph 官方 quickstart](https://docs.langchain.com/oss/python/langgraph/quickstart)，
 工具协议参考 [OpenAI 官方 Function calling](https://developers.openai.com/api/docs/guides/function-calling)。
 
-当前 295 项测试通过（含 46 项 HTTP 接口与时间选择测试），CLI、HTTP 与两条真实 DeepSeek 运行结果见 verification.md。
+当前 324 项测试通过（含 75 项 HTTP 接口与人工中断测试），CLI、HTTP 与两条真实 DeepSeek 运行结果见 verification.md。
 真实 DeepSeek ReAct 验收及证据保存命令见 [ReAct 验收说明](react-acceptance.md)。
-HTTP 原时间不可用时支持内存检查点暂停及人工选择恢复，操作见 http-api.md；原 CLI 保留夹具回放模式。
-不启用外部 tracing、跨服务重启的检查点恢复、发布或其他人工审批流程。
+HTTP 支持资料补充、授权存疑审核和时间选择三类内存中断，操作见 http-api.md；原 CLI 保留夹具回放模式。
+不启用外部 tracing、跨服务重启的检查点恢复、真实发布或生产级审批权限。

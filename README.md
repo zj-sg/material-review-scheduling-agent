@@ -4,7 +4,7 @@
 
 ## 评审入口
 
-已完成素材审核、冲突处理、SQLite 保存、单个 LangGraph Agent、HTTP API，以及冲突时的人工时间选择。
+已完成素材审核、冲突处理、SQLite 保存、单个 LangGraph Agent、HTTP API，以及资料补充、风险审核、时间选择三类人工中断。
 命令行和 HTTP 接口通过离线验收；两条真实 DeepSeek 决策路径也已运行通过，记录见下方验收文档。
 工具使用 LangChain @tool 定义、bind_tools() 绑定，由 LangGraph ToolNode 执行；DeepSeek 使用 LangChain 模型集成。
 
@@ -35,7 +35,7 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -X utf8 examples/record_validation.py
 ~~~
 
-record_validation.py 实际运行七类九步场景及 HTTP 人工选择，刷新 examples 中的 actual.json、trace.json 和 validation-manifest.json；该模式明确标记为 offline_test，不能代替真实模型验收。
+record_validation.py 实际运行七类九步场景及 HTTP 三类人工中断，刷新 examples 中的 actual.json、trace.json 和 validation-manifest.json；该模式明确标记为 offline_test，不能代替真实模型验收。
 
 Linux/macOS 使用 `python3 -m venv .venv`、`.venv/bin/python -m pip install -r requirements.txt` 及 `.venv/bin/python -m pytest -q -W error`。本次正式验证平台为 Windows，其他平台结果未单独留证。
 
@@ -62,6 +62,7 @@ API Key 不提交。素材、规则与初始化占用均是合成数据；默认
 打开 http://127.0.0.1:8000/docs，在 POST /schedule 中点击 Try it out，使用示例请求并执行。
 接口说明及 PowerShell 调用见 [HTTP API 使用说明](docs/http-api.md)。
 原时间不可用时 POST /schedule 返回 waiting_for_human 和候选列表；再通过 POST /runs/{run_id}/resume 选择时间，复查后保存。
+自动补查仍缺信息时返回 provide_metadata；授权存疑时返回 review_risk，由人工通过、驳回或要求修改。三类中断共用恢复接口，具体 JSON 见 [HTTP 说明](docs/http-api.md)。
 等待期间不新建草稿。运行检查点保存在内存中，请单 worker 运行；服务重启后需重新提交等待中的请求。
 若只演示离线流程，启动前设置 $env:MATERIAL_AGENT_API_OFFLINE="true"，退出后用 Remove-Item Env:MATERIAL_AGENT_API_OFFLINE 清除。
 
@@ -81,10 +82,11 @@ M01 冲突后建议的 19:00 仍待确认，不能自动接受或声称发布。
 --offline 使用明确标注的可控测试模型，实际执行 LangGraph 和业务工具，不调用外部模型。
 真实模型需配置 .env 并移除该参数；未配置时直接报错，不会自动转为离线模式。
 
-当前 295 项测试通过，包含 46 项 HTTP 接口与中断测试；七类场景、九个步骤的独立 CLI 离线验收通过。
+当前 324 项测试通过，包含 75 项 HTTP 接口与中断测试；七类场景、九个步骤的独立 CLI 离线验收通过。
 实际 Uvicorn 端口验证了暂停、用户选择后保存、占用变化后再次暂停，以及草稿查询等流程。
 数据库仍只有正式排期和当前草稿两张表，没有版本历史。
 模型调用默认最多 12 次，每轮至多一个工具；MATERIAL_AGENT_MAX_MODEL_CALLS 可调整上限。超限返回 status=incomplete、error.code=LIMIT_EXCEEDED（HTTP 409），保留已有记录。
+同一运行补资料和风险审核后的模型重跑共用这个上限；人工恢复不会重置预算。新增两类人工中断已离线验证，未追加真实模型验收；原有两条 DeepSeek 记录保留为此前版本的模型决策证据。
 
 已保存的测试输出见 [examples/test-results.txt](examples/test-results.txt)，逐项报告见 [test-results.xml](examples/test-results.xml)，环境版本见 [environment.json](examples/environment.json)。
 运行数据库和临时文件写入 data/，Git 仅提交其中的合成 JSON 与说明；.env、.venv、数据库和缓存均排除。

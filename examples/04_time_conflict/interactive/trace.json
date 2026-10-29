@@ -1,7 +1,7 @@
 {
   "mode": "offline_test",
   "real_model_tested": false,
-  "recorded_at": "2026-10-29T07:10:03.925691+00:00",
+  "recorded_at": "2026-10-29T08:12:24.821132+00:00",
   "checks": {
     "paused_without_new_draft": true,
     "selected_second_candidate": true,
@@ -42,7 +42,7 @@
         "result": {
           "request_id": "REQ-CONFLICT-001",
           "material_id": "M01",
-          "evaluated_at": "2026-10-29T07:10:03.669629Z",
+          "evaluated_at": "2026-10-29T08:12:24.478384Z",
           "review": {
             "status": "passed",
             "missing_fields": [],
@@ -134,7 +134,7 @@
               "result": {
                 "request_id": "REQ-CONFLICT-001",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.662364Z",
+                "evaluated_at": "2026-10-29T08:12:24.465027Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -203,7 +203,7 @@
               "result": {
                 "request_id": "REQ-CONFLICT-001",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.669629Z",
+                "evaluated_at": "2026-10-29T08:12:24.478384Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -285,7 +285,7 @@
                 {
                   "tool": "query_schedule",
                   "status": "ok",
-                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-3c5491a274cb42a79d180cdd97d7de40/interactive.sqlite3#scheduled_slots",
+                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-75d01dc9f66f4c1ca777cd1a810b218e/interactive.sqlite3#scheduled_slots",
                   "requested_fields": [],
                   "returned_fields": [],
                   "review": null,
@@ -295,7 +295,7 @@
                       "start": "2026-10-30T18:00:00+08:00",
                       "end": "2026-10-30T21:00:00+08:00"
                     },
-                    "queried_at": "2026-10-29T07:10:03.669629Z",
+                    "queried_at": "2026-10-29T08:12:24.478384Z",
                     "existing_schedule": [
                       {
                         "schedule_id": "SCHEDULE-001",
@@ -358,7 +358,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 2,
@@ -396,7 +397,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 3,
@@ -431,7 +433,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           }
         ],
         "execution_steps": [
@@ -447,7 +450,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "check_rules",
             "next_action_source": "model",
-            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 2,
@@ -461,7 +465,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "query_slots",
             "next_action_source": "model",
-            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 3,
@@ -475,7 +480,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "waiting_for_human",
             "next_action_source": "workflow",
-            "next_decision_reason": ""
+            "next_decision_reason": "",
+            "cycle": 1
           }
         ],
         "execution_limits": {
@@ -483,9 +489,9 @@
           "max_tool_calls": 12
         },
         "error": null,
-        "run_id": "RUN-73c4ee5cbab84152a326c3243fd260a2",
+        "run_id": "RUN-ba3382d05b9e49509cdcbb274accd5fe",
         "interrupt": {
-          "interrupt_id": "41c67e2426d0148cb86935edc10550f8",
+          "interrupt_id": "be3625a1915d9089e2452f6e20218874",
           "kind": "choose_time",
           "request_id": "REQ-CONFLICT-001",
           "original_at": "2026-10-30T18:00:00+08:00",
@@ -504,16 +510,17 @@
               "reason": "候选改变了硬性指定时间，需要用户确认。"
             }
           ]
-        }
+        },
+        "human_actions": []
       }
     },
     {
       "step": 2,
       "operation": "HTTP",
       "method": "POST",
-      "path": "/runs/RUN-73c4ee5cbab84152a326c3243fd260a2/resume",
+      "path": "/runs/RUN-ba3382d05b9e49509cdcbb274accd5fe/resume",
       "arguments": {
-        "interrupt_id": "41c67e2426d0148cb86935edc10550f8",
+        "interrupt_id": "be3625a1915d9089e2452f6e20218874",
         "selected_at": "2026-10-30T20:00:00+08:00"
       },
       "http_status": 200,
@@ -524,7 +531,7 @@
         "result": {
           "request_id": "REQ-CONFLICT-001",
           "material_id": "M01",
-          "evaluated_at": "2026-10-29T07:10:03.684077Z",
+          "evaluated_at": "2026-10-29T08:12:24.504461Z",
           "review": {
             "status": "passed",
             "missing_fields": [],
@@ -548,12 +555,12 @@
             "status": "confirmed",
             "pending_items": [],
             "selected_at": "2026-10-30T20:00:00+08:00",
-            "confirmed_at": "2026-10-29T07:10:03.684077Z",
-            "interrupt_id": "41c67e2426d0148cb86935edc10550f8"
+            "confirmed_at": "2026-10-29T08:12:24.504461Z",
+            "interrupt_id": "be3625a1915d9089e2452f6e20218874"
           },
           "persistence": {
             "status": "saved",
-            "draft_id": "DRAFT-5900c45bc2484398af5d5a94818debc4",
+            "draft_id": "DRAFT-d154972944af4afeb05c23754ddcdc58",
             "error": null
           },
           "errors": [],
@@ -608,7 +615,7 @@
               "result": {
                 "request_id": "REQ-CONFLICT-001",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.662364Z",
+                "evaluated_at": "2026-10-29T08:12:24.465027Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -677,7 +684,7 @@
               "result": {
                 "request_id": "REQ-CONFLICT-001",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.669629Z",
+                "evaluated_at": "2026-10-29T08:12:24.478384Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -759,7 +766,7 @@
                 {
                   "tool": "query_schedule",
                   "status": "ok",
-                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-3c5491a274cb42a79d180cdd97d7de40/interactive.sqlite3#scheduled_slots",
+                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-75d01dc9f66f4c1ca777cd1a810b218e/interactive.sqlite3#scheduled_slots",
                   "requested_fields": [],
                   "returned_fields": [],
                   "review": null,
@@ -769,7 +776,7 @@
                       "start": "2026-10-30T18:00:00+08:00",
                       "end": "2026-10-30T21:00:00+08:00"
                     },
-                    "queried_at": "2026-10-29T07:10:03.669629Z",
+                    "queried_at": "2026-10-29T08:12:24.478384Z",
                     "existing_schedule": [
                       {
                         "schedule_id": "SCHEDULE-001",
@@ -815,13 +822,13 @@
             "name": "apply_time_selection",
             "arguments": {
               "selected_at": "2026-10-30T20:00:00+08:00",
-              "interrupt_id": "41c67e2426d0148cb86935edc10550f8"
+              "interrupt_id": "be3625a1915d9089e2452f6e20218874"
             },
             "output": {
               "result": {
                 "request_id": "REQ-CONFLICT-001",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.684077Z",
+                "evaluated_at": "2026-10-29T08:12:24.504461Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -845,12 +852,12 @@
                   "status": "confirmed",
                   "pending_items": [],
                   "selected_at": "2026-10-30T20:00:00+08:00",
-                  "confirmed_at": "2026-10-29T07:10:03.684077Z",
-                  "interrupt_id": "41c67e2426d0148cb86935edc10550f8"
+                  "confirmed_at": "2026-10-29T08:12:24.504461Z",
+                  "interrupt_id": "be3625a1915d9089e2452f6e20218874"
                 },
                 "persistence": {
                   "status": "saved",
-                  "draft_id": "DRAFT-5900c45bc2484398af5d5a94818debc4",
+                  "draft_id": "DRAFT-d154972944af4afeb05c23754ddcdc58",
                   "error": null
                 },
                 "errors": [],
@@ -895,7 +902,7 @@
                 {
                   "tool": "query_schedule",
                   "status": "ok",
-                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-3c5491a274cb42a79d180cdd97d7de40/interactive.sqlite3#scheduled_slots",
+                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-75d01dc9f66f4c1ca777cd1a810b218e/interactive.sqlite3#scheduled_slots",
                   "requested_fields": [],
                   "returned_fields": [],
                   "review": null,
@@ -905,7 +912,7 @@
                       "start": "2026-10-30T18:00:00+08:00",
                       "end": "2026-10-30T21:00:00+08:00"
                     },
-                    "queried_at": "2026-10-29T07:10:03.684077Z",
+                    "queried_at": "2026-10-29T08:12:24.504461Z",
                     "existing_schedule": [
                       {
                         "schedule_id": "SCHEDULE-001",
@@ -968,7 +975,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 2,
@@ -1006,7 +1014,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 3,
@@ -1041,7 +1050,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           }
         ],
         "execution_steps": [
@@ -1057,7 +1067,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "check_rules",
             "next_action_source": "model",
-            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 2,
@@ -1071,7 +1082,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "query_slots",
             "next_action_source": "model",
-            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 3,
@@ -1085,7 +1097,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "waiting_for_human",
             "next_action_source": "workflow",
-            "next_decision_reason": ""
+            "next_decision_reason": "",
+            "cycle": 1
           }
         ],
         "execution_limits": {
@@ -1093,8 +1106,17 @@
           "max_tool_calls": 12
         },
         "error": null,
-        "run_id": "RUN-73c4ee5cbab84152a326c3243fd260a2",
-        "interrupt": null
+        "run_id": "RUN-ba3382d05b9e49509cdcbb274accd5fe",
+        "interrupt": null,
+        "human_actions": [
+          {
+            "interrupt_id": "be3625a1915d9089e2452f6e20218874",
+            "selected_at": "2026-10-30T20:00:00+08:00",
+            "kind": "choose_time",
+            "status": "recorded",
+            "recorded_at": "2026-10-29T08:12:24.502573+00:00"
+          }
+        ]
       }
     },
     {
@@ -1126,7 +1148,7 @@
         "result": {
           "request_id": "REQ-CONFLICT-001",
           "material_id": "M01",
-          "evaluated_at": "2026-10-29T07:10:03.735772Z",
+          "evaluated_at": "2026-10-29T08:12:24.571867Z",
           "review": {
             "status": "passed",
             "missing_fields": [],
@@ -1218,7 +1240,7 @@
               "result": {
                 "request_id": "REQ-CONFLICT-001",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.726770Z",
+                "evaluated_at": "2026-10-29T08:12:24.562664Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -1287,7 +1309,7 @@
               "result": {
                 "request_id": "REQ-CONFLICT-001",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.735772Z",
+                "evaluated_at": "2026-10-29T08:12:24.571867Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -1369,7 +1391,7 @@
                 {
                   "tool": "query_schedule",
                   "status": "ok",
-                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-3c5491a274cb42a79d180cdd97d7de40/interactive.sqlite3#scheduled_slots",
+                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-75d01dc9f66f4c1ca777cd1a810b218e/interactive.sqlite3#scheduled_slots",
                   "requested_fields": [],
                   "returned_fields": [],
                   "review": null,
@@ -1379,7 +1401,7 @@
                       "start": "2026-10-30T18:00:00+08:00",
                       "end": "2026-10-30T21:00:00+08:00"
                     },
-                    "queried_at": "2026-10-29T07:10:03.735772Z",
+                    "queried_at": "2026-10-29T08:12:24.571867Z",
                     "existing_schedule": [
                       {
                         "schedule_id": "SCHEDULE-001",
@@ -1442,7 +1464,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 2,
@@ -1480,7 +1503,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 3,
@@ -1515,7 +1539,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           }
         ],
         "execution_steps": [
@@ -1531,7 +1556,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "check_rules",
             "next_action_source": "model",
-            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 2,
@@ -1545,7 +1571,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "query_slots",
             "next_action_source": "model",
-            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 3,
@@ -1559,7 +1586,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "waiting_for_human",
             "next_action_source": "workflow",
-            "next_decision_reason": ""
+            "next_decision_reason": "",
+            "cycle": 1
           }
         ],
         "execution_limits": {
@@ -1567,9 +1595,9 @@
           "max_tool_calls": 12
         },
         "error": null,
-        "run_id": "RUN-2ea3ce19b5ff46dbac1046f869462d90",
+        "run_id": "RUN-f63308fa2af14452a8591329693da543",
         "interrupt": {
-          "interrupt_id": "2c6eeef39933a1a187ca004a48926a8c",
+          "interrupt_id": "63bd4f62c97d206303e2b47de779ea43",
           "kind": "choose_time",
           "request_id": "REQ-CONFLICT-001",
           "original_at": "2026-10-30T18:00:00+08:00",
@@ -1588,16 +1616,17 @@
               "reason": "候选改变了硬性指定时间，需要用户确认。"
             }
           ]
-        }
+        },
+        "human_actions": []
       }
     },
     {
       "step": 4,
       "operation": "HTTP",
       "method": "POST",
-      "path": "/runs/RUN-2ea3ce19b5ff46dbac1046f869462d90/resume",
+      "path": "/runs/RUN-f63308fa2af14452a8591329693da543/resume",
       "arguments": {
-        "interrupt_id": "2c6eeef39933a1a187ca004a48926a8c",
+        "interrupt_id": "63bd4f62c97d206303e2b47de779ea43",
         "selected_at": "2026-10-30T20:00:00+08:00"
       },
       "http_status": 200,
@@ -1608,7 +1637,7 @@
         "result": {
           "request_id": "REQ-CONFLICT-001",
           "material_id": "M01",
-          "evaluated_at": "2026-10-29T07:10:03.750914Z",
+          "evaluated_at": "2026-10-29T08:12:24.590980Z",
           "review": {
             "status": "passed",
             "missing_fields": [],
@@ -1632,12 +1661,12 @@
             "status": "confirmed",
             "pending_items": [],
             "selected_at": "2026-10-30T20:00:00+08:00",
-            "confirmed_at": "2026-10-29T07:10:03.750914Z",
-            "interrupt_id": "2c6eeef39933a1a187ca004a48926a8c"
+            "confirmed_at": "2026-10-29T08:12:24.590980Z",
+            "interrupt_id": "63bd4f62c97d206303e2b47de779ea43"
           },
           "persistence": {
             "status": "already_exists",
-            "draft_id": "DRAFT-5900c45bc2484398af5d5a94818debc4",
+            "draft_id": "DRAFT-d154972944af4afeb05c23754ddcdc58",
             "error": null
           },
           "errors": [],
@@ -1692,7 +1721,7 @@
               "result": {
                 "request_id": "REQ-CONFLICT-001",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.726770Z",
+                "evaluated_at": "2026-10-29T08:12:24.562664Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -1761,7 +1790,7 @@
               "result": {
                 "request_id": "REQ-CONFLICT-001",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.735772Z",
+                "evaluated_at": "2026-10-29T08:12:24.571867Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -1843,7 +1872,7 @@
                 {
                   "tool": "query_schedule",
                   "status": "ok",
-                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-3c5491a274cb42a79d180cdd97d7de40/interactive.sqlite3#scheduled_slots",
+                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-75d01dc9f66f4c1ca777cd1a810b218e/interactive.sqlite3#scheduled_slots",
                   "requested_fields": [],
                   "returned_fields": [],
                   "review": null,
@@ -1853,7 +1882,7 @@
                       "start": "2026-10-30T18:00:00+08:00",
                       "end": "2026-10-30T21:00:00+08:00"
                     },
-                    "queried_at": "2026-10-29T07:10:03.735772Z",
+                    "queried_at": "2026-10-29T08:12:24.571867Z",
                     "existing_schedule": [
                       {
                         "schedule_id": "SCHEDULE-001",
@@ -1899,13 +1928,13 @@
             "name": "apply_time_selection",
             "arguments": {
               "selected_at": "2026-10-30T20:00:00+08:00",
-              "interrupt_id": "2c6eeef39933a1a187ca004a48926a8c"
+              "interrupt_id": "63bd4f62c97d206303e2b47de779ea43"
             },
             "output": {
               "result": {
                 "request_id": "REQ-CONFLICT-001",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.750914Z",
+                "evaluated_at": "2026-10-29T08:12:24.590980Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -1929,12 +1958,12 @@
                   "status": "confirmed",
                   "pending_items": [],
                   "selected_at": "2026-10-30T20:00:00+08:00",
-                  "confirmed_at": "2026-10-29T07:10:03.750914Z",
-                  "interrupt_id": "2c6eeef39933a1a187ca004a48926a8c"
+                  "confirmed_at": "2026-10-29T08:12:24.590980Z",
+                  "interrupt_id": "63bd4f62c97d206303e2b47de779ea43"
                 },
                 "persistence": {
                   "status": "already_exists",
-                  "draft_id": "DRAFT-5900c45bc2484398af5d5a94818debc4",
+                  "draft_id": "DRAFT-d154972944af4afeb05c23754ddcdc58",
                   "error": null
                 },
                 "errors": [],
@@ -1979,7 +2008,7 @@
                 {
                   "tool": "query_schedule",
                   "status": "ok",
-                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-3c5491a274cb42a79d180cdd97d7de40/interactive.sqlite3#scheduled_slots",
+                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-75d01dc9f66f4c1ca777cd1a810b218e/interactive.sqlite3#scheduled_slots",
                   "requested_fields": [],
                   "returned_fields": [],
                   "review": null,
@@ -1989,7 +2018,7 @@
                       "start": "2026-10-30T18:00:00+08:00",
                       "end": "2026-10-30T21:00:00+08:00"
                     },
-                    "queried_at": "2026-10-29T07:10:03.750914Z",
+                    "queried_at": "2026-10-29T08:12:24.590980Z",
                     "existing_schedule": [
                       {
                         "schedule_id": "SCHEDULE-001",
@@ -2052,7 +2081,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 2,
@@ -2090,7 +2120,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 3,
@@ -2125,7 +2156,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           }
         ],
         "execution_steps": [
@@ -2141,7 +2173,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "check_rules",
             "next_action_source": "model",
-            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 2,
@@ -2155,7 +2188,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "query_slots",
             "next_action_source": "model",
-            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 3,
@@ -2169,7 +2203,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "waiting_for_human",
             "next_action_source": "workflow",
-            "next_decision_reason": ""
+            "next_decision_reason": "",
+            "cycle": 1
           }
         ],
         "execution_limits": {
@@ -2177,8 +2212,17 @@
           "max_tool_calls": 12
         },
         "error": null,
-        "run_id": "RUN-2ea3ce19b5ff46dbac1046f869462d90",
-        "interrupt": null
+        "run_id": "RUN-f63308fa2af14452a8591329693da543",
+        "interrupt": null,
+        "human_actions": [
+          {
+            "interrupt_id": "63bd4f62c97d206303e2b47de779ea43",
+            "selected_at": "2026-10-30T20:00:00+08:00",
+            "kind": "choose_time",
+            "status": "recorded",
+            "recorded_at": "2026-10-29T08:12:24.587798+00:00"
+          }
+        ]
       }
     },
     {
@@ -2210,7 +2254,7 @@
         "result": {
           "request_id": "REQ-CONFLICT-001-RACE",
           "material_id": "M01",
-          "evaluated_at": "2026-10-29T07:10:03.800605Z",
+          "evaluated_at": "2026-10-29T08:12:24.653526Z",
           "review": {
             "status": "passed",
             "missing_fields": [],
@@ -2302,7 +2346,7 @@
               "result": {
                 "request_id": "REQ-CONFLICT-001-RACE",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.790864Z",
+                "evaluated_at": "2026-10-29T08:12:24.643512Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -2371,7 +2415,7 @@
               "result": {
                 "request_id": "REQ-CONFLICT-001-RACE",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.800605Z",
+                "evaluated_at": "2026-10-29T08:12:24.653526Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -2453,7 +2497,7 @@
                 {
                   "tool": "query_schedule",
                   "status": "ok",
-                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-3c5491a274cb42a79d180cdd97d7de40/interactive.sqlite3#scheduled_slots",
+                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-75d01dc9f66f4c1ca777cd1a810b218e/interactive.sqlite3#scheduled_slots",
                   "requested_fields": [],
                   "returned_fields": [],
                   "review": null,
@@ -2463,7 +2507,7 @@
                       "start": "2026-10-30T18:00:00+08:00",
                       "end": "2026-10-30T21:00:00+08:00"
                     },
-                    "queried_at": "2026-10-29T07:10:03.800605Z",
+                    "queried_at": "2026-10-29T08:12:24.653526Z",
                     "existing_schedule": [
                       {
                         "schedule_id": "SCHEDULE-001",
@@ -2526,7 +2570,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 2,
@@ -2564,7 +2609,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 3,
@@ -2599,7 +2645,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           }
         ],
         "execution_steps": [
@@ -2615,7 +2662,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "check_rules",
             "next_action_source": "model",
-            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 2,
@@ -2629,7 +2677,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "query_slots",
             "next_action_source": "model",
-            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 3,
@@ -2643,7 +2692,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "waiting_for_human",
             "next_action_source": "workflow",
-            "next_decision_reason": ""
+            "next_decision_reason": "",
+            "cycle": 1
           }
         ],
         "execution_limits": {
@@ -2651,9 +2701,9 @@
           "max_tool_calls": 12
         },
         "error": null,
-        "run_id": "RUN-fcc9d11aa3154d7d98d87e713b80c268",
+        "run_id": "RUN-ce996f003d5e46dd8aa35b4513524226",
         "interrupt": {
-          "interrupt_id": "5013d6683beda38f82d022523a7dcb61",
+          "interrupt_id": "e4e3f209088ff75f80ed56c9765c202e",
           "kind": "choose_time",
           "request_id": "REQ-CONFLICT-001-RACE",
           "original_at": "2026-10-30T18:00:00+08:00",
@@ -2672,7 +2722,8 @@
               "reason": "候选改变了硬性指定时间，需要用户确认。"
             }
           ]
-        }
+        },
+        "human_actions": []
       }
     },
     {
@@ -2700,9 +2751,9 @@
       "step": 7,
       "operation": "HTTP",
       "method": "POST",
-      "path": "/runs/RUN-fcc9d11aa3154d7d98d87e713b80c268/resume",
+      "path": "/runs/RUN-ce996f003d5e46dd8aa35b4513524226/resume",
       "arguments": {
-        "interrupt_id": "5013d6683beda38f82d022523a7dcb61",
+        "interrupt_id": "e4e3f209088ff75f80ed56c9765c202e",
         "selected_at": "2026-10-30T19:00:00+08:00"
       },
       "http_status": 200,
@@ -2713,7 +2764,7 @@
         "result": {
           "request_id": "REQ-CONFLICT-001-RACE",
           "material_id": "M01",
-          "evaluated_at": "2026-10-29T07:10:03.819468Z",
+          "evaluated_at": "2026-10-29T08:12:24.677150Z",
           "review": {
             "status": "passed",
             "missing_fields": [],
@@ -2805,7 +2856,7 @@
               "result": {
                 "request_id": "REQ-CONFLICT-001-RACE",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.790864Z",
+                "evaluated_at": "2026-10-29T08:12:24.643512Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -2874,7 +2925,7 @@
               "result": {
                 "request_id": "REQ-CONFLICT-001-RACE",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.800605Z",
+                "evaluated_at": "2026-10-29T08:12:24.653526Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -2956,7 +3007,7 @@
                 {
                   "tool": "query_schedule",
                   "status": "ok",
-                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-3c5491a274cb42a79d180cdd97d7de40/interactive.sqlite3#scheduled_slots",
+                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-75d01dc9f66f4c1ca777cd1a810b218e/interactive.sqlite3#scheduled_slots",
                   "requested_fields": [],
                   "returned_fields": [],
                   "review": null,
@@ -2966,7 +3017,7 @@
                       "start": "2026-10-30T18:00:00+08:00",
                       "end": "2026-10-30T21:00:00+08:00"
                     },
-                    "queried_at": "2026-10-29T07:10:03.800605Z",
+                    "queried_at": "2026-10-29T08:12:24.653526Z",
                     "existing_schedule": [
                       {
                         "schedule_id": "SCHEDULE-001",
@@ -3012,13 +3063,13 @@
             "name": "apply_time_selection",
             "arguments": {
               "selected_at": "2026-10-30T19:00:00+08:00",
-              "interrupt_id": "5013d6683beda38f82d022523a7dcb61"
+              "interrupt_id": "e4e3f209088ff75f80ed56c9765c202e"
             },
             "output": {
               "result": {
                 "request_id": "REQ-CONFLICT-001-RACE",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.819468Z",
+                "evaluated_at": "2026-10-29T08:12:24.677150Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -3100,7 +3151,7 @@
                 {
                   "tool": "query_schedule",
                   "status": "ok",
-                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-3c5491a274cb42a79d180cdd97d7de40/interactive.sqlite3#scheduled_slots",
+                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-75d01dc9f66f4c1ca777cd1a810b218e/interactive.sqlite3#scheduled_slots",
                   "requested_fields": [],
                   "returned_fields": [],
                   "review": null,
@@ -3110,7 +3161,7 @@
                       "start": "2026-10-30T18:00:00+08:00",
                       "end": "2026-10-30T21:00:00+08:00"
                     },
-                    "queried_at": "2026-10-29T07:10:03.819468Z",
+                    "queried_at": "2026-10-29T08:12:24.677150Z",
                     "existing_schedule": [
                       {
                         "schedule_id": "SCHEDULE-001",
@@ -3173,7 +3224,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 2,
@@ -3211,7 +3263,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 3,
@@ -3246,7 +3299,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           }
         ],
         "execution_steps": [
@@ -3262,7 +3316,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "check_rules",
             "next_action_source": "model",
-            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 2,
@@ -3276,7 +3331,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "query_slots",
             "next_action_source": "model",
-            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 3,
@@ -3290,7 +3346,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "waiting_for_human",
             "next_action_source": "workflow",
-            "next_decision_reason": ""
+            "next_decision_reason": "",
+            "cycle": 1
           }
         ],
         "execution_limits": {
@@ -3298,9 +3355,9 @@
           "max_tool_calls": 12
         },
         "error": null,
-        "run_id": "RUN-fcc9d11aa3154d7d98d87e713b80c268",
+        "run_id": "RUN-ce996f003d5e46dd8aa35b4513524226",
         "interrupt": {
-          "interrupt_id": "5b11f4d8d4f922b4fc623a56619ded19",
+          "interrupt_id": "3a408372cbc61f21ebaed848ddc692ee",
           "kind": "choose_time",
           "request_id": "REQ-CONFLICT-001-RACE",
           "original_at": "2026-10-30T18:00:00+08:00",
@@ -3313,16 +3370,25 @@
               "reason": "候选改变了硬性指定时间，需要用户确认。"
             }
           ]
-        }
+        },
+        "human_actions": [
+          {
+            "interrupt_id": "e4e3f209088ff75f80ed56c9765c202e",
+            "selected_at": "2026-10-30T19:00:00+08:00",
+            "kind": "choose_time",
+            "status": "recorded",
+            "recorded_at": "2026-10-29T08:12:24.676150+00:00"
+          }
+        ]
       }
     },
     {
       "step": 8,
       "operation": "HTTP",
       "method": "POST",
-      "path": "/runs/RUN-fcc9d11aa3154d7d98d87e713b80c268/resume",
+      "path": "/runs/RUN-ce996f003d5e46dd8aa35b4513524226/resume",
       "arguments": {
-        "interrupt_id": "5013d6683beda38f82d022523a7dcb61",
+        "interrupt_id": "e4e3f209088ff75f80ed56c9765c202e",
         "selected_at": "2026-10-30T19:00:00+08:00"
       },
       "http_status": 409,
@@ -3337,9 +3403,9 @@
       "step": 9,
       "operation": "HTTP",
       "method": "POST",
-      "path": "/runs/RUN-fcc9d11aa3154d7d98d87e713b80c268/resume",
+      "path": "/runs/RUN-ce996f003d5e46dd8aa35b4513524226/resume",
       "arguments": {
-        "interrupt_id": "5b11f4d8d4f922b4fc623a56619ded19",
+        "interrupt_id": "3a408372cbc61f21ebaed848ddc692ee",
         "selected_at": "2026-10-30T20:00:00+08:00"
       },
       "http_status": 200,
@@ -3350,7 +3416,7 @@
         "result": {
           "request_id": "REQ-CONFLICT-001-RACE",
           "material_id": "M01",
-          "evaluated_at": "2026-10-29T07:10:03.839429Z",
+          "evaluated_at": "2026-10-29T08:12:24.705467Z",
           "review": {
             "status": "passed",
             "missing_fields": [],
@@ -3374,12 +3440,12 @@
             "status": "confirmed",
             "pending_items": [],
             "selected_at": "2026-10-30T20:00:00+08:00",
-            "confirmed_at": "2026-10-29T07:10:03.839429Z",
-            "interrupt_id": "5b11f4d8d4f922b4fc623a56619ded19"
+            "confirmed_at": "2026-10-29T08:12:24.705467Z",
+            "interrupt_id": "3a408372cbc61f21ebaed848ddc692ee"
           },
           "persistence": {
             "status": "saved",
-            "draft_id": "DRAFT-c2246c3ceda6459fb536407a9f70dc3a",
+            "draft_id": "DRAFT-da859eaf36b64383af52bc807d5b7657",
             "error": null
           },
           "errors": [],
@@ -3434,7 +3500,7 @@
               "result": {
                 "request_id": "REQ-CONFLICT-001-RACE",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.790864Z",
+                "evaluated_at": "2026-10-29T08:12:24.643512Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -3503,7 +3569,7 @@
               "result": {
                 "request_id": "REQ-CONFLICT-001-RACE",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.800605Z",
+                "evaluated_at": "2026-10-29T08:12:24.653526Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -3585,7 +3651,7 @@
                 {
                   "tool": "query_schedule",
                   "status": "ok",
-                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-3c5491a274cb42a79d180cdd97d7de40/interactive.sqlite3#scheduled_slots",
+                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-75d01dc9f66f4c1ca777cd1a810b218e/interactive.sqlite3#scheduled_slots",
                   "requested_fields": [],
                   "returned_fields": [],
                   "review": null,
@@ -3595,7 +3661,7 @@
                       "start": "2026-10-30T18:00:00+08:00",
                       "end": "2026-10-30T21:00:00+08:00"
                     },
-                    "queried_at": "2026-10-29T07:10:03.800605Z",
+                    "queried_at": "2026-10-29T08:12:24.653526Z",
                     "existing_schedule": [
                       {
                         "schedule_id": "SCHEDULE-001",
@@ -3641,13 +3707,13 @@
             "name": "apply_time_selection",
             "arguments": {
               "selected_at": "2026-10-30T19:00:00+08:00",
-              "interrupt_id": "5013d6683beda38f82d022523a7dcb61"
+              "interrupt_id": "e4e3f209088ff75f80ed56c9765c202e"
             },
             "output": {
               "result": {
                 "request_id": "REQ-CONFLICT-001-RACE",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.819468Z",
+                "evaluated_at": "2026-10-29T08:12:24.677150Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -3729,7 +3795,7 @@
                 {
                   "tool": "query_schedule",
                   "status": "ok",
-                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-3c5491a274cb42a79d180cdd97d7de40/interactive.sqlite3#scheduled_slots",
+                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-75d01dc9f66f4c1ca777cd1a810b218e/interactive.sqlite3#scheduled_slots",
                   "requested_fields": [],
                   "returned_fields": [],
                   "review": null,
@@ -3739,7 +3805,7 @@
                       "start": "2026-10-30T18:00:00+08:00",
                       "end": "2026-10-30T21:00:00+08:00"
                     },
-                    "queried_at": "2026-10-29T07:10:03.819468Z",
+                    "queried_at": "2026-10-29T08:12:24.677150Z",
                     "existing_schedule": [
                       {
                         "schedule_id": "SCHEDULE-001",
@@ -3785,13 +3851,13 @@
             "name": "apply_time_selection",
             "arguments": {
               "selected_at": "2026-10-30T20:00:00+08:00",
-              "interrupt_id": "5b11f4d8d4f922b4fc623a56619ded19"
+              "interrupt_id": "3a408372cbc61f21ebaed848ddc692ee"
             },
             "output": {
               "result": {
                 "request_id": "REQ-CONFLICT-001-RACE",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.839429Z",
+                "evaluated_at": "2026-10-29T08:12:24.705467Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -3815,12 +3881,12 @@
                   "status": "confirmed",
                   "pending_items": [],
                   "selected_at": "2026-10-30T20:00:00+08:00",
-                  "confirmed_at": "2026-10-29T07:10:03.839429Z",
-                  "interrupt_id": "5b11f4d8d4f922b4fc623a56619ded19"
+                  "confirmed_at": "2026-10-29T08:12:24.705467Z",
+                  "interrupt_id": "3a408372cbc61f21ebaed848ddc692ee"
                 },
                 "persistence": {
                   "status": "saved",
-                  "draft_id": "DRAFT-c2246c3ceda6459fb536407a9f70dc3a",
+                  "draft_id": "DRAFT-da859eaf36b64383af52bc807d5b7657",
                   "error": null
                 },
                 "errors": [],
@@ -3865,7 +3931,7 @@
                 {
                   "tool": "query_schedule",
                   "status": "ok",
-                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-3c5491a274cb42a79d180cdd97d7de40/interactive.sqlite3#scheduled_slots",
+                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-75d01dc9f66f4c1ca777cd1a810b218e/interactive.sqlite3#scheduled_slots",
                   "requested_fields": [],
                   "returned_fields": [],
                   "review": null,
@@ -3875,7 +3941,7 @@
                       "start": "2026-10-30T18:00:00+08:00",
                       "end": "2026-10-30T21:00:00+08:00"
                     },
-                    "queried_at": "2026-10-29T07:10:03.839429Z",
+                    "queried_at": "2026-10-29T08:12:24.705467Z",
                     "existing_schedule": [
                       {
                         "schedule_id": "SCHEDULE-001",
@@ -3938,7 +4004,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 2,
@@ -3976,7 +4043,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 3,
@@ -4011,7 +4079,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           }
         ],
         "execution_steps": [
@@ -4027,7 +4096,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "check_rules",
             "next_action_source": "model",
-            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 2,
@@ -4041,7 +4111,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "query_slots",
             "next_action_source": "model",
-            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 3,
@@ -4055,7 +4126,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "waiting_for_human",
             "next_action_source": "workflow",
-            "next_decision_reason": ""
+            "next_decision_reason": "",
+            "cycle": 1
           }
         ],
         "execution_limits": {
@@ -4063,8 +4135,24 @@
           "max_tool_calls": 12
         },
         "error": null,
-        "run_id": "RUN-fcc9d11aa3154d7d98d87e713b80c268",
-        "interrupt": null
+        "run_id": "RUN-ce996f003d5e46dd8aa35b4513524226",
+        "interrupt": null,
+        "human_actions": [
+          {
+            "interrupt_id": "e4e3f209088ff75f80ed56c9765c202e",
+            "selected_at": "2026-10-30T19:00:00+08:00",
+            "kind": "choose_time",
+            "status": "recorded",
+            "recorded_at": "2026-10-29T08:12:24.676150+00:00"
+          },
+          {
+            "interrupt_id": "3a408372cbc61f21ebaed848ddc692ee",
+            "selected_at": "2026-10-30T20:00:00+08:00",
+            "kind": "choose_time",
+            "status": "recorded",
+            "recorded_at": "2026-10-29T08:12:24.705467+00:00"
+          }
+        ]
       }
     },
     {
@@ -4104,7 +4192,7 @@
         "result": {
           "request_id": "REQ-CONFLICT-001",
           "material_id": "M01",
-          "evaluated_at": "2026-10-29T07:10:03.895469Z",
+          "evaluated_at": "2026-10-29T08:12:24.779895Z",
           "review": {
             "status": "passed",
             "missing_fields": [],
@@ -4126,7 +4214,7 @@
           },
           "persistence": {
             "status": "already_exists",
-            "draft_id": "DRAFT-5900c45bc2484398af5d5a94818debc4",
+            "draft_id": "DRAFT-d154972944af4afeb05c23754ddcdc58",
             "error": null
           },
           "errors": [],
@@ -4181,7 +4269,7 @@
               "result": {
                 "request_id": "REQ-CONFLICT-001",
                 "material_id": "M01",
-                "evaluated_at": "2026-10-29T07:10:03.889424Z",
+                "evaluated_at": "2026-10-29T08:12:24.769298Z",
                 "review": {
                   "status": "passed",
                   "missing_fields": [],
@@ -4230,7 +4318,7 @@
             "output": {
               "request_id": "REQ-CONFLICT-001",
               "material_id": "M01",
-              "evaluated_at": "2026-10-29T07:10:03.895469Z",
+              "evaluated_at": "2026-10-29T08:12:24.779895Z",
               "review": {
                 "status": "passed",
                 "missing_fields": [],
@@ -4252,7 +4340,7 @@
               },
               "persistence": {
                 "status": "already_exists",
-                "draft_id": "DRAFT-5900c45bc2484398af5d5a94818debc4",
+                "draft_id": "DRAFT-d154972944af4afeb05c23754ddcdc58",
                 "error": null
               },
               "errors": [],
@@ -4281,7 +4369,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 2,
@@ -4319,7 +4408,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 3,
@@ -4354,7 +4444,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 4,
@@ -4367,7 +4458,7 @@
                 "result": {
                   "request_id": "REQ-CONFLICT-001",
                   "material_id": "M01",
-                  "evaluated_at": "2026-10-29T07:10:03.889424Z",
+                  "evaluated_at": "2026-10-29T08:12:24.769298Z",
                   "review": {
                     "status": "passed",
                     "missing_fields": [],
@@ -4423,7 +4514,8 @@
             "metadata": {},
             "usage": null,
             "status": "ok",
-            "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           }
         ],
         "execution_steps": [
@@ -4439,7 +4531,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "check_rules",
             "next_action_source": "model",
-            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 2,
@@ -4453,7 +4546,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "query_slots",
             "next_action_source": "model",
-            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 3,
@@ -4467,7 +4561,8 @@
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "save_draft",
             "next_action_source": "model",
-            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
           },
           {
             "step": 4,
@@ -4477,11 +4572,12 @@
             "arguments": {
               "reason": "离线测试动作说明，不代表真实模型决策。"
             },
-            "return_summary": "persistence=already_exists; draft_id=DRAFT-5900c45bc2484398af5d5a94818debc4",
+            "return_summary": "persistence=already_exists; draft_id=DRAFT-d154972944af4afeb05c23754ddcdc58",
             "decision_reason": "离线测试动作说明，不代表真实模型决策。",
             "next_action": "completed",
             "next_action_source": "workflow",
-            "next_decision_reason": ""
+            "next_decision_reason": "",
+            "cycle": 1
           }
         ],
         "execution_limits": {
@@ -4489,8 +4585,9 @@
           "max_tool_calls": 12
         },
         "error": null,
-        "run_id": "RUN-93813ac3a03a4bdf9bee0214ce4cb42a",
-        "interrupt": null
+        "run_id": "RUN-0a9f0e4564134155afbeeaf435ccd540",
+        "interrupt": null,
+        "human_actions": []
       }
     },
     {
@@ -4503,7 +4600,7 @@
       "output": {
         "request_id": "REQ-CONFLICT-001",
         "material_id": "M01",
-        "evaluated_at": "2026-10-29T07:10:03.895469Z",
+        "evaluated_at": "2026-10-29T08:12:24.779895Z",
         "review": {
           "status": "passed",
           "missing_fields": [],
@@ -4525,7 +4622,7 @@
         },
         "persistence": {
           "status": "already_exists",
-          "draft_id": "DRAFT-5900c45bc2484398af5d5a94818debc4",
+          "draft_id": "DRAFT-d154972944af4afeb05c23754ddcdc58",
           "error": null
         },
         "errors": [],

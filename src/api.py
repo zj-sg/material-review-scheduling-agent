@@ -16,6 +16,7 @@ from .agents.time_selection import RunError, SchedulingRuns
 from .config import Settings, load_settings
 from .schemas import RuleConfig, ScheduleRequest, ScheduleResult
 from .schemas.common import ContractModel, NonBlankStr, Timestamp
+from .schemas.human_input import MetadataResponse, RiskReviewResponse
 from .services.material_service import JsonMaterialService, MaterialCatalog
 from .services.schedule_service import ScheduleCatalog
 from .services.storage import SQLiteStore
@@ -34,7 +35,7 @@ class APIData(ContractModel):
 
 class AgentResponse(BaseModel):
     mode: str
-    status: Literal["completed", "failed", "waiting_for_human", "incomplete"]
+    status: Literal["completed", "failed", "waiting_for_human", "incomplete", "rejected"]
     decision: str
     result: ScheduleResult | None
     model_calls: int
@@ -45,6 +46,7 @@ class AgentResponse(BaseModel):
     error: dict | None
     run_id: str
     interrupt: dict | None
+    human_actions: list[dict]
 
 
 class TimeSelectionRequest(ContractModel):
@@ -97,8 +99,8 @@ def create_app(*, settings: Settings | None = None, model_factory=None, store=No
                 model.close()
 
     app = FastAPI(
-        title="素材审核与发布排期 Agent", version="1.1.0", lifespan=lifespan,
-        description="原时间不可用时暂停并返回候选；用户选择后复查并保存草稿，不执行发布。",
+        title="素材审核与发布排期 Agent", version="1.3.0", lifespan=lifespan,
+        description="支持资料补充、风险人工审核和时间选择三类中断；恢复后重新校验，只保存草稿。",
     )
 
     @app.exception_handler(RequestValidationError)
@@ -127,7 +129,7 @@ def create_app(*, settings: Settings | None = None, model_factory=None, store=No
         return {"status": "ok", "mode": request.app.state.model.mode}
 
     @app.post(
-        "/schedule", response_model=AgentResponse, summary="审核排期；原时间不可用时暂停并返回候选",
+        "/schedule", response_model=AgentResponse, summary="审核排期；缺失资料、待复核风险或时间冲突时暂停",
         responses={404: {"description": "素材不存在"}, 409: {"description": "请求 ID 内容冲突"},
                    422: {"description": "请求校验失败"}, 500: {"description": "工具或保存失败"},
                    502: {"description": "模型调用或决策失败"}},
@@ -142,25 +144,26 @@ def create_app(*, settings: Settings | None = None, model_factory=None, store=No
             raise RequestValidationError(exc.errors(include_input=False)) from exc
         return outcome_response(outcome)
 
-    @app.get("/runs/{run_id}", response_model=AgentResponse, summary="查看运行状态和待选择的时间")
+    @app.get("/runs/{run_id}", response_model=AgentResponse, summary="查看运行状态和当前人工待办")
     def get_run(run_id: str, request: Request):
         return request.app.state.runs.get(run_id)
 
     @app.post(
         "/runs/{run_id}/resume", response_model=AgentResponse,
-        summary="选择本次候选时间，复查占用并继续执行",
+        summary="提交时间选择、缺失资料或人工风险审核，继续当前运行",
         responses={404: {"description": "运行不存在或服务已重启"},
                    409: {"description": "中断已失效、运行已完成或原请求时间过期"},
-                   422: {"description": "所选时间不在本次候选列表"},
+                   422: {"description": "时间、补充资料或审核结论不符合当前中断要求"},
                    500: {"description": "保存或工具失败"}},
-        openapi_extra={"requestBody": {"content": {"application/json": {"example": {
-            "interrupt_id": "复制本次返回的 interrupt.interrupt_id",
-            "selected_at": "2026-11-02T20:00:00+08:00",
+        openapi_extra={"requestBody": {"content": {"application/json": {"examples": {
+            "time": {"summary": "选择时间", "value": {"interrupt_id": "复制实际中断 ID", "selected_at": "2026-11-02T20:00:00+08:00"}},
+            "metadata": {"summary": "补充资料", "value": {"interrupt_id": "复制实际中断 ID", "fields": {"authorization_status": "authorized", "authorization_evidence": "AUTH-M02-VERIFIED"}}},
+            "review": {"summary": "人工审核通过", "value": {"interrupt_id": "复制实际中断 ID", "action": "approve", "reviewer": "reviewer-demo", "note": "已核对演示授权资料", "authorization_evidence": "AUTH-M04-VERIFIED"}},
         }}}}},
     )
-    def resume(run_id: str, payload: TimeSelectionRequest, request: Request):
+    def resume(run_id: str, payload: TimeSelectionRequest | MetadataResponse | RiskReviewResponse, request: Request):
         return outcome_response(request.app.state.runs.resume(
-            run_id, interrupt_id=payload.interrupt_id, selected_at=payload.selected_at,
+            run_id, **payload.model_dump(mode="python", exclude_none=True, exclude_unset=True),
         ))
 
     @app.get("/drafts/{request_id}", response_model=ScheduleResult, summary="按请求 ID 查询当前已保存草稿")

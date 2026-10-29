@@ -3,7 +3,7 @@
 ## 调用流程
 
 HTTP 入口为 [src/api.py](../src/api.py)，命令行入口为 [src/main.py](../src/main.py)。
-HTTP 请求绑定服务端素材、规则和数据库，然后由 SchedulingRuns 执行单个 Agent 或等待时间选择。
+HTTP 请求绑定服务端素材、规则和数据库，然后由 SchedulingRuns 执行单个 Agent，或等待资料补充、风险审核和时间选择。
 
 ```mermaid
 flowchart TD
@@ -11,6 +11,14 @@ flowchart TD
     M --> T[ToolNode 校验参数并执行]
     T --> O[记录实际工具返回]
     O -->|继续处理| M
+    O -->|自动补查后仍缺信息| I[interrupt 展示缺失字段与用途]
+    I --> P[用户补充资料并校验]
+    P --> M
+    O -->|授权存疑| R[interrupt 展示风险与审核选项]
+    R -->|通过且有凭证| M
+    R -->|要求修改| I
+    R -->|驳回| X[终止且不新建草稿]
+    O -->|明确禁止| B[直接阻断]
     O -->|原时间不可用且有候选| H[interrupt 暂停并返回候选]
     H --> U[用户选择具体时间]
     U --> C[重新审核并在事务内复查所选时间]
@@ -34,7 +42,7 @@ flowchart TD
 
 每个工具都有 required reason 参数，记录模型给出的简短动作依据。模型的内部 reasoning_content 只由模型集成按协议回传，不导出到交付 Trace。
 时段候选由 SlotSearchService 计算，审核由 RuleService 校验；模型选择业务动作，程序约束事实、权限和保存结果。
-时间冲突后的强制中断本身不是模型决策证据，因此单独作为业务工作流验收。
+三类强制人工中断本身不是模型决策证据，因此单独作为业务工作流验收。上表真实记录采集于新增资料/风险中断之前；新增流程目前使用离线模型验证。
 
 ## 模块职责与框架使用
 
@@ -62,6 +70,9 @@ DeepSeekChatModel 子类只补齐集成库遗漏的 reasoning_content 回传，�
 - 原请求按规范化内容比较，用户接受的时间另存入确认结果，不覆盖原始硬性要求。
 - 恢复只接受本次中断 ID 和已提供的候选；所选时间失效时再次中断，不能擅自换一个。
 - 待确认草稿不预留正式时段。草稿保存成功和未来仍可用是不同事实。
+- 人工资料使用 RunMaterialSource 在当前运行内覆盖缺失字段；风险通过需要审核人、说明和凭证，再运行确定性审核，不直接覆盖审核状态。
+- 覆盖值和通过结论绑定素材内容指纹；底层素材变化后失效，重新检查新风险。共享素材文件保持原样，成功保存时将有效资料和人工记录写入现有草稿 JSON。
+- 请求修改先进入资料补充，再回到审核；驳回只终止当前运行。当前只有授权存疑可复核，明确禁止的规则没有通过入口。
 
 ## 取舍
 
@@ -72,6 +83,7 @@ DeepSeekChatModel 子类只补齐集成库遗漏的 reasoning_content 回传，�
 不增加不必要的版本历史、前端和通用审批状态机；实际范围由需求决定。
 
 MATERIAL_AGENT_MAX_MODEL_CALLS 默认 12、范围 1–100。每轮至多一个工具，达到上限时 HTTP 返回 409、status=incomplete、LIMIT_EXCEEDED。
+同一运行各次人工恢复后的模型调用累计共用预算；model_steps 和 execution_steps 追加记录并标注 cycle，human_actions 保存人工动作。
 该计数是逻辑模型调用；底层 SDK 的有限网络重试不作为新的业务决策，也不作为 ReAct 达标证据。
 
 交付目录参考用户指定的 [agent-campus-submission-example](https://github.com/lwz1357/agent-campus-submission-example)，只借鉴材料组织，不以示例的离线 Mock 作为本项目模型决策的达标依据。

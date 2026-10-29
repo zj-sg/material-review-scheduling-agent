@@ -1,0 +1,2012 @@
+{
+  "mode": "offline_test",
+  "real_model_tested": false,
+  "passed": true,
+  "checks": {
+    "automatic_lookup_before_human": true,
+    "invalid_input_preserves_interrupt": true,
+    "rechecks_then_waits_for_time": true,
+    "same_run_saved_after_both_inputs": true,
+    "metadata_and_time_audited": true,
+    "source_json_unchanged": true,
+    "nothing_published": true
+  },
+  "final_draft_count": 1,
+  "events": [
+    {
+      "step": 1,
+      "method": "POST",
+      "path": "/schedule",
+      "arguments": {
+        "request_id": "REQ-HUMAN-METADATA",
+        "material_id": "M02",
+        "channel": "wechat",
+        "time_requirement": {
+          "mode": "fixed",
+          "requested_at": "2026-10-30T18:00:00+08:00"
+        },
+        "search_window": {
+          "start": "2026-10-30T18:00:00+08:00",
+          "end": "2026-10-30T21:00:00+08:00"
+        },
+        "save_draft": true
+      },
+      "http_status": 200,
+      "output": {
+        "mode": "offline_test",
+        "status": "waiting_for_human",
+        "decision": "request_info",
+        "result": {
+          "request_id": "REQ-HUMAN-METADATA",
+          "material_id": "M02",
+          "evaluated_at": "2026-10-29T08:12:24.937423Z",
+          "review": {
+            "status": "needs_info",
+            "missing_fields": [
+              "authorization_status"
+            ],
+            "risks": []
+          },
+          "scheduling": {
+            "status": "not_evaluated",
+            "requested_at": "2026-10-30T18:00:00+08:00",
+            "suggested_at": null,
+            "accepted_at": null,
+            "conflicts": []
+          },
+          "confirmation": {
+            "status": "pending",
+            "pending_items": [
+              {
+                "kind": "provide_metadata",
+                "field": "authorization_status",
+                "original_value": null,
+                "proposed_value": null,
+                "message": "补查后仍缺少 authorization_status，请提供可信资料。"
+              }
+            ],
+            "selected_at": null,
+            "confirmed_at": null,
+            "interrupt_id": null
+          },
+          "persistence": {
+            "status": "not_attempted",
+            "draft_id": null,
+            "error": null
+          },
+          "errors": [
+            {
+              "code": "MATERIAL_INCOMPLETE",
+              "message": "补查后仍缺少：authorization_status"
+            }
+          ],
+          "publication_status": "not_published"
+        },
+        "model_calls": 4,
+        "tool_calls": [
+          {
+            "name": "read_material",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "output": {
+              "status": "ok",
+              "data": {
+                "title": "新品介绍",
+                "content": "介绍新品功能与使用方法。",
+                "channel": "wechat",
+                "authorization_status": null,
+                "authorization_evidence": null,
+                "material_id": "M02"
+              },
+              "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json#materials/M02",
+              "error": null
+            },
+            "tool_call_id": "offline-2"
+          },
+          {
+            "name": "check_rules",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "output": {
+              "status": "ok",
+              "data": {
+                "status": "needs_info",
+                "missing_fields": [
+                  "authorization_status"
+                ],
+                "risks": []
+              },
+              "source": "rules:demo-v1",
+              "error": null
+            },
+            "tool_call_id": "offline-4"
+          },
+          {
+            "name": "supplement_material",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。",
+              "fields": [
+                "authorization_status"
+              ]
+            },
+            "output": {
+              "status": "empty",
+              "data": null,
+              "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json#supplemental_materials/M02",
+              "error": null
+            },
+            "tool_call_id": "offline-6"
+          }
+        ],
+        "model_steps": [
+          {
+            "step": 1,
+            "observation": null,
+            "response_id": null,
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "read_material",
+                "args": {
+                  "reason": "离线测试动作说明，不代表真实模型决策。"
+                },
+                "id": "offline-2",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "metadata": {},
+            "usage": null,
+            "status": "ok",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
+          },
+          {
+            "step": 2,
+            "observation": {
+              "name": "read_material",
+              "tool_call_id": "offline-2",
+              "status": "success",
+              "output": {
+                "status": "ok",
+                "data": {
+                  "title": "新品介绍",
+                  "content": "介绍新品功能与使用方法。",
+                  "channel": "wechat",
+                  "authorization_status": null,
+                  "authorization_evidence": null,
+                  "material_id": "M02"
+                },
+                "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json#materials/M02",
+                "error": null
+              }
+            },
+            "response_id": null,
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "check_rules",
+                "args": {
+                  "reason": "离线测试动作说明，不代表真实模型决策。"
+                },
+                "id": "offline-4",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "metadata": {},
+            "usage": null,
+            "status": "ok",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
+          },
+          {
+            "step": 3,
+            "observation": {
+              "name": "check_rules",
+              "tool_call_id": "offline-4",
+              "status": "success",
+              "output": {
+                "status": "ok",
+                "data": {
+                  "status": "needs_info",
+                  "missing_fields": [
+                    "authorization_status"
+                  ],
+                  "risks": []
+                },
+                "source": "rules:demo-v1",
+                "error": null
+              }
+            },
+            "response_id": null,
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "supplement_material",
+                "args": {
+                  "reason": "离线测试动作说明，不代表真实模型决策。",
+                  "fields": [
+                    "authorization_status"
+                  ]
+                },
+                "id": "offline-6",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "metadata": {},
+            "usage": null,
+            "status": "ok",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
+          },
+          {
+            "step": 4,
+            "observation": {
+              "name": "supplement_material",
+              "tool_call_id": "offline-6",
+              "status": "success",
+              "output": {
+                "status": "empty",
+                "data": null,
+                "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json#supplemental_materials/M02",
+                "error": null
+              }
+            },
+            "response_id": null,
+            "content": "离线测试分支结束。",
+            "tool_calls": [],
+            "invalid_tool_calls": [],
+            "metadata": {},
+            "usage": null,
+            "status": "ok",
+            "decision_reason": "离线测试分支结束。",
+            "cycle": 1
+          }
+        ],
+        "execution_steps": [
+          {
+            "step": 1,
+            "model_step": 1,
+            "tool": "read_material",
+            "tool_call_id": "offline-2",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "return_summary": "status=ok; material_id=M02; authorization_status=None",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "next_action": "check_rules",
+            "next_action_source": "model",
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
+          },
+          {
+            "step": 2,
+            "model_step": 2,
+            "tool": "check_rules",
+            "tool_call_id": "offline-4",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "return_summary": "status=needs_info; missing_fields=['authorization_status']; risks=[]",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "next_action": "supplement_material",
+            "next_action_source": "model",
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
+          },
+          {
+            "step": 3,
+            "model_step": 3,
+            "tool": "supplement_material",
+            "tool_call_id": "offline-6",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。",
+              "fields": [
+                "authorization_status"
+              ]
+            },
+            "return_summary": "status=empty; returned_fields=[]",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "next_action": "finish",
+            "next_action_source": "model",
+            "next_decision_reason": "离线测试分支结束。",
+            "cycle": 1
+          }
+        ],
+        "execution_limits": {
+          "max_model_calls": 12,
+          "max_tool_calls": 12
+        },
+        "error": null,
+        "run_id": "RUN-f5369437fae249388645d2463d80e6d1",
+        "interrupt": {
+          "interrupt_id": "039d8abbb093cd2b8d7a077d04987683",
+          "kind": "provide_metadata",
+          "request_id": "REQ-HUMAN-METADATA",
+          "material_id": "M02",
+          "missing_fields": [
+            "authorization_status"
+          ],
+          "editable_fields": [
+            "authorization_status",
+            "authorization_evidence"
+          ],
+          "requirements": [
+            {
+              "field": "authorization_status",
+              "why": "用于判断素材是否有权使用，未知授权须人工复核。",
+              "request": "请提供 authorization_status 的非空有效值。"
+            },
+            {
+              "field": "authorization_evidence",
+              "why": "声明已授权时，需要提供可核验的授权凭证编号或资料。",
+              "request": "请提供 authorization_evidence 的非空有效值。"
+            }
+          ],
+          "required_channel": "wechat",
+          "message": "自动补查后仍缺少信息，请补充资料；系统会重新审核。",
+          "changes_requested": false
+        },
+        "human_actions": []
+      }
+    },
+    {
+      "step": 2,
+      "method": "POST",
+      "path": "/runs/RUN-f5369437fae249388645d2463d80e6d1/resume",
+      "arguments": {
+        "interrupt_id": "039d8abbb093cd2b8d7a077d04987683",
+        "fields": {
+          "authorization_status": ""
+        }
+      },
+      "http_status": 422,
+      "output": {
+        "error": {
+          "code": "INVALID_REQUEST",
+          "message": "请求数据校验失败。"
+        },
+        "details": [
+          {
+            "loc": [
+              "body",
+              "TimeSelectionRequest",
+              "selected_at"
+            ],
+            "type": "missing",
+            "message": "Field required"
+          },
+          {
+            "loc": [
+              "body",
+              "TimeSelectionRequest",
+              "fields"
+            ],
+            "type": "extra_forbidden",
+            "message": "Extra inputs are not permitted"
+          },
+          {
+            "loc": [
+              "body",
+              "function-after[nonempty_values(), MetadataResponse]"
+            ],
+            "type": "value_error",
+            "message": "Value error, fields must contain nonempty values for at least one requested field"
+          },
+          {
+            "loc": [
+              "body",
+              "RiskReviewResponse",
+              "action"
+            ],
+            "type": "missing",
+            "message": "Field required"
+          },
+          {
+            "loc": [
+              "body",
+              "RiskReviewResponse",
+              "reviewer"
+            ],
+            "type": "missing",
+            "message": "Field required"
+          },
+          {
+            "loc": [
+              "body",
+              "RiskReviewResponse",
+              "note"
+            ],
+            "type": "missing",
+            "message": "Field required"
+          },
+          {
+            "loc": [
+              "body",
+              "RiskReviewResponse",
+              "fields"
+            ],
+            "type": "extra_forbidden",
+            "message": "Extra inputs are not permitted"
+          }
+        ]
+      }
+    },
+    {
+      "step": 3,
+      "method": "POST",
+      "path": "/runs/RUN-f5369437fae249388645d2463d80e6d1/resume",
+      "arguments": {
+        "interrupt_id": "039d8abbb093cd2b8d7a077d04987683",
+        "fields": {
+          "authorization_status": "authorized",
+          "authorization_evidence": "AUTH-USER-M02"
+        }
+      },
+      "http_status": 200,
+      "output": {
+        "mode": "offline_test",
+        "status": "waiting_for_human",
+        "decision": "request_confirmation",
+        "result": {
+          "request_id": "REQ-HUMAN-METADATA",
+          "material_id": "M02",
+          "evaluated_at": "2026-10-29T08:12:24.998750Z",
+          "review": {
+            "status": "passed",
+            "missing_fields": [],
+            "risks": []
+          },
+          "scheduling": {
+            "status": "alternative_proposed",
+            "requested_at": "2026-10-30T18:00:00+08:00",
+            "suggested_at": "2026-10-30T19:00:00+08:00",
+            "accepted_at": null,
+            "conflicts": [
+              {
+                "schedule_id": "SCHEDULE-001",
+                "channel": "wechat",
+                "start_at": "2026-10-30T18:00:00+08:00",
+                "end_at": "2026-10-30T19:00:00+08:00"
+              }
+            ]
+          },
+          "confirmation": {
+            "status": "pending",
+            "pending_items": [
+              {
+                "kind": "time_change",
+                "field": "time_requirement.requested_at",
+                "original_value": "2026-10-30T18:00:00+08:00",
+                "proposed_value": "2026-10-30T19:00:00+08:00",
+                "message": "原时段与排期 SCHEDULE-001 冲突。候选改变了硬性指定时间，需要用户确认。请确认具体建议时间。"
+              }
+            ],
+            "selected_at": null,
+            "confirmed_at": null,
+            "interrupt_id": null
+          },
+          "persistence": {
+            "status": "not_attempted",
+            "draft_id": null,
+            "error": null
+          },
+          "errors": [],
+          "publication_status": "not_published"
+        },
+        "model_calls": 7,
+        "tool_calls": [
+          {
+            "name": "read_material",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "output": {
+              "status": "ok",
+              "data": {
+                "title": "新品介绍",
+                "content": "介绍新品功能与使用方法。",
+                "channel": "wechat",
+                "authorization_status": null,
+                "authorization_evidence": null,
+                "material_id": "M02"
+              },
+              "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json#materials/M02",
+              "error": null
+            },
+            "tool_call_id": "offline-2"
+          },
+          {
+            "name": "check_rules",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "output": {
+              "status": "ok",
+              "data": {
+                "status": "needs_info",
+                "missing_fields": [
+                  "authorization_status"
+                ],
+                "risks": []
+              },
+              "source": "rules:demo-v1",
+              "error": null
+            },
+            "tool_call_id": "offline-4"
+          },
+          {
+            "name": "supplement_material",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。",
+              "fields": [
+                "authorization_status"
+              ]
+            },
+            "output": {
+              "status": "empty",
+              "data": null,
+              "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json#supplemental_materials/M02",
+              "error": null
+            },
+            "tool_call_id": "offline-6"
+          },
+          {
+            "name": "read_material",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "output": {
+              "status": "ok",
+              "data": {
+                "title": "新品介绍",
+                "content": "介绍新品功能与使用方法。",
+                "channel": "wechat",
+                "authorization_status": "authorized",
+                "authorization_evidence": "AUTH-USER-M02",
+                "material_id": "M02"
+              },
+              "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json|run-human-input#materials/M02",
+              "error": null
+            },
+            "tool_call_id": "offline-2"
+          },
+          {
+            "name": "check_rules",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "output": {
+              "status": "ok",
+              "data": {
+                "status": "passed",
+                "missing_fields": [],
+                "risks": []
+              },
+              "source": "rules:demo-v1",
+              "error": null
+            },
+            "tool_call_id": "offline-4"
+          },
+          {
+            "name": "query_slots",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "output": {
+              "status": "ok",
+              "result": {
+                "request_id": "REQ-HUMAN-METADATA",
+                "material_id": "M02",
+                "evaluated_at": "2026-10-29T08:12:24.986600Z",
+                "review": {
+                  "status": "passed",
+                  "missing_fields": [],
+                  "risks": []
+                },
+                "scheduling": {
+                  "status": "alternative_proposed",
+                  "requested_at": "2026-10-30T18:00:00+08:00",
+                  "suggested_at": "2026-10-30T19:00:00+08:00",
+                  "accepted_at": null,
+                  "conflicts": [
+                    {
+                      "schedule_id": "SCHEDULE-001",
+                      "channel": "wechat",
+                      "start_at": "2026-10-30T18:00:00+08:00",
+                      "end_at": "2026-10-30T19:00:00+08:00"
+                    }
+                  ]
+                },
+                "confirmation": {
+                  "status": "pending",
+                  "pending_items": [
+                    {
+                      "kind": "time_change",
+                      "field": "time_requirement.requested_at",
+                      "original_value": "2026-10-30T18:00:00+08:00",
+                      "proposed_value": "2026-10-30T19:00:00+08:00",
+                      "message": "原时段与排期 SCHEDULE-001 冲突。候选改变了硬性指定时间，需要用户确认。请确认具体建议时间。"
+                    }
+                  ],
+                  "selected_at": null,
+                  "confirmed_at": null,
+                  "interrupt_id": null
+                },
+                "persistence": {
+                  "status": "not_attempted",
+                  "draft_id": null,
+                  "error": null
+                },
+                "errors": [],
+                "publication_status": "not_published"
+              },
+              "candidates": {
+                "candidates": [
+                  {
+                    "start_at": "2026-10-30T19:00:00+08:00",
+                    "end_at": "2026-10-30T20:00:00+08:00",
+                    "requires_confirmation": true,
+                    "reason": "候选改变了硬性指定时间，需要用户确认。"
+                  },
+                  {
+                    "start_at": "2026-10-30T20:00:00+08:00",
+                    "end_at": "2026-10-30T21:00:00+08:00",
+                    "requires_confirmation": true,
+                    "reason": "候选改变了硬性指定时间，需要用户确认。"
+                  }
+                ]
+              }
+            },
+            "tool_call_id": "offline-6"
+          },
+          {
+            "name": "refresh_time_choices",
+            "arguments": {},
+            "output": {
+              "result": {
+                "request_id": "REQ-HUMAN-METADATA",
+                "material_id": "M02",
+                "evaluated_at": "2026-10-29T08:12:24.998750Z",
+                "review": {
+                  "status": "passed",
+                  "missing_fields": [],
+                  "risks": []
+                },
+                "scheduling": {
+                  "status": "alternative_proposed",
+                  "requested_at": "2026-10-30T18:00:00+08:00",
+                  "suggested_at": "2026-10-30T19:00:00+08:00",
+                  "accepted_at": null,
+                  "conflicts": [
+                    {
+                      "schedule_id": "SCHEDULE-001",
+                      "channel": "wechat",
+                      "start_at": "2026-10-30T18:00:00+08:00",
+                      "end_at": "2026-10-30T19:00:00+08:00"
+                    }
+                  ]
+                },
+                "confirmation": {
+                  "status": "pending",
+                  "pending_items": [
+                    {
+                      "kind": "time_change",
+                      "field": "time_requirement.requested_at",
+                      "original_value": "2026-10-30T18:00:00+08:00",
+                      "proposed_value": "2026-10-30T19:00:00+08:00",
+                      "message": "原时段与排期 SCHEDULE-001 冲突。候选改变了硬性指定时间，需要用户确认。请确认具体建议时间。"
+                    }
+                  ],
+                  "selected_at": null,
+                  "confirmed_at": null,
+                  "interrupt_id": null
+                },
+                "persistence": {
+                  "status": "not_attempted",
+                  "draft_id": null,
+                  "error": null
+                },
+                "errors": [],
+                "publication_status": "not_published"
+              },
+              "material": {
+                "title": "新品介绍",
+                "content": "介绍新品功能与使用方法。",
+                "channel": "wechat",
+                "authorization_status": "authorized",
+                "authorization_evidence": "AUTH-USER-M02",
+                "material_id": "M02"
+              },
+              "rules_version": "demo-v1",
+              "actions": [
+                {
+                  "tool": "read_material",
+                  "status": "ok",
+                  "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json|run-human-input#materials/M02",
+                  "requested_fields": [],
+                  "returned_fields": [],
+                  "review": null,
+                  "schedule_snapshot": null,
+                  "candidate_slots": null,
+                  "error": null
+                },
+                {
+                  "tool": "check_rules",
+                  "status": "ok",
+                  "source": "rules:demo-v1",
+                  "requested_fields": [],
+                  "returned_fields": [],
+                  "review": {
+                    "status": "passed",
+                    "missing_fields": [],
+                    "risks": []
+                  },
+                  "schedule_snapshot": null,
+                  "candidate_slots": null,
+                  "error": null
+                },
+                {
+                  "tool": "query_schedule",
+                  "status": "ok",
+                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-75d01dc9f66f4c1ca777cd1a810b218e/human-metadata.sqlite3#scheduled_slots",
+                  "requested_fields": [],
+                  "returned_fields": [],
+                  "review": null,
+                  "schedule_snapshot": {
+                    "channel": "wechat",
+                    "window": {
+                      "start": "2026-10-30T18:00:00+08:00",
+                      "end": "2026-10-30T21:00:00+08:00"
+                    },
+                    "queried_at": "2026-10-29T08:12:24.998750Z",
+                    "existing_schedule": [
+                      {
+                        "schedule_id": "SCHEDULE-001",
+                        "channel": "wechat",
+                        "start_at": "2026-10-30T18:00:00+08:00",
+                        "end_at": "2026-10-30T19:00:00+08:00"
+                      }
+                    ]
+                  },
+                  "candidate_slots": null,
+                  "error": null
+                },
+                {
+                  "tool": "find_alternative_slots",
+                  "status": "ok",
+                  "source": "slot-search:rules:demo-v1",
+                  "requested_fields": [],
+                  "returned_fields": [],
+                  "review": null,
+                  "schedule_snapshot": null,
+                  "candidate_slots": {
+                    "candidates": [
+                      {
+                        "start_at": "2026-10-30T19:00:00+08:00",
+                        "end_at": "2026-10-30T20:00:00+08:00",
+                        "requires_confirmation": true,
+                        "reason": "候选改变了硬性指定时间，需要用户确认。"
+                      },
+                      {
+                        "start_at": "2026-10-30T20:00:00+08:00",
+                        "end_at": "2026-10-30T21:00:00+08:00",
+                        "requires_confirmation": true,
+                        "reason": "候选改变了硬性指定时间，需要用户确认。"
+                      }
+                    ]
+                  },
+                  "error": null
+                }
+              ]
+            }
+          }
+        ],
+        "model_steps": [
+          {
+            "step": 1,
+            "observation": null,
+            "response_id": null,
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "read_material",
+                "args": {
+                  "reason": "离线测试动作说明，不代表真实模型决策。"
+                },
+                "id": "offline-2",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "metadata": {},
+            "usage": null,
+            "status": "ok",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
+          },
+          {
+            "step": 2,
+            "observation": {
+              "name": "read_material",
+              "tool_call_id": "offline-2",
+              "status": "success",
+              "output": {
+                "status": "ok",
+                "data": {
+                  "title": "新品介绍",
+                  "content": "介绍新品功能与使用方法。",
+                  "channel": "wechat",
+                  "authorization_status": null,
+                  "authorization_evidence": null,
+                  "material_id": "M02"
+                },
+                "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json#materials/M02",
+                "error": null
+              }
+            },
+            "response_id": null,
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "check_rules",
+                "args": {
+                  "reason": "离线测试动作说明，不代表真实模型决策。"
+                },
+                "id": "offline-4",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "metadata": {},
+            "usage": null,
+            "status": "ok",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
+          },
+          {
+            "step": 3,
+            "observation": {
+              "name": "check_rules",
+              "tool_call_id": "offline-4",
+              "status": "success",
+              "output": {
+                "status": "ok",
+                "data": {
+                  "status": "needs_info",
+                  "missing_fields": [
+                    "authorization_status"
+                  ],
+                  "risks": []
+                },
+                "source": "rules:demo-v1",
+                "error": null
+              }
+            },
+            "response_id": null,
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "supplement_material",
+                "args": {
+                  "reason": "离线测试动作说明，不代表真实模型决策。",
+                  "fields": [
+                    "authorization_status"
+                  ]
+                },
+                "id": "offline-6",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "metadata": {},
+            "usage": null,
+            "status": "ok",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
+          },
+          {
+            "step": 4,
+            "observation": {
+              "name": "supplement_material",
+              "tool_call_id": "offline-6",
+              "status": "success",
+              "output": {
+                "status": "empty",
+                "data": null,
+                "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json#supplemental_materials/M02",
+                "error": null
+              }
+            },
+            "response_id": null,
+            "content": "离线测试分支结束。",
+            "tool_calls": [],
+            "invalid_tool_calls": [],
+            "metadata": {},
+            "usage": null,
+            "status": "ok",
+            "decision_reason": "离线测试分支结束。",
+            "cycle": 1
+          },
+          {
+            "step": 5,
+            "observation": null,
+            "response_id": null,
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "read_material",
+                "args": {
+                  "reason": "离线测试动作说明，不代表真实模型决策。"
+                },
+                "id": "offline-2",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "metadata": {},
+            "usage": null,
+            "status": "ok",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 2
+          },
+          {
+            "step": 6,
+            "observation": {
+              "name": "read_material",
+              "tool_call_id": "offline-2",
+              "status": "success",
+              "output": {
+                "status": "ok",
+                "data": {
+                  "title": "新品介绍",
+                  "content": "介绍新品功能与使用方法。",
+                  "channel": "wechat",
+                  "authorization_status": "authorized",
+                  "authorization_evidence": "AUTH-USER-M02",
+                  "material_id": "M02"
+                },
+                "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json|run-human-input#materials/M02",
+                "error": null
+              }
+            },
+            "response_id": null,
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "check_rules",
+                "args": {
+                  "reason": "离线测试动作说明，不代表真实模型决策。"
+                },
+                "id": "offline-4",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "metadata": {},
+            "usage": null,
+            "status": "ok",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 2
+          },
+          {
+            "step": 7,
+            "observation": {
+              "name": "check_rules",
+              "tool_call_id": "offline-4",
+              "status": "success",
+              "output": {
+                "status": "ok",
+                "data": {
+                  "status": "passed",
+                  "missing_fields": [],
+                  "risks": []
+                },
+                "source": "rules:demo-v1",
+                "error": null
+              }
+            },
+            "response_id": null,
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "query_slots",
+                "args": {
+                  "reason": "离线测试动作说明，不代表真实模型决策。"
+                },
+                "id": "offline-6",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "metadata": {},
+            "usage": null,
+            "status": "ok",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 2
+          }
+        ],
+        "execution_steps": [
+          {
+            "step": 1,
+            "model_step": 1,
+            "tool": "read_material",
+            "tool_call_id": "offline-2",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "return_summary": "status=ok; material_id=M02; authorization_status=None",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "next_action": "check_rules",
+            "next_action_source": "model",
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
+          },
+          {
+            "step": 2,
+            "model_step": 2,
+            "tool": "check_rules",
+            "tool_call_id": "offline-4",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "return_summary": "status=needs_info; missing_fields=['authorization_status']; risks=[]",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "next_action": "supplement_material",
+            "next_action_source": "model",
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
+          },
+          {
+            "step": 3,
+            "model_step": 3,
+            "tool": "supplement_material",
+            "tool_call_id": "offline-6",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。",
+              "fields": [
+                "authorization_status"
+              ]
+            },
+            "return_summary": "status=empty; returned_fields=[]",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "next_action": "finish",
+            "next_action_source": "model",
+            "next_decision_reason": "离线测试分支结束。",
+            "cycle": 1
+          },
+          {
+            "step": 4,
+            "model_step": 5,
+            "tool": "read_material",
+            "tool_call_id": "offline-2",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "return_summary": "status=ok; material_id=M02; authorization_status=authorized",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "next_action": "check_rules",
+            "next_action_source": "model",
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 2
+          },
+          {
+            "step": 5,
+            "model_step": 6,
+            "tool": "check_rules",
+            "tool_call_id": "offline-4",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "return_summary": "status=passed; missing_fields=[]; risks=[]",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "next_action": "query_slots",
+            "next_action_source": "model",
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 2
+          },
+          {
+            "step": 6,
+            "model_step": 7,
+            "tool": "query_slots",
+            "tool_call_id": "offline-6",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "return_summary": "scheduling=alternative_proposed; candidates=['2026-10-30T19:00:00+08:00', '2026-10-30T20:00:00+08:00']",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "next_action": "waiting_for_human",
+            "next_action_source": "workflow",
+            "next_decision_reason": "",
+            "cycle": 2
+          }
+        ],
+        "execution_limits": {
+          "max_model_calls": 12,
+          "max_tool_calls": 12
+        },
+        "error": null,
+        "run_id": "RUN-f5369437fae249388645d2463d80e6d1",
+        "interrupt": {
+          "interrupt_id": "4a55e34e2d9be641b58500db1e96acb1",
+          "kind": "choose_time",
+          "request_id": "REQ-HUMAN-METADATA",
+          "original_at": "2026-10-30T18:00:00+08:00",
+          "message": "请选择一个可用时间；恢复时将重新检查占用，再按请求保存草稿。",
+          "candidates": [
+            {
+              "start_at": "2026-10-30T19:00:00+08:00",
+              "end_at": "2026-10-30T20:00:00+08:00",
+              "requires_confirmation": true,
+              "reason": "候选改变了硬性指定时间，需要用户确认。"
+            },
+            {
+              "start_at": "2026-10-30T20:00:00+08:00",
+              "end_at": "2026-10-30T21:00:00+08:00",
+              "requires_confirmation": true,
+              "reason": "候选改变了硬性指定时间，需要用户确认。"
+            }
+          ]
+        },
+        "human_actions": [
+          {
+            "interrupt_id": "039d8abbb093cd2b8d7a077d04987683",
+            "fields": {
+              "authorization_status": "authorized",
+              "authorization_evidence": "AUTH-USER-M02"
+            },
+            "kind": "provide_metadata",
+            "status": "applied",
+            "recorded_at": "2026-10-29T08:12:24.960632+00:00"
+          }
+        ]
+      }
+    },
+    {
+      "step": 4,
+      "method": "POST",
+      "path": "/runs/RUN-f5369437fae249388645d2463d80e6d1/resume",
+      "arguments": {
+        "interrupt_id": "4a55e34e2d9be641b58500db1e96acb1",
+        "selected_at": "2026-10-30T20:00:00+08:00"
+      },
+      "http_status": 200,
+      "output": {
+        "mode": "offline_test",
+        "status": "completed",
+        "decision": "ready",
+        "result": {
+          "request_id": "REQ-HUMAN-METADATA",
+          "material_id": "M02",
+          "evaluated_at": "2026-10-29T08:12:25.019359Z",
+          "review": {
+            "status": "passed",
+            "missing_fields": [],
+            "risks": []
+          },
+          "scheduling": {
+            "status": "available",
+            "requested_at": "2026-10-30T18:00:00+08:00",
+            "suggested_at": "2026-10-30T20:00:00+08:00",
+            "accepted_at": "2026-10-30T20:00:00+08:00",
+            "conflicts": [
+              {
+                "schedule_id": "SCHEDULE-001",
+                "channel": "wechat",
+                "start_at": "2026-10-30T18:00:00+08:00",
+                "end_at": "2026-10-30T19:00:00+08:00"
+              }
+            ]
+          },
+          "confirmation": {
+            "status": "confirmed",
+            "pending_items": [],
+            "selected_at": "2026-10-30T20:00:00+08:00",
+            "confirmed_at": "2026-10-29T08:12:25.019359Z",
+            "interrupt_id": "4a55e34e2d9be641b58500db1e96acb1"
+          },
+          "persistence": {
+            "status": "saved",
+            "draft_id": "DRAFT-bf456e2e7d2447c8b36aaa9d8dff454b",
+            "error": null
+          },
+          "errors": [],
+          "publication_status": "not_published"
+        },
+        "model_calls": 7,
+        "tool_calls": [
+          {
+            "name": "read_material",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "output": {
+              "status": "ok",
+              "data": {
+                "title": "新品介绍",
+                "content": "介绍新品功能与使用方法。",
+                "channel": "wechat",
+                "authorization_status": null,
+                "authorization_evidence": null,
+                "material_id": "M02"
+              },
+              "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json#materials/M02",
+              "error": null
+            },
+            "tool_call_id": "offline-2"
+          },
+          {
+            "name": "check_rules",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "output": {
+              "status": "ok",
+              "data": {
+                "status": "needs_info",
+                "missing_fields": [
+                  "authorization_status"
+                ],
+                "risks": []
+              },
+              "source": "rules:demo-v1",
+              "error": null
+            },
+            "tool_call_id": "offline-4"
+          },
+          {
+            "name": "supplement_material",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。",
+              "fields": [
+                "authorization_status"
+              ]
+            },
+            "output": {
+              "status": "empty",
+              "data": null,
+              "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json#supplemental_materials/M02",
+              "error": null
+            },
+            "tool_call_id": "offline-6"
+          },
+          {
+            "name": "read_material",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "output": {
+              "status": "ok",
+              "data": {
+                "title": "新品介绍",
+                "content": "介绍新品功能与使用方法。",
+                "channel": "wechat",
+                "authorization_status": "authorized",
+                "authorization_evidence": "AUTH-USER-M02",
+                "material_id": "M02"
+              },
+              "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json|run-human-input#materials/M02",
+              "error": null
+            },
+            "tool_call_id": "offline-2"
+          },
+          {
+            "name": "check_rules",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "output": {
+              "status": "ok",
+              "data": {
+                "status": "passed",
+                "missing_fields": [],
+                "risks": []
+              },
+              "source": "rules:demo-v1",
+              "error": null
+            },
+            "tool_call_id": "offline-4"
+          },
+          {
+            "name": "query_slots",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "output": {
+              "status": "ok",
+              "result": {
+                "request_id": "REQ-HUMAN-METADATA",
+                "material_id": "M02",
+                "evaluated_at": "2026-10-29T08:12:24.986600Z",
+                "review": {
+                  "status": "passed",
+                  "missing_fields": [],
+                  "risks": []
+                },
+                "scheduling": {
+                  "status": "alternative_proposed",
+                  "requested_at": "2026-10-30T18:00:00+08:00",
+                  "suggested_at": "2026-10-30T19:00:00+08:00",
+                  "accepted_at": null,
+                  "conflicts": [
+                    {
+                      "schedule_id": "SCHEDULE-001",
+                      "channel": "wechat",
+                      "start_at": "2026-10-30T18:00:00+08:00",
+                      "end_at": "2026-10-30T19:00:00+08:00"
+                    }
+                  ]
+                },
+                "confirmation": {
+                  "status": "pending",
+                  "pending_items": [
+                    {
+                      "kind": "time_change",
+                      "field": "time_requirement.requested_at",
+                      "original_value": "2026-10-30T18:00:00+08:00",
+                      "proposed_value": "2026-10-30T19:00:00+08:00",
+                      "message": "原时段与排期 SCHEDULE-001 冲突。候选改变了硬性指定时间，需要用户确认。请确认具体建议时间。"
+                    }
+                  ],
+                  "selected_at": null,
+                  "confirmed_at": null,
+                  "interrupt_id": null
+                },
+                "persistence": {
+                  "status": "not_attempted",
+                  "draft_id": null,
+                  "error": null
+                },
+                "errors": [],
+                "publication_status": "not_published"
+              },
+              "candidates": {
+                "candidates": [
+                  {
+                    "start_at": "2026-10-30T19:00:00+08:00",
+                    "end_at": "2026-10-30T20:00:00+08:00",
+                    "requires_confirmation": true,
+                    "reason": "候选改变了硬性指定时间，需要用户确认。"
+                  },
+                  {
+                    "start_at": "2026-10-30T20:00:00+08:00",
+                    "end_at": "2026-10-30T21:00:00+08:00",
+                    "requires_confirmation": true,
+                    "reason": "候选改变了硬性指定时间，需要用户确认。"
+                  }
+                ]
+              }
+            },
+            "tool_call_id": "offline-6"
+          },
+          {
+            "name": "refresh_time_choices",
+            "arguments": {},
+            "output": {
+              "result": {
+                "request_id": "REQ-HUMAN-METADATA",
+                "material_id": "M02",
+                "evaluated_at": "2026-10-29T08:12:24.998750Z",
+                "review": {
+                  "status": "passed",
+                  "missing_fields": [],
+                  "risks": []
+                },
+                "scheduling": {
+                  "status": "alternative_proposed",
+                  "requested_at": "2026-10-30T18:00:00+08:00",
+                  "suggested_at": "2026-10-30T19:00:00+08:00",
+                  "accepted_at": null,
+                  "conflicts": [
+                    {
+                      "schedule_id": "SCHEDULE-001",
+                      "channel": "wechat",
+                      "start_at": "2026-10-30T18:00:00+08:00",
+                      "end_at": "2026-10-30T19:00:00+08:00"
+                    }
+                  ]
+                },
+                "confirmation": {
+                  "status": "pending",
+                  "pending_items": [
+                    {
+                      "kind": "time_change",
+                      "field": "time_requirement.requested_at",
+                      "original_value": "2026-10-30T18:00:00+08:00",
+                      "proposed_value": "2026-10-30T19:00:00+08:00",
+                      "message": "原时段与排期 SCHEDULE-001 冲突。候选改变了硬性指定时间，需要用户确认。请确认具体建议时间。"
+                    }
+                  ],
+                  "selected_at": null,
+                  "confirmed_at": null,
+                  "interrupt_id": null
+                },
+                "persistence": {
+                  "status": "not_attempted",
+                  "draft_id": null,
+                  "error": null
+                },
+                "errors": [],
+                "publication_status": "not_published"
+              },
+              "material": {
+                "title": "新品介绍",
+                "content": "介绍新品功能与使用方法。",
+                "channel": "wechat",
+                "authorization_status": "authorized",
+                "authorization_evidence": "AUTH-USER-M02",
+                "material_id": "M02"
+              },
+              "rules_version": "demo-v1",
+              "actions": [
+                {
+                  "tool": "read_material",
+                  "status": "ok",
+                  "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json|run-human-input#materials/M02",
+                  "requested_fields": [],
+                  "returned_fields": [],
+                  "review": null,
+                  "schedule_snapshot": null,
+                  "candidate_slots": null,
+                  "error": null
+                },
+                {
+                  "tool": "check_rules",
+                  "status": "ok",
+                  "source": "rules:demo-v1",
+                  "requested_fields": [],
+                  "returned_fields": [],
+                  "review": {
+                    "status": "passed",
+                    "missing_fields": [],
+                    "risks": []
+                  },
+                  "schedule_snapshot": null,
+                  "candidate_slots": null,
+                  "error": null
+                },
+                {
+                  "tool": "query_schedule",
+                  "status": "ok",
+                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-75d01dc9f66f4c1ca777cd1a810b218e/human-metadata.sqlite3#scheduled_slots",
+                  "requested_fields": [],
+                  "returned_fields": [],
+                  "review": null,
+                  "schedule_snapshot": {
+                    "channel": "wechat",
+                    "window": {
+                      "start": "2026-10-30T18:00:00+08:00",
+                      "end": "2026-10-30T21:00:00+08:00"
+                    },
+                    "queried_at": "2026-10-29T08:12:24.998750Z",
+                    "existing_schedule": [
+                      {
+                        "schedule_id": "SCHEDULE-001",
+                        "channel": "wechat",
+                        "start_at": "2026-10-30T18:00:00+08:00",
+                        "end_at": "2026-10-30T19:00:00+08:00"
+                      }
+                    ]
+                  },
+                  "candidate_slots": null,
+                  "error": null
+                },
+                {
+                  "tool": "find_alternative_slots",
+                  "status": "ok",
+                  "source": "slot-search:rules:demo-v1",
+                  "requested_fields": [],
+                  "returned_fields": [],
+                  "review": null,
+                  "schedule_snapshot": null,
+                  "candidate_slots": {
+                    "candidates": [
+                      {
+                        "start_at": "2026-10-30T19:00:00+08:00",
+                        "end_at": "2026-10-30T20:00:00+08:00",
+                        "requires_confirmation": true,
+                        "reason": "候选改变了硬性指定时间，需要用户确认。"
+                      },
+                      {
+                        "start_at": "2026-10-30T20:00:00+08:00",
+                        "end_at": "2026-10-30T21:00:00+08:00",
+                        "requires_confirmation": true,
+                        "reason": "候选改变了硬性指定时间，需要用户确认。"
+                      }
+                    ]
+                  },
+                  "error": null
+                }
+              ]
+            }
+          },
+          {
+            "name": "apply_time_selection",
+            "arguments": {
+              "selected_at": "2026-10-30T20:00:00+08:00",
+              "interrupt_id": "4a55e34e2d9be641b58500db1e96acb1"
+            },
+            "output": {
+              "result": {
+                "request_id": "REQ-HUMAN-METADATA",
+                "material_id": "M02",
+                "evaluated_at": "2026-10-29T08:12:25.019359Z",
+                "review": {
+                  "status": "passed",
+                  "missing_fields": [],
+                  "risks": []
+                },
+                "scheduling": {
+                  "status": "available",
+                  "requested_at": "2026-10-30T18:00:00+08:00",
+                  "suggested_at": "2026-10-30T20:00:00+08:00",
+                  "accepted_at": "2026-10-30T20:00:00+08:00",
+                  "conflicts": [
+                    {
+                      "schedule_id": "SCHEDULE-001",
+                      "channel": "wechat",
+                      "start_at": "2026-10-30T18:00:00+08:00",
+                      "end_at": "2026-10-30T19:00:00+08:00"
+                    }
+                  ]
+                },
+                "confirmation": {
+                  "status": "confirmed",
+                  "pending_items": [],
+                  "selected_at": "2026-10-30T20:00:00+08:00",
+                  "confirmed_at": "2026-10-29T08:12:25.019359Z",
+                  "interrupt_id": "4a55e34e2d9be641b58500db1e96acb1"
+                },
+                "persistence": {
+                  "status": "saved",
+                  "draft_id": "DRAFT-bf456e2e7d2447c8b36aaa9d8dff454b",
+                  "error": null
+                },
+                "errors": [],
+                "publication_status": "not_published"
+              },
+              "material": {
+                "title": "新品介绍",
+                "content": "介绍新品功能与使用方法。",
+                "channel": "wechat",
+                "authorization_status": "authorized",
+                "authorization_evidence": "AUTH-USER-M02",
+                "material_id": "M02"
+              },
+              "rules_version": "demo-v1",
+              "actions": [
+                {
+                  "tool": "read_material",
+                  "status": "ok",
+                  "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json|run-human-input#materials/M02",
+                  "requested_fields": [],
+                  "returned_fields": [],
+                  "review": null,
+                  "schedule_snapshot": null,
+                  "candidate_slots": null,
+                  "error": null
+                },
+                {
+                  "tool": "check_rules",
+                  "status": "ok",
+                  "source": "rules:demo-v1",
+                  "requested_fields": [],
+                  "returned_fields": [],
+                  "review": {
+                    "status": "passed",
+                    "missing_fields": [],
+                    "risks": []
+                  },
+                  "schedule_snapshot": null,
+                  "candidate_slots": null,
+                  "error": null
+                },
+                {
+                  "tool": "query_schedule",
+                  "status": "ok",
+                  "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/submission-validation-75d01dc9f66f4c1ca777cd1a810b218e/human-metadata.sqlite3#scheduled_slots",
+                  "requested_fields": [],
+                  "returned_fields": [],
+                  "review": null,
+                  "schedule_snapshot": {
+                    "channel": "wechat",
+                    "window": {
+                      "start": "2026-10-30T18:00:00+08:00",
+                      "end": "2026-10-30T21:00:00+08:00"
+                    },
+                    "queried_at": "2026-10-29T08:12:25.019359Z",
+                    "existing_schedule": [
+                      {
+                        "schedule_id": "SCHEDULE-001",
+                        "channel": "wechat",
+                        "start_at": "2026-10-30T18:00:00+08:00",
+                        "end_at": "2026-10-30T19:00:00+08:00"
+                      }
+                    ]
+                  },
+                  "candidate_slots": null,
+                  "error": null
+                },
+                {
+                  "tool": "find_alternative_slots",
+                  "status": "ok",
+                  "source": "slot-search:rules:demo-v1",
+                  "requested_fields": [],
+                  "returned_fields": [],
+                  "review": null,
+                  "schedule_snapshot": null,
+                  "candidate_slots": {
+                    "candidates": [
+                      {
+                        "start_at": "2026-10-30T19:00:00+08:00",
+                        "end_at": "2026-10-30T20:00:00+08:00",
+                        "requires_confirmation": true,
+                        "reason": "候选改变了硬性指定时间，需要用户确认。"
+                      },
+                      {
+                        "start_at": "2026-10-30T20:00:00+08:00",
+                        "end_at": "2026-10-30T21:00:00+08:00",
+                        "requires_confirmation": true,
+                        "reason": "候选改变了硬性指定时间，需要用户确认。"
+                      }
+                    ]
+                  },
+                  "error": null
+                }
+              ]
+            }
+          }
+        ],
+        "model_steps": [
+          {
+            "step": 1,
+            "observation": null,
+            "response_id": null,
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "read_material",
+                "args": {
+                  "reason": "离线测试动作说明，不代表真实模型决策。"
+                },
+                "id": "offline-2",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "metadata": {},
+            "usage": null,
+            "status": "ok",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
+          },
+          {
+            "step": 2,
+            "observation": {
+              "name": "read_material",
+              "tool_call_id": "offline-2",
+              "status": "success",
+              "output": {
+                "status": "ok",
+                "data": {
+                  "title": "新品介绍",
+                  "content": "介绍新品功能与使用方法。",
+                  "channel": "wechat",
+                  "authorization_status": null,
+                  "authorization_evidence": null,
+                  "material_id": "M02"
+                },
+                "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json#materials/M02",
+                "error": null
+              }
+            },
+            "response_id": null,
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "check_rules",
+                "args": {
+                  "reason": "离线测试动作说明，不代表真实模型决策。"
+                },
+                "id": "offline-4",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "metadata": {},
+            "usage": null,
+            "status": "ok",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
+          },
+          {
+            "step": 3,
+            "observation": {
+              "name": "check_rules",
+              "tool_call_id": "offline-4",
+              "status": "success",
+              "output": {
+                "status": "ok",
+                "data": {
+                  "status": "needs_info",
+                  "missing_fields": [
+                    "authorization_status"
+                  ],
+                  "risks": []
+                },
+                "source": "rules:demo-v1",
+                "error": null
+              }
+            },
+            "response_id": null,
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "supplement_material",
+                "args": {
+                  "reason": "离线测试动作说明，不代表真实模型决策。",
+                  "fields": [
+                    "authorization_status"
+                  ]
+                },
+                "id": "offline-6",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "metadata": {},
+            "usage": null,
+            "status": "ok",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
+          },
+          {
+            "step": 4,
+            "observation": {
+              "name": "supplement_material",
+              "tool_call_id": "offline-6",
+              "status": "success",
+              "output": {
+                "status": "empty",
+                "data": null,
+                "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json#supplemental_materials/M02",
+                "error": null
+              }
+            },
+            "response_id": null,
+            "content": "离线测试分支结束。",
+            "tool_calls": [],
+            "invalid_tool_calls": [],
+            "metadata": {},
+            "usage": null,
+            "status": "ok",
+            "decision_reason": "离线测试分支结束。",
+            "cycle": 1
+          },
+          {
+            "step": 5,
+            "observation": null,
+            "response_id": null,
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "read_material",
+                "args": {
+                  "reason": "离线测试动作说明，不代表真实模型决策。"
+                },
+                "id": "offline-2",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "metadata": {},
+            "usage": null,
+            "status": "ok",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 2
+          },
+          {
+            "step": 6,
+            "observation": {
+              "name": "read_material",
+              "tool_call_id": "offline-2",
+              "status": "success",
+              "output": {
+                "status": "ok",
+                "data": {
+                  "title": "新品介绍",
+                  "content": "介绍新品功能与使用方法。",
+                  "channel": "wechat",
+                  "authorization_status": "authorized",
+                  "authorization_evidence": "AUTH-USER-M02",
+                  "material_id": "M02"
+                },
+                "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/02_missing_metadata/human/catalog.json|run-human-input#materials/M02",
+                "error": null
+              }
+            },
+            "response_id": null,
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "check_rules",
+                "args": {
+                  "reason": "离线测试动作说明，不代表真实模型决策。"
+                },
+                "id": "offline-4",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "metadata": {},
+            "usage": null,
+            "status": "ok",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 2
+          },
+          {
+            "step": 7,
+            "observation": {
+              "name": "check_rules",
+              "tool_call_id": "offline-4",
+              "status": "success",
+              "output": {
+                "status": "ok",
+                "data": {
+                  "status": "passed",
+                  "missing_fields": [],
+                  "risks": []
+                },
+                "source": "rules:demo-v1",
+                "error": null
+              }
+            },
+            "response_id": null,
+            "content": "",
+            "tool_calls": [
+              {
+                "name": "query_slots",
+                "args": {
+                  "reason": "离线测试动作说明，不代表真实模型决策。"
+                },
+                "id": "offline-6",
+                "type": "tool_call"
+              }
+            ],
+            "invalid_tool_calls": [],
+            "metadata": {},
+            "usage": null,
+            "status": "ok",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 2
+          }
+        ],
+        "execution_steps": [
+          {
+            "step": 1,
+            "model_step": 1,
+            "tool": "read_material",
+            "tool_call_id": "offline-2",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "return_summary": "status=ok; material_id=M02; authorization_status=None",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "next_action": "check_rules",
+            "next_action_source": "model",
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
+          },
+          {
+            "step": 2,
+            "model_step": 2,
+            "tool": "check_rules",
+            "tool_call_id": "offline-4",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "return_summary": "status=needs_info; missing_fields=['authorization_status']; risks=[]",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "next_action": "supplement_material",
+            "next_action_source": "model",
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 1
+          },
+          {
+            "step": 3,
+            "model_step": 3,
+            "tool": "supplement_material",
+            "tool_call_id": "offline-6",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。",
+              "fields": [
+                "authorization_status"
+              ]
+            },
+            "return_summary": "status=empty; returned_fields=[]",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "next_action": "finish",
+            "next_action_source": "model",
+            "next_decision_reason": "离线测试分支结束。",
+            "cycle": 1
+          },
+          {
+            "step": 4,
+            "model_step": 5,
+            "tool": "read_material",
+            "tool_call_id": "offline-2",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "return_summary": "status=ok; material_id=M02; authorization_status=authorized",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "next_action": "check_rules",
+            "next_action_source": "model",
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 2
+          },
+          {
+            "step": 5,
+            "model_step": 6,
+            "tool": "check_rules",
+            "tool_call_id": "offline-4",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "return_summary": "status=passed; missing_fields=[]; risks=[]",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "next_action": "query_slots",
+            "next_action_source": "model",
+            "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "cycle": 2
+          },
+          {
+            "step": 6,
+            "model_step": 7,
+            "tool": "query_slots",
+            "tool_call_id": "offline-6",
+            "arguments": {
+              "reason": "离线测试动作说明，不代表真实模型决策。"
+            },
+            "return_summary": "scheduling=alternative_proposed; candidates=['2026-10-30T19:00:00+08:00', '2026-10-30T20:00:00+08:00']",
+            "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+            "next_action": "waiting_for_human",
+            "next_action_source": "workflow",
+            "next_decision_reason": "",
+            "cycle": 2
+          }
+        ],
+        "execution_limits": {
+          "max_model_calls": 12,
+          "max_tool_calls": 12
+        },
+        "error": null,
+        "run_id": "RUN-f5369437fae249388645d2463d80e6d1",
+        "interrupt": null,
+        "human_actions": [
+          {
+            "interrupt_id": "039d8abbb093cd2b8d7a077d04987683",
+            "fields": {
+              "authorization_status": "authorized",
+              "authorization_evidence": "AUTH-USER-M02"
+            },
+            "kind": "provide_metadata",
+            "status": "applied",
+            "recorded_at": "2026-10-29T08:12:24.960632+00:00"
+          },
+          {
+            "interrupt_id": "4a55e34e2d9be641b58500db1e96acb1",
+            "selected_at": "2026-10-30T20:00:00+08:00",
+            "kind": "choose_time",
+            "status": "recorded",
+            "recorded_at": "2026-10-29T08:12:25.017358+00:00"
+          }
+        ]
+      }
+    }
+  ]
+}

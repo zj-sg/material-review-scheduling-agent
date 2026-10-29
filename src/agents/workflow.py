@@ -59,8 +59,9 @@ class ReviewSchedulingAgent:
         self.model, self.source, self.store = model, source, store
         self.max_calls = max_calls
 
-    def run(self, request, rules, *, evaluated_at=None, pause_on_conflict=False) -> AgentOutcome:
-        runtime = AgentTools(request, rules, self.source, self.store, evaluated_at, pause_on_conflict=pause_on_conflict)
+    def run(self, request, rules, *, evaluated_at=None, pause_on_conflict=False, pause_on_review=False, human_context=None) -> AgentOutcome:
+        runtime = AgentTools(request, rules, self.source, self.store, evaluated_at,
+                             pause_on_conflict=pause_on_conflict, pause_on_review=pause_on_review)
         request = ScheduleRequest.model_validate(request.model_dump(), context={"now": runtime.now()})
         rules = RuleConfig.model_validate(rules.model_dump())
         runtime.request, runtime.rules = request, rules
@@ -153,13 +154,14 @@ class ReviewSchedulingAgent:
         )
         graph.add_edge("tools", "observe_tools")
         graph.add_conditional_edges(
-            "observe_tools", lambda state: END if state["error"] or runtime.saved is not None or runtime.waiting_for_time() else "model",
+            "observe_tools", lambda state: END if state["error"] or runtime.saved is not None or runtime.waiting_for_time() or runtime.waiting_for_review() else "model",
         )
         initial = {
             "messages": [
                 SystemMessage(content=SYSTEM_PROMPT),
                 HumanMessage(content=json.dumps({
                     "request": request.model_dump(mode="json"), "rules": rules.model_dump(mode="json"),
+                    "human_context": human_context or [],
                 }, ensure_ascii=False)),
             ],
             "calls": 0, "error": None,
@@ -169,7 +171,7 @@ class ReviewSchedulingAgent:
             state = graph.compile().invoke(initial, config={"recursion_limit": self.max_calls * 3 + 2})
         result = runtime.result()
         error = state["error"]
-        if error is None and not runtime.waiting_for_time():
+        if error is None and not runtime.waiting_for_time() and not runtime.waiting_for_review():
             problem = runtime.completion_problem()
             if problem:
                 error = {"code": "AGENT_INCOMPLETE", "message": problem}
@@ -187,7 +189,7 @@ class ReviewSchedulingAgent:
         elif result.confirmation.status == "pending":
             decision = "request_confirmation"
         status = ("incomplete" if error and error["code"] == "LIMIT_EXCEEDED" else
-                  "failed" if error else "waiting_for_human" if runtime.waiting_for_time() else "completed")
+                  "failed" if error else "waiting_for_human" if runtime.waiting_for_time() or runtime.waiting_for_review() else "completed")
         return AgentOutcome(
             mode=getattr(self.model, "mode", "test"),
             status=status,

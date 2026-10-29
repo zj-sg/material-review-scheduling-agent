@@ -32,7 +32,7 @@
         },
         "persistence": {
           "status": "saved",
-          "draft_id": "DRAFT-862f06fbff774e259f035b271d0aa6dd",
+          "draft_id": "DRAFT-cc9a19419d2049e59225ac8f8fce20f5",
           "error": null
         },
         "errors": [],
@@ -158,7 +158,7 @@
             },
             "persistence": {
               "status": "saved",
-              "draft_id": "DRAFT-862f06fbff774e259f035b271d0aa6dd",
+              "draft_id": "DRAFT-cc9a19419d2049e59225ac8f8fce20f5",
               "error": null
             },
             "errors": [],
@@ -384,7 +384,7 @@
           "arguments": {
             "reason": "离线测试动作说明，不代表真实模型决策。"
           },
-          "return_summary": "persistence=saved; draft_id=DRAFT-862f06fbff774e259f035b271d0aa6dd",
+          "return_summary": "persistence=saved; draft_id=DRAFT-cc9a19419d2049e59225ac8f8fce20f5",
           "decision_reason": "离线测试动作说明，不代表真实模型决策。",
           "next_action": "completed",
           "next_action_source": "workflow",
@@ -425,7 +425,7 @@
         },
         "persistence": {
           "status": "already_exists",
-          "draft_id": "DRAFT-862f06fbff774e259f035b271d0aa6dd",
+          "draft_id": "DRAFT-cc9a19419d2049e59225ac8f8fce20f5",
           "error": null
         },
         "errors": [],
@@ -551,7 +551,7 @@
             },
             "persistence": {
               "status": "already_exists",
-              "draft_id": "DRAFT-862f06fbff774e259f035b271d0aa6dd",
+              "draft_id": "DRAFT-cc9a19419d2049e59225ac8f8fce20f5",
               "error": null
             },
             "errors": [],
@@ -777,7 +777,7 @@
           "arguments": {
             "reason": "离线测试动作说明，不代表真实模型决策。"
           },
-          "return_summary": "persistence=already_exists; draft_id=DRAFT-862f06fbff774e259f035b271d0aa6dd",
+          "return_summary": "persistence=already_exists; draft_id=DRAFT-cc9a19419d2049e59225ac8f8fce20f5",
           "decision_reason": "离线测试动作说明，不代表真实模型决策。",
           "next_action": "completed",
           "next_action_source": "workflow",
