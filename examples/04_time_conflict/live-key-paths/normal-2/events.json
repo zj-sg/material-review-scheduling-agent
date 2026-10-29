@@ -1,0 +1,537 @@
+[
+  {
+    "step": 1,
+    "operation": "HTTP",
+    "method": "GET",
+    "path": "/health",
+    "arguments": null,
+    "http_status": 200,
+    "elapsed_seconds": 0.0,
+    "output": {
+      "status": "ok",
+      "mode": "api"
+    }
+  },
+  {
+    "step": 2,
+    "operation": "HTTP",
+    "method": "POST",
+    "path": "/schedule",
+    "arguments": {
+      "request_id": "REQ-KEY-cbe76b90f254421983da1850dbd583bf",
+      "material_id": "M01",
+      "channel": "wechat",
+      "time_requirement": {
+        "mode": "fixed",
+        "requested_at": "2026-10-30T18:00:00+08:00"
+      },
+      "search_window": {
+        "start": "2026-10-30T18:00:00+08:00",
+        "end": "2026-10-30T21:00:00+08:00"
+      },
+      "save_draft": true
+    },
+    "http_status": 200,
+    "elapsed_seconds": 7.282,
+    "output": {
+      "mode": "api",
+      "status": "completed",
+      "decision": "ready",
+      "result": {
+        "request_id": "REQ-KEY-cbe76b90f254421983da1850dbd583bf",
+        "material_id": "M01",
+        "evaluated_at": "2026-10-29T10:02:27.683087Z",
+        "review": {
+          "status": "passed",
+          "missing_fields": [],
+          "risks": []
+        },
+        "scheduling": {
+          "status": "available",
+          "requested_at": "2026-10-30T18:00:00+08:00",
+          "suggested_at": "2026-10-30T18:00:00+08:00",
+          "accepted_at": "2026-10-30T18:00:00+08:00",
+          "conflicts": []
+        },
+        "confirmation": {
+          "status": "not_required",
+          "pending_items": [],
+          "selected_at": null,
+          "confirmed_at": null,
+          "interrupt_id": null
+        },
+        "persistence": {
+          "status": "saved",
+          "draft_id": "DRAFT-823816505d974866959f1d456f5a8e59",
+          "error": null
+        },
+        "errors": [],
+        "publication_status": "not_published"
+      },
+      "model_calls": 4,
+      "tool_calls": [
+        {
+          "name": "read_material",
+          "arguments": {
+            "reason": "请求要求审核素材 M01 并按固定时间窗口排期，需先读取真实素材。"
+          },
+          "output": {
+            "status": "ok",
+            "data": {
+              "title": "新品介绍",
+              "content": "介绍新品功能与使用方法。",
+              "channel": "wechat",
+              "authorization_status": "authorized",
+              "authorization_evidence": "AUTH-M01",
+              "material_id": "M01"
+            },
+            "source": "local-json:D:/ProgramData/material-review-scheduling-agent/data/key-paths-live-20261029-extended/normal-2/catalog.json#materials/M01",
+            "error": null
+          },
+          "tool_call_id": "call_00_ET_JVN82LFPhXSWsi4dqPPb7565"
+        },
+        {
+          "name": "check_rules",
+          "arguments": {
+            "reason": "素材 M01 各必填字段齐全，channel 为 wechat，现检查规则风险。"
+          },
+          "output": {
+            "status": "ok",
+            "data": {
+              "status": "passed",
+              "missing_fields": [],
+              "risks": []
+            },
+            "source": "rules:demo-v1",
+            "error": null
+          },
+          "tool_call_id": "call_00_ekOuktOXAfL7CYUL5qZa5258"
+        },
+        {
+          "name": "query_slots",
+          "arguments": {
+            "reason": "规则检查通过，按请求的固定时间 2026-10-30 18:00 查询正式占用与候选。"
+          },
+          "output": {
+            "status": "ok",
+            "result": {
+              "request_id": "REQ-KEY-cbe76b90f254421983da1850dbd583bf",
+              "material_id": "M01",
+              "evaluated_at": "2026-10-29T10:02:24.889417Z",
+              "review": {
+                "status": "passed",
+                "missing_fields": [],
+                "risks": []
+              },
+              "scheduling": {
+                "status": "available",
+                "requested_at": "2026-10-30T18:00:00+08:00",
+                "suggested_at": "2026-10-30T18:00:00+08:00",
+                "accepted_at": "2026-10-30T18:00:00+08:00",
+                "conflicts": []
+              },
+              "confirmation": {
+                "status": "not_required",
+                "pending_items": [],
+                "selected_at": null,
+                "confirmed_at": null,
+                "interrupt_id": null
+              },
+              "persistence": {
+                "status": "not_attempted",
+                "draft_id": null,
+                "error": null
+              },
+              "errors": [],
+              "publication_status": "not_published"
+            },
+            "candidates": {
+              "candidates": [
+                {
+                  "start_at": "2026-10-30T18:00:00+08:00",
+                  "end_at": "2026-10-30T19:00:00+08:00",
+                  "requires_confirmation": false,
+                  "reason": "时段符合原时间要求，且查询时无占用。"
+                }
+              ]
+            }
+          },
+          "tool_call_id": "call_00_ET_sPhheBUOh4T4V4GPoLeQ5642"
+        },
+        {
+          "name": "save_draft",
+          "arguments": {
+            "reason": "审核通过且 18:00 候选无冲突、无需确认，请求 save_draft=true，故保存待发布草稿。"
+          },
+          "output": {
+            "request_id": "REQ-KEY-cbe76b90f254421983da1850dbd583bf",
+            "material_id": "M01",
+            "evaluated_at": "2026-10-29T10:02:27.683087Z",
+            "review": {
+              "status": "passed",
+              "missing_fields": [],
+              "risks": []
+            },
+            "scheduling": {
+              "status": "available",
+              "requested_at": "2026-10-30T18:00:00+08:00",
+              "suggested_at": "2026-10-30T18:00:00+08:00",
+              "accepted_at": "2026-10-30T18:00:00+08:00",
+              "conflicts": []
+            },
+            "confirmation": {
+              "status": "not_required",
+              "pending_items": [],
+              "selected_at": null,
+              "confirmed_at": null,
+              "interrupt_id": null
+            },
+            "persistence": {
+              "status": "saved",
+              "draft_id": "DRAFT-823816505d974866959f1d456f5a8e59",
+              "error": null
+            },
+            "errors": [],
+            "publication_status": "not_published"
+          },
+          "tool_call_id": "call_00_HH0uacfyzrGp1QZpTn1s7408"
+        }
+      ],
+      "model_steps": [
+        {
+          "step": 1,
+          "observation": null,
+          "response_id": "lc_run--01a1871c-49a9-777e-8212-06d32ffb1268-0",
+          "content": "我会先读取该素材。",
+          "tool_calls": [
+            {
+              "name": "read_material",
+              "args": {
+                "reason": "请求要求审核素材 M01 并按固定时间窗口排期，需先读取真实素材。"
+              },
+              "id": "call_00_ET_JVN82LFPhXSWsi4dqPPb7565",
+              "type": "tool_call"
+            }
+          ],
+          "invalid_tool_calls": [],
+          "metadata": {
+            "model_name": "deepseek-flash",
+            "model_provider": "deepseek",
+            "finish_reason": "tool_calls"
+          },
+          "usage": {
+            "input_tokens": 1404,
+            "output_tokens": 62,
+            "total_tokens": 1466,
+            "input_token_details": {
+              "cache_read": 1024
+            },
+            "output_token_details": {
+              "reasoning": 0
+            }
+          },
+          "status": "ok",
+          "decision_reason": "请求要求审核素材 M01 并按固定时间窗口排期，需先读取真实素材。",
+          "cycle": 1
+        },
+        {
+          "step": 2,
+          "observation": {
+            "name": "read_material",
+            "tool_call_id": "call_00_ET_JVN82LFPhXSWsi4dqPPb7565",
+            "status": "success",
+            "output": {
+              "status": "ok",
+              "data": {
+                "title": "新品介绍",
+                "content": "介绍新品功能与使用方法。",
+                "channel": "wechat",
+                "authorization_status": "authorized",
+                "authorization_evidence": "AUTH-M01",
+                "material_id": "M01"
+              },
+              "source": "local-json:D:/ProgramData/material-review-scheduling-agent/data/key-paths-live-20261029-extended/normal-2/catalog.json#materials/M01",
+              "error": null
+            }
+          },
+          "response_id": "lc_run--01a1871c-4fd0-74af-9692-9461da06df69-0",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "check_rules",
+              "args": {
+                "reason": "素材 M01 各必填字段齐全，channel 为 wechat，现检查规则风险。"
+              },
+              "id": "call_00_ekOuktOXAfL7CYUL5qZa5258",
+              "type": "tool_call"
+            }
+          ],
+          "invalid_tool_calls": [],
+          "metadata": {
+            "model_name": "deepseek-flash",
+            "model_provider": "deepseek",
+            "finish_reason": "tool_calls"
+          },
+          "usage": {
+            "input_tokens": 1586,
+            "output_tokens": 81,
+            "total_tokens": 1667,
+            "input_token_details": {
+              "cache_read": 1408
+            },
+            "output_token_details": {
+              "reasoning": 23
+            }
+          },
+          "status": "ok",
+          "decision_reason": "素材 M01 各必填字段齐全，channel 为 wechat，现检查规则风险。",
+          "cycle": 1
+        },
+        {
+          "step": 3,
+          "observation": {
+            "name": "check_rules",
+            "tool_call_id": "call_00_ekOuktOXAfL7CYUL5qZa5258",
+            "status": "success",
+            "output": {
+              "status": "ok",
+              "data": {
+                "status": "passed",
+                "missing_fields": [],
+                "risks": []
+              },
+              "source": "rules:demo-v1",
+              "error": null
+            }
+          },
+          "response_id": "lc_run--01a1871c-5613-7378-900b-219ef73a0b99-0",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "query_slots",
+              "args": {
+                "reason": "规则检查通过，按请求的固定时间 2026-10-30 18:00 查询正式占用与候选。"
+              },
+              "id": "call_00_ET_sPhheBUOh4T4V4GPoLeQ5642",
+              "type": "tool_call"
+            }
+          ],
+          "invalid_tool_calls": [],
+          "metadata": {
+            "model_name": "deepseek-flash",
+            "model_provider": "deepseek",
+            "finish_reason": "tool_calls"
+          },
+          "usage": {
+            "input_tokens": 1719,
+            "output_tokens": 64,
+            "total_tokens": 1783,
+            "input_token_details": {
+              "cache_read": 1536
+            },
+            "output_token_details": {
+              "reasoning": 0
+            }
+          },
+          "status": "ok",
+          "decision_reason": "规则检查通过，按请求的固定时间 2026-10-30 18:00 查询正式占用与候选。",
+          "cycle": 1
+        },
+        {
+          "step": 4,
+          "observation": {
+            "name": "query_slots",
+            "tool_call_id": "call_00_ET_sPhheBUOh4T4V4GPoLeQ5642",
+            "status": "success",
+            "output": {
+              "status": "ok",
+              "result": {
+                "request_id": "REQ-KEY-cbe76b90f254421983da1850dbd583bf",
+                "material_id": "M01",
+                "evaluated_at": "2026-10-29T10:02:24.889417Z",
+                "review": {
+                  "status": "passed",
+                  "missing_fields": [],
+                  "risks": []
+                },
+                "scheduling": {
+                  "status": "available",
+                  "requested_at": "2026-10-30T18:00:00+08:00",
+                  "suggested_at": "2026-10-30T18:00:00+08:00",
+                  "accepted_at": "2026-10-30T18:00:00+08:00",
+                  "conflicts": []
+                },
+                "confirmation": {
+                  "status": "not_required",
+                  "pending_items": [],
+                  "selected_at": null,
+                  "confirmed_at": null,
+                  "interrupt_id": null
+                },
+                "persistence": {
+                  "status": "not_attempted",
+                  "draft_id": null,
+                  "error": null
+                },
+                "errors": [],
+                "publication_status": "not_published"
+              },
+              "candidates": {
+                "candidates": [
+                  {
+                    "start_at": "2026-10-30T18:00:00+08:00",
+                    "end_at": "2026-10-30T19:00:00+08:00",
+                    "requires_confirmation": false,
+                    "reason": "时段符合原时间要求，且查询时无占用。"
+                  }
+                ]
+              }
+            }
+          },
+          "response_id": "lc_run--01a1871c-5afe-733c-9c2b-5b3eaf21eba9-0",
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "save_draft",
+              "args": {
+                "reason": "审核通过且 18:00 候选无冲突、无需确认，请求 save_draft=true，故保存待发布草稿。"
+              },
+              "id": "call_00_HH0uacfyzrGp1QZpTn1s7408",
+              "type": "tool_call"
+            }
+          ],
+          "invalid_tool_calls": [],
+          "metadata": {
+            "model_name": "deepseek-flash",
+            "model_provider": "deepseek",
+            "finish_reason": "tool_calls"
+          },
+          "usage": {
+            "input_tokens": 2120,
+            "output_tokens": 82,
+            "total_tokens": 2202,
+            "input_token_details": {
+              "cache_read": 1664
+            },
+            "output_token_details": {
+              "reasoning": 17
+            }
+          },
+          "status": "ok",
+          "decision_reason": "审核通过且 18:00 候选无冲突、无需确认，请求 save_draft=true，故保存待发布草稿。",
+          "cycle": 1
+        }
+      ],
+      "execution_steps": [
+        {
+          "step": 1,
+          "model_step": 1,
+          "tool": "read_material",
+          "tool_call_id": "call_00_ET_JVN82LFPhXSWsi4dqPPb7565",
+          "arguments": {
+            "reason": "请求要求审核素材 M01 并按固定时间窗口排期，需先读取真实素材。"
+          },
+          "return_summary": "status=ok; material_id=M01; authorization_status=authorized",
+          "decision_reason": "请求要求审核素材 M01 并按固定时间窗口排期，需先读取真实素材。",
+          "next_action": "check_rules",
+          "next_action_source": "model",
+          "next_decision_reason": "素材 M01 各必填字段齐全，channel 为 wechat，现检查规则风险。",
+          "cycle": 1
+        },
+        {
+          "step": 2,
+          "model_step": 2,
+          "tool": "check_rules",
+          "tool_call_id": "call_00_ekOuktOXAfL7CYUL5qZa5258",
+          "arguments": {
+            "reason": "素材 M01 各必填字段齐全，channel 为 wechat，现检查规则风险。"
+          },
+          "return_summary": "status=passed; missing_fields=[]; risks=[]",
+          "decision_reason": "素材 M01 各必填字段齐全，channel 为 wechat，现检查规则风险。",
+          "next_action": "query_slots",
+          "next_action_source": "model",
+          "next_decision_reason": "规则检查通过，按请求的固定时间 2026-10-30 18:00 查询正式占用与候选。",
+          "cycle": 1
+        },
+        {
+          "step": 3,
+          "model_step": 3,
+          "tool": "query_slots",
+          "tool_call_id": "call_00_ET_sPhheBUOh4T4V4GPoLeQ5642",
+          "arguments": {
+            "reason": "规则检查通过，按请求的固定时间 2026-10-30 18:00 查询正式占用与候选。"
+          },
+          "return_summary": "scheduling=available; candidates=['2026-10-30T18:00:00+08:00']",
+          "decision_reason": "规则检查通过，按请求的固定时间 2026-10-30 18:00 查询正式占用与候选。",
+          "next_action": "save_draft",
+          "next_action_source": "model",
+          "next_decision_reason": "审核通过且 18:00 候选无冲突、无需确认，请求 save_draft=true，故保存待发布草稿。",
+          "cycle": 1
+        },
+        {
+          "step": 4,
+          "model_step": 4,
+          "tool": "save_draft",
+          "tool_call_id": "call_00_HH0uacfyzrGp1QZpTn1s7408",
+          "arguments": {
+            "reason": "审核通过且 18:00 候选无冲突、无需确认，请求 save_draft=true，故保存待发布草稿。"
+          },
+          "return_summary": "persistence=saved; draft_id=DRAFT-823816505d974866959f1d456f5a8e59",
+          "decision_reason": "审核通过且 18:00 候选无冲突、无需确认，请求 save_draft=true，故保存待发布草稿。",
+          "next_action": "completed",
+          "next_action_source": "workflow",
+          "next_decision_reason": "",
+          "cycle": 1
+        }
+      ],
+      "execution_limits": {
+        "max_model_calls": 12,
+        "max_tool_calls": 12
+      },
+      "error": null,
+      "run_id": "RUN-0a23f086c67a448eb9bec9adef38bcd5",
+      "interrupt": null,
+      "human_actions": []
+    }
+  },
+  {
+    "step": 3,
+    "operation": "HTTP",
+    "method": "GET",
+    "path": "/drafts/REQ-KEY-cbe76b90f254421983da1850dbd583bf",
+    "arguments": null,
+    "http_status": 200,
+    "elapsed_seconds": 0.0,
+    "output": {
+      "request_id": "REQ-KEY-cbe76b90f254421983da1850dbd583bf",
+      "material_id": "M01",
+      "evaluated_at": "2026-10-29T10:02:27.683087Z",
+      "review": {
+        "status": "passed",
+        "missing_fields": [],
+        "risks": []
+      },
+      "scheduling": {
+        "status": "available",
+        "requested_at": "2026-10-30T18:00:00+08:00",
+        "suggested_at": "2026-10-30T18:00:00+08:00",
+        "accepted_at": "2026-10-30T18:00:00+08:00",
+        "conflicts": []
+      },
+      "confirmation": {
+        "status": "not_required",
+        "pending_items": [],
+        "selected_at": null,
+        "confirmed_at": null,
+        "interrupt_id": null
+      },
+      "persistence": {
+        "status": "saved",
+        "draft_id": "DRAFT-823816505d974866959f1d456f5a8e59",
+        "error": null
+      },
+      "errors": [],
+      "publication_status": "not_published"
+    }
+  }
+]

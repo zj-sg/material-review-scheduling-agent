@@ -1,0 +1,24 @@
+{
+  "case": "tool_failure",
+  "passed": true,
+  "checks": {
+    "expected_runtime_mode": true,
+    "explicit_tool_failure_http_500": true,
+    "model_observed_error_and_chose_stop": true,
+    "no_query_save_or_retry_after_error": true,
+    "nothing_published": true,
+    "model_steps_match_count_and_budget": true,
+    "live_deepseek_metadata": true,
+    "source_catalog_unchanged": true
+  },
+  "failure": null,
+  "final_status": "failed",
+  "business_error": {
+    "code": "TOOL_ERROR",
+    "message": "素材补查失败（OSError），未将缺失信息视为已补齐。"
+  },
+  "model_calls": 4,
+  "model_selected_tool_calls": 3,
+  "workflow_operations": 0,
+  "elapsed_seconds": 9.765
+}

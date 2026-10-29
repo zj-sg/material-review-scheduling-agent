@@ -1,4 +1,4 @@
-Current working-tree regression, offline provider isolation in tests
+Current working-tree regression; real key-path trials recorded separately
 Command: D:\ProgramData\material-review-scheduling-agent\.venv\Scripts\python.exe -X utf8 -m pytest -q -W error --tb=short --junitxml=examples/test-results.xml
 
 ........................................................................ [ 22%]
@@ -6,6 +6,6 @@ Command: D:\ProgramData\material-review-scheduling-agent\.venv\Scripts\python.ex
 ........................................................................ [ 66%]
 ........................................................................ [ 88%]
 ....................................                                     [100%]
-324 passed in 30.22s
+324 passed in 23.42s
 
 Exit code: 0

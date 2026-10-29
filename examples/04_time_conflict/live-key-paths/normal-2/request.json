@@ -1,0 +1,14 @@
+{
+  "request_id": "REQ-KEY-cbe76b90f254421983da1850dbd583bf",
+  "material_id": "M01",
+  "channel": "wechat",
+  "time_requirement": {
+    "mode": "fixed",
+    "requested_at": "2026-10-30T18:00:00+08:00"
+  },
+  "search_window": {
+    "start": "2026-10-30T18:00:00+08:00",
+    "end": "2026-10-30T21:00:00+08:00"
+  },
+  "save_draft": true
+}

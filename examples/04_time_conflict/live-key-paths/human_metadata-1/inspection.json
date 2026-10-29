@@ -1,0 +1,25 @@
+{
+  "case": "human_metadata",
+  "passed": true,
+  "checks": {
+    "expected_runtime_mode": true,
+    "metadata_interrupt_without_new_draft": true,
+    "model_observed_empty_and_finished": true,
+    "resume_http_200_step_3": true,
+    "resumed_same_run_with_metadata_audit": true,
+    "model_queried_after_human_data_passed_review": true,
+    "completed_and_saved_one_draft": true,
+    "draft_read_matches_final_result": true,
+    "nothing_published": true,
+    "model_steps_match_count_and_budget": true,
+    "live_deepseek_metadata": true,
+    "source_catalog_unchanged": true
+  },
+  "failure": null,
+  "final_status": "completed",
+  "business_error": null,
+  "model_calls": 8,
+  "model_selected_tool_calls": 7,
+  "workflow_operations": 0,
+  "elapsed_seconds": 15.969
+}

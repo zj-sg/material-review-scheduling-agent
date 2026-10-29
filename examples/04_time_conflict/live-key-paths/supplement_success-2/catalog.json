@@ -1,0 +1,64 @@
+{
+  "rules": {
+    "version": "demo-v1",
+    "timezone": "Asia/Shanghai",
+    "allowed_channels": [
+      "wechat",
+      "weibo"
+    ],
+    "required_material_fields": [
+      "material_id",
+      "title",
+      "content",
+      "channel",
+      "authorization_status"
+    ],
+    "blocked_phrases": [
+      "稳赚不赔"
+    ],
+    "slot_duration_minutes": 60,
+    "candidate_step_minutes": 60
+  },
+  "initial_state": {
+    "materials": [
+      {
+        "material_id": "M01",
+        "title": "新品介绍",
+        "content": "介绍新品功能与使用方法。",
+        "channel": "wechat",
+        "authorization_status": "authorized",
+        "authorization_evidence": "AUTH-M01"
+      },
+      {
+        "material_id": "M02",
+        "title": "新品介绍",
+        "content": "介绍新品功能与使用方法。",
+        "channel": "wechat",
+        "authorization_evidence": null
+      },
+      {
+        "material_id": "M03",
+        "title": "新品介绍",
+        "content": "本产品稳赚不赔，欢迎购买。",
+        "channel": "wechat",
+        "authorization_status": "authorized",
+        "authorization_evidence": "AUTH-M03"
+      },
+      {
+        "material_id": "M04",
+        "title": "新品介绍",
+        "content": "介绍新品功能与使用方法。",
+        "channel": "wechat",
+        "authorization_status": "unknown",
+        "authorization_evidence": null
+      }
+    ],
+    "supplemental_materials": {
+      "M02": {
+        "authorization_status": "authorized",
+        "authorization_evidence": "AUTH-AUTO-SYNTHETIC"
+      }
+    },
+    "existing_schedule": []
+  }
+}

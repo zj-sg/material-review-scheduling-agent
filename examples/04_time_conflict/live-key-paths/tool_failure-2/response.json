@@ -1,0 +1,352 @@
+{
+  "mode": "api",
+  "status": "failed",
+  "decision": "failed",
+  "result": {
+    "request_id": "REQ-KEY-b42dd77d4e9841168ebe20245f8d5e70",
+    "material_id": "M02",
+    "evaluated_at": "2026-10-29T10:04:23.198564Z",
+    "review": {
+      "status": "error",
+      "missing_fields": [],
+      "risks": []
+    },
+    "scheduling": {
+      "status": "not_evaluated",
+      "requested_at": "2026-10-30T18:00:00+08:00",
+      "suggested_at": null,
+      "accepted_at": null,
+      "conflicts": []
+    },
+    "confirmation": {
+      "status": "not_required",
+      "pending_items": [],
+      "selected_at": null,
+      "confirmed_at": null,
+      "interrupt_id": null
+    },
+    "persistence": {
+      "status": "not_attempted",
+      "draft_id": null,
+      "error": null
+    },
+    "errors": [
+      {
+        "code": "TOOL_ERROR",
+        "message": "素材补查失败（OSError），未将缺失信息视为已补齐。"
+      }
+    ],
+    "publication_status": "not_published"
+  },
+  "model_calls": 4,
+  "tool_calls": [
+    {
+      "name": "read_material",
+      "arguments": {
+        "reason": "按请求 REQ-KEY-b42dd77d4e9841168ebe20245f8d5e70 读取素材 M02 的真实内容。"
+      },
+      "output": {
+        "status": "ok",
+        "data": {
+          "title": "新品介绍",
+          "content": "介绍新品功能与使用方法。",
+          "channel": "wechat",
+          "authorization_status": null,
+          "authorization_evidence": null,
+          "material_id": "M02"
+        },
+        "source": "local-json:D:/ProgramData/material-review-scheduling-agent/data/key-paths-live-20261029-extended/tool_failure-2/catalog.json#materials/M02",
+        "error": null
+      },
+      "tool_call_id": "call_00_ET_w0Bo48mAFyh4eiDgfErI5983"
+    },
+    {
+      "name": "check_rules",
+      "arguments": {
+        "reason": "素材 M02 已读取，渠道为 wechat，现按规则 v1 检查风险与缺失字段。"
+      },
+      "output": {
+        "status": "ok",
+        "data": {
+          "status": "needs_info",
+          "missing_fields": [
+            "authorization_status"
+          ],
+          "risks": []
+        },
+        "source": "rules:demo-v1",
+        "error": null
+      },
+      "tool_call_id": "call_00_fU3E38BH4vp9ndHDnZPF2630"
+    },
+    {
+      "name": "supplement_material",
+      "arguments": {
+        "fields": [
+          "authorization_status",
+          "authorization_evidence"
+        ],
+        "reason": "规则检查显示 M02 缺失 authorization_status，需一次性补查实际缺失字段。"
+      },
+      "output": {
+        "status": "error",
+        "data": null,
+        "source": null,
+        "error": {
+          "code": "TOOL_ERROR",
+          "message": "素材补查失败（OSError），未将缺失信息视为已补齐。"
+        }
+      },
+      "tool_call_id": "call_00_ET_8qZEuDUQZ54xRyBcoCCk3420"
+    }
+  ],
+  "error": {
+    "code": "TOOL_ERROR",
+    "message": "素材补查失败（OSError），未将缺失信息视为已补齐。"
+  },
+  "model_steps": [
+    {
+      "step": 1,
+      "observation": null,
+      "response_id": "lc_run--01a1871e-113b-7113-af67-9541723cd947-0",
+      "content": "我会先读取素材并检查规则。",
+      "tool_calls": [
+        {
+          "name": "read_material",
+          "args": {
+            "reason": "按请求 REQ-KEY-b42dd77d4e9841168ebe20245f8d5e70 读取素材 M02 的真实内容。"
+          },
+          "id": "call_00_ET_w0Bo48mAFyh4eiDgfErI5983",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "metadata": {
+        "model_name": "deepseek-flash",
+        "model_provider": "deepseek",
+        "finish_reason": "tool_calls"
+      },
+      "usage": {
+        "input_tokens": 1407,
+        "output_tokens": 78,
+        "total_tokens": 1485,
+        "input_token_details": {
+          "cache_read": 1024
+        },
+        "output_token_details": {
+          "reasoning": 0
+        }
+      },
+      "status": "ok",
+      "decision_reason": "按请求 REQ-KEY-b42dd77d4e9841168ebe20245f8d5e70 读取素材 M02 的真实内容。",
+      "cycle": 1
+    },
+    {
+      "step": 2,
+      "observation": {
+        "name": "read_material",
+        "tool_call_id": "call_00_ET_w0Bo48mAFyh4eiDgfErI5983",
+        "status": "success",
+        "output": {
+          "status": "ok",
+          "data": {
+            "title": "新品介绍",
+            "content": "介绍新品功能与使用方法。",
+            "channel": "wechat",
+            "authorization_status": null,
+            "authorization_evidence": null,
+            "material_id": "M02"
+          },
+          "source": "local-json:D:/ProgramData/material-review-scheduling-agent/data/key-paths-live-20261029-extended/tool_failure-2/catalog.json#materials/M02",
+          "error": null
+        }
+      },
+      "response_id": "lc_run--01a1871e-1462-728d-b9a2-8d0ce76dd154-0",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "check_rules",
+          "args": {
+            "reason": "素材 M02 已读取，渠道为 wechat，现按规则 v1 检查风险与缺失字段。"
+          },
+          "id": "call_00_fU3E38BH4vp9ndHDnZPF2630",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "metadata": {
+        "model_name": "deepseek-flash",
+        "model_provider": "deepseek",
+        "finish_reason": "tool_calls"
+      },
+      "usage": {
+        "input_tokens": 1601,
+        "output_tokens": 65,
+        "total_tokens": 1666,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 4
+        }
+      },
+      "status": "ok",
+      "decision_reason": "素材 M02 已读取，渠道为 wechat，现按规则 v1 检查风险与缺失字段。",
+      "cycle": 1
+    },
+    {
+      "step": 3,
+      "observation": {
+        "name": "check_rules",
+        "tool_call_id": "call_00_fU3E38BH4vp9ndHDnZPF2630",
+        "status": "success",
+        "output": {
+          "status": "ok",
+          "data": {
+            "status": "needs_info",
+            "missing_fields": [
+              "authorization_status"
+            ],
+            "risks": []
+          },
+          "source": "rules:demo-v1",
+          "error": null
+        }
+      },
+      "response_id": "lc_run--01a1871e-19cf-71b6-8358-4d3d096532f6-0",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "supplement_material",
+          "args": {
+            "fields": [
+              "authorization_status",
+              "authorization_evidence"
+            ],
+            "reason": "规则检查显示 M02 缺失 authorization_status，需一次性补查实际缺失字段。"
+          },
+          "id": "call_00_ET_8qZEuDUQZ54xRyBcoCCk3420",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "metadata": {
+        "model_name": "deepseek-flash",
+        "model_provider": "deepseek",
+        "finish_reason": "tool_calls"
+      },
+      "usage": {
+        "input_tokens": 1724,
+        "output_tokens": 82,
+        "total_tokens": 1806,
+        "input_token_details": {
+          "cache_read": 1536
+        },
+        "output_token_details": {
+          "reasoning": 0
+        }
+      },
+      "status": "ok",
+      "decision_reason": "规则检查显示 M02 缺失 authorization_status，需一次性补查实际缺失字段。",
+      "cycle": 1
+    },
+    {
+      "step": 4,
+      "observation": {
+        "name": "supplement_material",
+        "tool_call_id": "call_00_ET_8qZEuDUQZ54xRyBcoCCk3420",
+        "status": "success",
+        "output": {
+          "status": "error",
+          "data": null,
+          "source": null,
+          "error": {
+            "code": "TOOL_ERROR",
+            "message": "素材补查失败（OSError），未将缺失信息视为已补齐。"
+          }
+        }
+      },
+      "response_id": "lc_run--01a1871e-1d04-758f-a5d0-f3a6784ddd40-0",
+      "content": "补查工具调用失败，按规则必须停止，不能编造补充信息。\n\n**当前状态说明**\n\n- **素材读取成功**：M02《新品介绍》，渠道 wechat，内容为“介绍新品功能与使用方法”。\n- **规则检查结果**：`needs_info`，缺失必需字段 `authorization_status`；未发现违禁词风险。\n- **补查结果**：`supplement_material` 返回 `TOOL_ERROR`（OSError），素材授权状态和授权证据均未能补齐，系统明确未将缺失信息视为已补齐。\n\n**因此本次流程到此终止：**\n\n- 由于素材不完整，规则检查无法进入 `passed`，所以没有调用 `query_slots`，也没有自行推算 2026-10-30 18:00–21:00 窗口内的空闲时间；\n- 虽然请求中 `save_draft=true`，但审核状态不是 `needs_review` 或 `passed`，并且补查失败，所以没有调用 `save_draft`；**草稿未保存，也未发布，未替您做任何确认**；\n- 请求中的固定时间 2026-10-30T18:00:00+08:00 属于硬性要求，我未做任何放宽。\n\n**需要您补充**：请提供 M02 的授权状态（以及可核验的授权证据），我会重新执行规则检查，再根据实际结果查询档期并保存待复核草稿。",
+      "tool_calls": [],
+      "invalid_tool_calls": [],
+      "metadata": {
+        "model_name": "deepseek-flash",
+        "model_provider": "deepseek",
+        "finish_reason": "stop"
+      },
+      "usage": {
+        "input_tokens": 1865,
+        "output_tokens": 351,
+        "total_tokens": 2216,
+        "input_token_details": {
+          "cache_read": 1664
+        },
+        "output_token_details": {
+          "reasoning": 36
+        }
+      },
+      "status": "ok",
+      "decision_reason": "补查工具调用失败，按规则必须停止，不能编造补充信息。\n\n**当前状态说明**\n\n- **素材读取成功**：M02《新品介绍》，渠道 wechat，内容为“介绍新品功能与使用方法”。\n- **规则检查结果**：`needs_info`，缺失必需字段 `authorization_status`；未发现违禁词风险。\n- **补查结果**：`supplement_material` 返回 `TOOL_ERROR`（OSError），素材授权状态和授权证据均未能补齐，系统明确未将缺失信息视为已补齐。\n\n**因此本次流程到此终止：**\n\n- 由于素材不完整，规则检查无法进入 `passed`，所以没有调用 `query_slots`，也没有自行推算 2026-10-30 18:00–21:00 窗口内的空闲时间；\n- 虽然请求中 `save_draft=true`，但审核状态不是 `needs_review` 或 `passed`，并且补查失败，所以没有调用 `save_draft`；**草稿未保存，也未发布，未替您做任何确认**；\n- 请求中的固定时间 2026-10-30T18:00:00+08:00 属于硬性要求，我未做任何放宽。\n\n**需要您补充**：请提供 M02 的授权状态（以及可核验的授权证据），我会重新执行规则检查，再根据实际结果查询档期并保存待复核草稿。",
+      "cycle": 1
+    }
+  ],
+  "execution_steps": [
+    {
+      "step": 1,
+      "model_step": 1,
+      "tool": "read_material",
+      "tool_call_id": "call_00_ET_w0Bo48mAFyh4eiDgfErI5983",
+      "arguments": {
+        "reason": "按请求 REQ-KEY-b42dd77d4e9841168ebe20245f8d5e70 读取素材 M02 的真实内容。"
+      },
+      "return_summary": "status=ok; material_id=M02; authorization_status=None",
+      "decision_reason": "按请求 REQ-KEY-b42dd77d4e9841168ebe20245f8d5e70 读取素材 M02 的真实内容。",
+      "next_action": "check_rules",
+      "next_action_source": "model",
+      "next_decision_reason": "素材 M02 已读取，渠道为 wechat，现按规则 v1 检查风险与缺失字段。",
+      "cycle": 1
+    },
+    {
+      "step": 2,
+      "model_step": 2,
+      "tool": "check_rules",
+      "tool_call_id": "call_00_fU3E38BH4vp9ndHDnZPF2630",
+      "arguments": {
+        "reason": "素材 M02 已读取，渠道为 wechat，现按规则 v1 检查风险与缺失字段。"
+      },
+      "return_summary": "status=needs_info; missing_fields=['authorization_status']; risks=[]",
+      "decision_reason": "素材 M02 已读取，渠道为 wechat，现按规则 v1 检查风险与缺失字段。",
+      "next_action": "supplement_material",
+      "next_action_source": "model",
+      "next_decision_reason": "规则检查显示 M02 缺失 authorization_status，需一次性补查实际缺失字段。",
+      "cycle": 1
+    },
+    {
+      "step": 3,
+      "model_step": 3,
+      "tool": "supplement_material",
+      "tool_call_id": "call_00_ET_8qZEuDUQZ54xRyBcoCCk3420",
+      "arguments": {
+        "fields": [
+          "authorization_status",
+          "authorization_evidence"
+        ],
+        "reason": "规则检查显示 M02 缺失 authorization_status，需一次性补查实际缺失字段。"
+      },
+      "return_summary": "status=error; returned_fields=[]",
+      "decision_reason": "规则检查显示 M02 缺失 authorization_status，需一次性补查实际缺失字段。",
+      "next_action": "finish",
+      "next_action_source": "model",
+      "next_decision_reason": "补查工具调用失败，按规则必须停止，不能编造补充信息。\n\n**当前状态说明**\n\n- **素材读取成功**：M02《新品介绍》，渠道 wechat，内容为“介绍新品功能与使用方法”。\n- **规则检查结果**：`needs_info`，缺失必需字段 `authorization_status`；未发现违禁词风险。\n- **补查结果**：`supplement_material` 返回 `TOOL_ERROR`（OSError），素材授权状态和授权证据均未能补齐，系统明确未将缺失信息视为已补齐。\n\n**因此本次流程到此终止：**\n\n- 由于素材不完整，规则检查无法进入 `passed`，所以没有调用 `query_slots`，也没有自行推算 2026-10-30 18:00–21:00 窗口内的空闲时间；\n- 虽然请求中 `save_draft=true`，但审核状态不是 `needs_review` 或 `passed`，并且补查失败，所以没有调用 `save_draft`；**草稿未保存，也未发布，未替您做任何确认**；\n- 请求中的固定时间 2026-10-30T18:00:00+08:00 属于硬性要求，我未做任何放宽。\n\n**需要您补充**：请提供 M02 的授权状态（以及可核验的授权证据），我会重新执行规则检查，再根据实际结果查询档期并保存待复核草稿。",
+      "cycle": 1
+    }
+  ],
+  "execution_limits": {
+    "max_model_calls": 12,
+    "max_tool_calls": 12
+  },
+  "run_id": "RUN-cf214acf62c34c1e9c1121f9f93de15c",
+  "interrupt": null,
+  "human_actions": []
+}

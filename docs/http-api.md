@@ -220,6 +220,7 @@ human_actions 记录补充资料、审核人/意见/操作和时间选择；保�
 reviewer 是调用方填写的演示身份，本项目未实现登录鉴权或独立审核权限。
 
 新增两类流程的实际离线运行材料见 [资料补充](../examples/02_missing_metadata/human/summary.md) 和 [人工风险审核](../examples/03_rule_risk/human/summary.md)。可运行 `python examples/record_human_interrupts.py` 复现，不会调用 DeepSeek。
+资料补充和有凭证人工通过已另外各跑两次真实 DeepSeek 恢复；冲突及时间失效、补查成功后重审、工具错误也有实际记录，见 [关键路径总览](../examples/04_time_conflict/live-key-paths/summary.md)。完整隔离演示命令与 Swagger 手动步骤见 [demo.md](demo.md)。
 
 ## 查询草稿
 

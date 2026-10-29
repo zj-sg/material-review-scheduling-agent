@@ -94,6 +94,7 @@ show-config 不导出 Key；模型异常只报告类型与 HTTP 状态，不回�
 工具协议参考 [OpenAI 官方 Function calling](https://developers.openai.com/api/docs/guides/function-calling)。
 
 当前 324 项测试通过（含 75 项 HTTP 接口与人工中断测试），CLI、HTTP 与两条真实 DeepSeek 运行结果见 verification.md。
+扩展真实验收已覆盖六类各两次，12/12 检查通过，统计和记录见 [评估文档](03-evaluation.md)；完整演示使用 `python examples/verify_key_paths.py --cases normal conflict_stale`，加 --live 调用真实模型。
 真实 DeepSeek ReAct 验收及证据保存命令见 [ReAct 验收说明](react-acceptance.md)。
 HTTP 支持资料补充、授权存疑审核和时间选择三类内存中断，操作见 http-api.md；原 CLI 保留夹具回放模式。
 不启用外部 tracing、跨服务重启的检查点恢复、真实发布或生产级审批权限。

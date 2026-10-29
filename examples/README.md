@@ -17,7 +17,7 @@ input.json 给出数据与顺序请求，expected.json 给出事先定义的预�
 materials-with-supplement.json 是 M02 的可信补查数据。
 回放日期为 2026-11-02，时区为 +08:00。
 
-当前已实现审核、排期、保存和单 Agent；两条真实 DeepSeek 决策路径已运行通过，记录见 ../docs/react-acceptance.md。
+当前已实现审核、排期、保存和单 Agent；首批两条及新增六类各两次真实 DeepSeek 运行均已留证，记录见 ../docs/react-acceptance.md。
 save-example 会先将指定文件的正式排期导入 SQLite，再按顺序执行步骤，保留已有草稿。
 每个场景验收建议使用独立数据库文件，以便核对预期草稿数量；命令不会自动清空已有草稿。
 06 的 save_behavior=fail 仅为示例故障注入：执行写入后主动报错，验证真实事务回滚。
@@ -31,5 +31,6 @@ agent-example --offline 使用显式可控模型运行 LangGraph 和业务工具
 首次失败的真实模型记录在 02_missing_metadata/live-failure；它没有计为成功。
 人工时间选择与占用变化后重提的完整 HTTP 记录在 [04_time_conflict/interactive](04_time_conflict/interactive/summary.md)，该记录使用离线模型、真实服务和数据库。
 新增 [02_missing_metadata/human](02_missing_metadata/human/summary.md) 覆盖补查无果→资料输入校验→重审→时间选择→保存；[03_rule_risk/human](03_rule_risk/human/summary.md) 覆盖通过、驳回、要求修改后重审及明确阻断。这些为离线模型下实际执行的 HTTP/图/数据库记录。
-两条 live 记录采集于新增资料/风险人工中断前，保留为真实模型工具决策证据，不代表新增人工恢复已用真实模型验证。
+原有两条 live 记录采集于新增资料/风险人工中断前；新增真实验收位于 [04_time_conflict/live-key-paths](04_time_conflict/live-key-paths/summary.md)，包含正常、冲突与时间失效、补查成功重审、人工补资料、风险通过和工具错误各两次。summary.json 汇总 12/12 验收通过、62 次模型调用和 58 次模型工具执行，保留所有事件与失败检查。
+各目录的 events.json 包括真实 HTTP 及明确标注的合成占用/故障事件，trace.json 保存模型观察与后续动作，inspection.json 区分验收通过与业务错误；runner-source.py.txt 保存本批运行器源文件。脚本 `python examples/verify_key_paths.py --live --repeats 2` 可复测，不带 --live 则为离线演示。
 test-results.txt、test-results.xml 为实际测试输出；environment.json 记录验证环境。评审映射见 ../docs/03-evaluation.md。

@@ -1,5 +1,19 @@
 # DeepSeek 实际 ReAct 验收
 
+## 最新：六类真实关键路径
+
+已新增六类各两次真实 DeepSeek 运行，共 12/12 验收通过、62 次模型调用、58 次模型工具执行。覆盖正常保存、冲突及时段失效、补查成功后重审、人工补资料恢复、授权人工通过，以及工具 error 后模型选择停止。
+[实际结果总览](../examples/04_time_conflict/live-key-paths/summary.md)、[统计 JSON](../examples/04_time_conflict/live-key-paths/summary.json)、[评估与限制](03-evaluation.md)。工具故障用例以明确失败且模型停止为验收通过标准；时间失效后重新暂停为程序行为。
+
+```powershell
+# 默认离线，实际启动隔离 Uvicorn，可先熟悉演示
+.\.venv\Scripts\python.exe -X utf8 examples/verify_key_paths.py --cases normal conflict_stale
+# 读取本地 .env；真实调用，所有尝试均记录
+.\.venv\Scripts\python.exe -X utf8 examples/verify_key_paths.py --live --repeats 2
+```
+
+该运行器自行启动/关闭空闲端口上的服务，不依赖已运行的 8000 端口，不改共享素材及已有数据库。演示讲解见 [demo.md](demo.md)。以下保留首批两条运行及已有服务上的复测方式。
+
 两条真实 DeepSeek 路径已于 2026-10-29 运行通过。记录包括实际请求、响应、模型动作、参数、返回摘要、后续动作及公开决策依据，不用程序中断或预设日志代替模型决策。
 
 - [两条路径总览](acceptance-runs/20261029-145149-53d9cebd/summary.md)

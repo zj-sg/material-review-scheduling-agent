@@ -1,0 +1,787 @@
+{
+  "mode": "api",
+  "status": "completed",
+  "decision": "ready",
+  "result": {
+    "request_id": "REQ-KEY-dbe27009f5f34456918e02878ef21cd8",
+    "material_id": "M01",
+    "evaluated_at": "2026-10-29T10:02:46.580317Z",
+    "review": {
+      "status": "passed",
+      "missing_fields": [],
+      "risks": []
+    },
+    "scheduling": {
+      "status": "available",
+      "requested_at": "2026-10-30T18:00:00+08:00",
+      "suggested_at": "2026-10-30T20:00:00+08:00",
+      "accepted_at": "2026-10-30T20:00:00+08:00",
+      "conflicts": [
+        {
+          "schedule_id": "SCHEDULE-001",
+          "channel": "wechat",
+          "start_at": "2026-10-30T18:00:00+08:00",
+          "end_at": "2026-10-30T19:00:00+08:00"
+        }
+      ]
+    },
+    "confirmation": {
+      "status": "confirmed",
+      "pending_items": [],
+      "selected_at": "2026-10-30T20:00:00+08:00",
+      "confirmed_at": "2026-10-29T10:02:46.580317Z",
+      "interrupt_id": "14bacf101334fc872ba886a62d240e7e"
+    },
+    "persistence": {
+      "status": "saved",
+      "draft_id": "DRAFT-32a9a48b160445d5822dad863799e5e0",
+      "error": null
+    },
+    "errors": [],
+    "publication_status": "not_published"
+  },
+  "model_calls": 3,
+  "tool_calls": [
+    {
+      "name": "read_material",
+      "arguments": {
+        "reason": "按请求 REQ-KEY-dbe27009f5f34456918e02878ef21cd8 读取素材 M01 以进行审核。"
+      },
+      "output": {
+        "status": "ok",
+        "data": {
+          "title": "新品介绍",
+          "content": "介绍新品功能与使用方法。",
+          "channel": "wechat",
+          "authorization_status": "authorized",
+          "authorization_evidence": "AUTH-M01",
+          "material_id": "M01"
+        },
+        "source": "local-json:D:/ProgramData/material-review-scheduling-agent/data/key-paths-live-20261029-extended/conflict_stale-2/catalog.json#materials/M01",
+        "error": null
+      },
+      "tool_call_id": "call_00_ET_kFwhTVTXLON1DEujHmw40588"
+    },
+    {
+      "name": "check_rules",
+      "arguments": {
+        "reason": "已读取 M01 素材，字段齐全，现按规则集 demo-v1 检查风险与缺失项。"
+      },
+      "output": {
+        "status": "ok",
+        "data": {
+          "status": "passed",
+          "missing_fields": [],
+          "risks": []
+        },
+        "source": "rules:demo-v1",
+        "error": null
+      },
+      "tool_call_id": "call_00_pmM8zLa7uZDAUQFpMdal0549"
+    },
+    {
+      "name": "query_slots",
+      "arguments": {
+        "reason": "审核已通过，按请求的固定时间 2026-10-30T18:00+08:00 查询正式占用与候选档期。"
+      },
+      "output": {
+        "status": "ok",
+        "result": {
+          "request_id": "REQ-KEY-dbe27009f5f34456918e02878ef21cd8",
+          "material_id": "M01",
+          "evaluated_at": "2026-10-29T10:02:46.488946Z",
+          "review": {
+            "status": "passed",
+            "missing_fields": [],
+            "risks": []
+          },
+          "scheduling": {
+            "status": "alternative_proposed",
+            "requested_at": "2026-10-30T18:00:00+08:00",
+            "suggested_at": "2026-10-30T19:00:00+08:00",
+            "accepted_at": null,
+            "conflicts": [
+              {
+                "schedule_id": "SCHEDULE-001",
+                "channel": "wechat",
+                "start_at": "2026-10-30T18:00:00+08:00",
+                "end_at": "2026-10-30T19:00:00+08:00"
+              }
+            ]
+          },
+          "confirmation": {
+            "status": "pending",
+            "pending_items": [
+              {
+                "kind": "time_change",
+                "field": "time_requirement.requested_at",
+                "original_value": "2026-10-30T18:00:00+08:00",
+                "proposed_value": "2026-10-30T19:00:00+08:00",
+                "message": "原时段与排期 SCHEDULE-001 冲突。候选改变了硬性指定时间，需要用户确认。请确认具体建议时间。"
+              }
+            ],
+            "selected_at": null,
+            "confirmed_at": null,
+            "interrupt_id": null
+          },
+          "persistence": {
+            "status": "not_attempted",
+            "draft_id": null,
+            "error": null
+          },
+          "errors": [],
+          "publication_status": "not_published"
+        },
+        "candidates": {
+          "candidates": [
+            {
+              "start_at": "2026-10-30T19:00:00+08:00",
+              "end_at": "2026-10-30T20:00:00+08:00",
+              "requires_confirmation": true,
+              "reason": "候选改变了硬性指定时间，需要用户确认。"
+            },
+            {
+              "start_at": "2026-10-30T20:00:00+08:00",
+              "end_at": "2026-10-30T21:00:00+08:00",
+              "requires_confirmation": true,
+              "reason": "候选改变了硬性指定时间，需要用户确认。"
+            }
+          ]
+        }
+      },
+      "tool_call_id": "call_00_MLjrgewpPcn9Lu8v13Ky3998"
+    },
+    {
+      "name": "refresh_time_choices",
+      "arguments": {},
+      "output": {
+        "result": {
+          "request_id": "REQ-KEY-dbe27009f5f34456918e02878ef21cd8",
+          "material_id": "M01",
+          "evaluated_at": "2026-10-29T10:02:46.503203Z",
+          "review": {
+            "status": "passed",
+            "missing_fields": [],
+            "risks": []
+          },
+          "scheduling": {
+            "status": "alternative_proposed",
+            "requested_at": "2026-10-30T18:00:00+08:00",
+            "suggested_at": "2026-10-30T19:00:00+08:00",
+            "accepted_at": null,
+            "conflicts": [
+              {
+                "schedule_id": "SCHEDULE-001",
+                "channel": "wechat",
+                "start_at": "2026-10-30T18:00:00+08:00",
+                "end_at": "2026-10-30T19:00:00+08:00"
+              }
+            ]
+          },
+          "confirmation": {
+            "status": "pending",
+            "pending_items": [
+              {
+                "kind": "time_change",
+                "field": "time_requirement.requested_at",
+                "original_value": "2026-10-30T18:00:00+08:00",
+                "proposed_value": "2026-10-30T19:00:00+08:00",
+                "message": "原时段与排期 SCHEDULE-001 冲突。候选改变了硬性指定时间，需要用户确认。请确认具体建议时间。"
+              }
+            ],
+            "selected_at": null,
+            "confirmed_at": null,
+            "interrupt_id": null
+          },
+          "persistence": {
+            "status": "not_attempted",
+            "draft_id": null,
+            "error": null
+          },
+          "errors": [],
+          "publication_status": "not_published"
+        },
+        "material": {
+          "title": "新品介绍",
+          "content": "介绍新品功能与使用方法。",
+          "channel": "wechat",
+          "authorization_status": "authorized",
+          "authorization_evidence": "AUTH-M01",
+          "material_id": "M01"
+        },
+        "rules_version": "demo-v1",
+        "actions": [
+          {
+            "tool": "read_material",
+            "status": "ok",
+            "source": "local-json:D:/ProgramData/material-review-scheduling-agent/data/key-paths-live-20261029-extended/conflict_stale-2/catalog.json#materials/M01",
+            "requested_fields": [],
+            "returned_fields": [],
+            "review": null,
+            "schedule_snapshot": null,
+            "candidate_slots": null,
+            "error": null
+          },
+          {
+            "tool": "check_rules",
+            "status": "ok",
+            "source": "rules:demo-v1",
+            "requested_fields": [],
+            "returned_fields": [],
+            "review": {
+              "status": "passed",
+              "missing_fields": [],
+              "risks": []
+            },
+            "schedule_snapshot": null,
+            "candidate_slots": null,
+            "error": null
+          },
+          {
+            "tool": "query_schedule",
+            "status": "ok",
+            "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/key-path-runtime-92a3a04030a24131b65039b01650dff2/drafts.sqlite3#scheduled_slots",
+            "requested_fields": [],
+            "returned_fields": [],
+            "review": null,
+            "schedule_snapshot": {
+              "channel": "wechat",
+              "window": {
+                "start": "2026-10-30T18:00:00+08:00",
+                "end": "2026-10-30T21:00:00+08:00"
+              },
+              "queried_at": "2026-10-29T10:02:46.503203Z",
+              "existing_schedule": [
+                {
+                  "schedule_id": "SCHEDULE-001",
+                  "channel": "wechat",
+                  "start_at": "2026-10-30T18:00:00+08:00",
+                  "end_at": "2026-10-30T19:00:00+08:00"
+                }
+              ]
+            },
+            "candidate_slots": null,
+            "error": null
+          },
+          {
+            "tool": "find_alternative_slots",
+            "status": "ok",
+            "source": "slot-search:rules:demo-v1",
+            "requested_fields": [],
+            "returned_fields": [],
+            "review": null,
+            "schedule_snapshot": null,
+            "candidate_slots": {
+              "candidates": [
+                {
+                  "start_at": "2026-10-30T19:00:00+08:00",
+                  "end_at": "2026-10-30T20:00:00+08:00",
+                  "requires_confirmation": true,
+                  "reason": "候选改变了硬性指定时间，需要用户确认。"
+                },
+                {
+                  "start_at": "2026-10-30T20:00:00+08:00",
+                  "end_at": "2026-10-30T21:00:00+08:00",
+                  "requires_confirmation": true,
+                  "reason": "候选改变了硬性指定时间，需要用户确认。"
+                }
+              ]
+            },
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "name": "apply_time_selection",
+      "arguments": {
+        "selected_at": "2026-10-30T19:00:00+08:00",
+        "interrupt_id": "341c1cad4d5f9f5fc1235201818a2e98"
+      },
+      "output": {
+        "result": {
+          "request_id": "REQ-KEY-dbe27009f5f34456918e02878ef21cd8",
+          "material_id": "M01",
+          "evaluated_at": "2026-10-29T10:02:46.529799Z",
+          "review": {
+            "status": "passed",
+            "missing_fields": [],
+            "risks": []
+          },
+          "scheduling": {
+            "status": "alternative_proposed",
+            "requested_at": "2026-10-30T18:00:00+08:00",
+            "suggested_at": "2026-10-30T20:00:00+08:00",
+            "accepted_at": null,
+            "conflicts": [
+              {
+                "schedule_id": "SCHEDULE-001",
+                "channel": "wechat",
+                "start_at": "2026-10-30T18:00:00+08:00",
+                "end_at": "2026-10-30T19:00:00+08:00"
+              }
+            ]
+          },
+          "confirmation": {
+            "status": "pending",
+            "pending_items": [
+              {
+                "kind": "time_change",
+                "field": "time_requirement.requested_at",
+                "original_value": "2026-10-30T18:00:00+08:00",
+                "proposed_value": "2026-10-30T20:00:00+08:00",
+                "message": "原时段与排期 SCHEDULE-001 冲突。候选改变了硬性指定时间，需要用户确认。请确认具体建议时间。"
+              }
+            ],
+            "selected_at": null,
+            "confirmed_at": null,
+            "interrupt_id": null
+          },
+          "persistence": {
+            "status": "not_attempted",
+            "draft_id": null,
+            "error": null
+          },
+          "errors": [],
+          "publication_status": "not_published"
+        },
+        "material": {
+          "title": "新品介绍",
+          "content": "介绍新品功能与使用方法。",
+          "channel": "wechat",
+          "authorization_status": "authorized",
+          "authorization_evidence": "AUTH-M01",
+          "material_id": "M01"
+        },
+        "rules_version": "demo-v1",
+        "actions": [
+          {
+            "tool": "read_material",
+            "status": "ok",
+            "source": "local-json:D:/ProgramData/material-review-scheduling-agent/data/key-paths-live-20261029-extended/conflict_stale-2/catalog.json#materials/M01",
+            "requested_fields": [],
+            "returned_fields": [],
+            "review": null,
+            "schedule_snapshot": null,
+            "candidate_slots": null,
+            "error": null
+          },
+          {
+            "tool": "check_rules",
+            "status": "ok",
+            "source": "rules:demo-v1",
+            "requested_fields": [],
+            "returned_fields": [],
+            "review": {
+              "status": "passed",
+              "missing_fields": [],
+              "risks": []
+            },
+            "schedule_snapshot": null,
+            "candidate_slots": null,
+            "error": null
+          },
+          {
+            "tool": "query_schedule",
+            "status": "ok",
+            "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/key-path-runtime-92a3a04030a24131b65039b01650dff2/drafts.sqlite3#scheduled_slots",
+            "requested_fields": [],
+            "returned_fields": [],
+            "review": null,
+            "schedule_snapshot": {
+              "channel": "wechat",
+              "window": {
+                "start": "2026-10-30T18:00:00+08:00",
+                "end": "2026-10-30T21:00:00+08:00"
+              },
+              "queried_at": "2026-10-29T10:02:46.529799Z",
+              "existing_schedule": [
+                {
+                  "schedule_id": "SCHEDULE-001",
+                  "channel": "wechat",
+                  "start_at": "2026-10-30T18:00:00+08:00",
+                  "end_at": "2026-10-30T19:00:00+08:00"
+                },
+                {
+                  "schedule_id": "SYNTHETIC-LATE-OCCUPANCY",
+                  "channel": "wechat",
+                  "start_at": "2026-10-30T19:00:00+08:00",
+                  "end_at": "2026-10-30T20:00:00+08:00"
+                }
+              ]
+            },
+            "candidate_slots": null,
+            "error": null
+          },
+          {
+            "tool": "find_alternative_slots",
+            "status": "ok",
+            "source": "slot-search:rules:demo-v1",
+            "requested_fields": [],
+            "returned_fields": [],
+            "review": null,
+            "schedule_snapshot": null,
+            "candidate_slots": {
+              "candidates": [
+                {
+                  "start_at": "2026-10-30T20:00:00+08:00",
+                  "end_at": "2026-10-30T21:00:00+08:00",
+                  "requires_confirmation": true,
+                  "reason": "候选改变了硬性指定时间，需要用户确认。"
+                }
+              ]
+            },
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "name": "apply_time_selection",
+      "arguments": {
+        "selected_at": "2026-10-30T20:00:00+08:00",
+        "interrupt_id": "14bacf101334fc872ba886a62d240e7e"
+      },
+      "output": {
+        "result": {
+          "request_id": "REQ-KEY-dbe27009f5f34456918e02878ef21cd8",
+          "material_id": "M01",
+          "evaluated_at": "2026-10-29T10:02:46.580317Z",
+          "review": {
+            "status": "passed",
+            "missing_fields": [],
+            "risks": []
+          },
+          "scheduling": {
+            "status": "available",
+            "requested_at": "2026-10-30T18:00:00+08:00",
+            "suggested_at": "2026-10-30T20:00:00+08:00",
+            "accepted_at": "2026-10-30T20:00:00+08:00",
+            "conflicts": [
+              {
+                "schedule_id": "SCHEDULE-001",
+                "channel": "wechat",
+                "start_at": "2026-10-30T18:00:00+08:00",
+                "end_at": "2026-10-30T19:00:00+08:00"
+              }
+            ]
+          },
+          "confirmation": {
+            "status": "confirmed",
+            "pending_items": [],
+            "selected_at": "2026-10-30T20:00:00+08:00",
+            "confirmed_at": "2026-10-29T10:02:46.580317Z",
+            "interrupt_id": "14bacf101334fc872ba886a62d240e7e"
+          },
+          "persistence": {
+            "status": "saved",
+            "draft_id": "DRAFT-32a9a48b160445d5822dad863799e5e0",
+            "error": null
+          },
+          "errors": [],
+          "publication_status": "not_published"
+        },
+        "material": {
+          "title": "新品介绍",
+          "content": "介绍新品功能与使用方法。",
+          "channel": "wechat",
+          "authorization_status": "authorized",
+          "authorization_evidence": "AUTH-M01",
+          "material_id": "M01"
+        },
+        "rules_version": "demo-v1",
+        "actions": [
+          {
+            "tool": "read_material",
+            "status": "ok",
+            "source": "local-json:D:/ProgramData/material-review-scheduling-agent/data/key-paths-live-20261029-extended/conflict_stale-2/catalog.json#materials/M01",
+            "requested_fields": [],
+            "returned_fields": [],
+            "review": null,
+            "schedule_snapshot": null,
+            "candidate_slots": null,
+            "error": null
+          },
+          {
+            "tool": "check_rules",
+            "status": "ok",
+            "source": "rules:demo-v1",
+            "requested_fields": [],
+            "returned_fields": [],
+            "review": {
+              "status": "passed",
+              "missing_fields": [],
+              "risks": []
+            },
+            "schedule_snapshot": null,
+            "candidate_slots": null,
+            "error": null
+          },
+          {
+            "tool": "query_schedule",
+            "status": "ok",
+            "source": "sqlite:D:/ProgramData/material-review-scheduling-agent/data/key-path-runtime-92a3a04030a24131b65039b01650dff2/drafts.sqlite3#scheduled_slots",
+            "requested_fields": [],
+            "returned_fields": [],
+            "review": null,
+            "schedule_snapshot": {
+              "channel": "wechat",
+              "window": {
+                "start": "2026-10-30T18:00:00+08:00",
+                "end": "2026-10-30T21:00:00+08:00"
+              },
+              "queried_at": "2026-10-29T10:02:46.580317Z",
+              "existing_schedule": [
+                {
+                  "schedule_id": "SCHEDULE-001",
+                  "channel": "wechat",
+                  "start_at": "2026-10-30T18:00:00+08:00",
+                  "end_at": "2026-10-30T19:00:00+08:00"
+                },
+                {
+                  "schedule_id": "SYNTHETIC-LATE-OCCUPANCY",
+                  "channel": "wechat",
+                  "start_at": "2026-10-30T19:00:00+08:00",
+                  "end_at": "2026-10-30T20:00:00+08:00"
+                }
+              ]
+            },
+            "candidate_slots": null,
+            "error": null
+          },
+          {
+            "tool": "find_alternative_slots",
+            "status": "ok",
+            "source": "slot-search:rules:demo-v1",
+            "requested_fields": [],
+            "returned_fields": [],
+            "review": null,
+            "schedule_snapshot": null,
+            "candidate_slots": {
+              "candidates": [
+                {
+                  "start_at": "2026-10-30T20:00:00+08:00",
+                  "end_at": "2026-10-30T21:00:00+08:00",
+                  "requires_confirmation": true,
+                  "reason": "候选改变了硬性指定时间，需要用户确认。"
+                }
+              ]
+            },
+            "error": null
+          }
+        ]
+      }
+    }
+  ],
+  "model_steps": [
+    {
+      "step": 1,
+      "observation": null,
+      "response_id": "lc_run--01a1871c-9c1f-7028-8a4c-e76fac5a8106-0",
+      "content": "我先读取当前素材。",
+      "tool_calls": [
+        {
+          "name": "read_material",
+          "args": {
+            "reason": "按请求 REQ-KEY-dbe27009f5f34456918e02878ef21cd8 读取素材 M01 以进行审核。"
+          },
+          "id": "call_00_ET_kFwhTVTXLON1DEujHmw40588",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "metadata": {
+        "model_name": "deepseek-flash",
+        "model_provider": "deepseek",
+        "finish_reason": "tool_calls"
+      },
+      "usage": {
+        "input_tokens": 1405,
+        "output_tokens": 74,
+        "total_tokens": 1479,
+        "input_token_details": {
+          "cache_read": 1024
+        },
+        "output_token_details": {
+          "reasoning": 0
+        }
+      },
+      "status": "ok",
+      "decision_reason": "按请求 REQ-KEY-dbe27009f5f34456918e02878ef21cd8 读取素材 M01 以进行审核。",
+      "cycle": 1
+    },
+    {
+      "step": 2,
+      "observation": {
+        "name": "read_material",
+        "tool_call_id": "call_00_ET_kFwhTVTXLON1DEujHmw40588",
+        "status": "success",
+        "output": {
+          "status": "ok",
+          "data": {
+            "title": "新品介绍",
+            "content": "介绍新品功能与使用方法。",
+            "channel": "wechat",
+            "authorization_status": "authorized",
+            "authorization_evidence": "AUTH-M01",
+            "material_id": "M01"
+          },
+          "source": "local-json:D:/ProgramData/material-review-scheduling-agent/data/key-paths-live-20261029-extended/conflict_stale-2/catalog.json#materials/M01",
+          "error": null
+        }
+      },
+      "response_id": "lc_run--01a1871c-a270-7175-8923-49f122766c81-0",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "check_rules",
+          "args": {
+            "reason": "已读取 M01 素材，字段齐全，现按规则集 demo-v1 检查风险与缺失项。"
+          },
+          "id": "call_00_pmM8zLa7uZDAUQFpMdal0549",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "metadata": {
+        "model_name": "deepseek-flash",
+        "model_provider": "deepseek",
+        "finish_reason": "tool_calls"
+      },
+      "usage": {
+        "input_tokens": 1602,
+        "output_tokens": 65,
+        "total_tokens": 1667,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 4
+        }
+      },
+      "status": "ok",
+      "decision_reason": "已读取 M01 素材，字段齐全，现按规则集 demo-v1 检查风险与缺失项。",
+      "cycle": 1
+    },
+    {
+      "step": 3,
+      "observation": {
+        "name": "check_rules",
+        "tool_call_id": "call_00_pmM8zLa7uZDAUQFpMdal0549",
+        "status": "success",
+        "output": {
+          "status": "ok",
+          "data": {
+            "status": "passed",
+            "missing_fields": [],
+            "risks": []
+          },
+          "source": "rules:demo-v1",
+          "error": null
+        }
+      },
+      "response_id": "lc_run--01a1871c-aa42-72b2-b2cb-bdb62ff61614-0",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "query_slots",
+          "args": {
+            "reason": "审核已通过，按请求的固定时间 2026-10-30T18:00+08:00 查询正式占用与候选档期。"
+          },
+          "id": "call_00_MLjrgewpPcn9Lu8v13Ky3998",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "metadata": {
+        "model_name": "deepseek-flash",
+        "model_provider": "deepseek",
+        "finish_reason": "tool_calls"
+      },
+      "usage": {
+        "input_tokens": 1719,
+        "output_tokens": 77,
+        "total_tokens": 1796,
+        "input_token_details": {
+          "cache_read": 1536
+        },
+        "output_token_details": {
+          "reasoning": 7
+        }
+      },
+      "status": "ok",
+      "decision_reason": "审核已通过，按请求的固定时间 2026-10-30T18:00+08:00 查询正式占用与候选档期。",
+      "cycle": 1
+    }
+  ],
+  "execution_steps": [
+    {
+      "step": 1,
+      "model_step": 1,
+      "tool": "read_material",
+      "tool_call_id": "call_00_ET_kFwhTVTXLON1DEujHmw40588",
+      "arguments": {
+        "reason": "按请求 REQ-KEY-dbe27009f5f34456918e02878ef21cd8 读取素材 M01 以进行审核。"
+      },
+      "return_summary": "status=ok; material_id=M01; authorization_status=authorized",
+      "decision_reason": "按请求 REQ-KEY-dbe27009f5f34456918e02878ef21cd8 读取素材 M01 以进行审核。",
+      "next_action": "check_rules",
+      "next_action_source": "model",
+      "next_decision_reason": "已读取 M01 素材，字段齐全，现按规则集 demo-v1 检查风险与缺失项。",
+      "cycle": 1
+    },
+    {
+      "step": 2,
+      "model_step": 2,
+      "tool": "check_rules",
+      "tool_call_id": "call_00_pmM8zLa7uZDAUQFpMdal0549",
+      "arguments": {
+        "reason": "已读取 M01 素材，字段齐全，现按规则集 demo-v1 检查风险与缺失项。"
+      },
+      "return_summary": "status=passed; missing_fields=[]; risks=[]",
+      "decision_reason": "已读取 M01 素材，字段齐全，现按规则集 demo-v1 检查风险与缺失项。",
+      "next_action": "query_slots",
+      "next_action_source": "model",
+      "next_decision_reason": "审核已通过，按请求的固定时间 2026-10-30T18:00+08:00 查询正式占用与候选档期。",
+      "cycle": 1
+    },
+    {
+      "step": 3,
+      "model_step": 3,
+      "tool": "query_slots",
+      "tool_call_id": "call_00_MLjrgewpPcn9Lu8v13Ky3998",
+      "arguments": {
+        "reason": "审核已通过，按请求的固定时间 2026-10-30T18:00+08:00 查询正式占用与候选档期。"
+      },
+      "return_summary": "scheduling=alternative_proposed; candidates=['2026-10-30T19:00:00+08:00', '2026-10-30T20:00:00+08:00']",
+      "decision_reason": "审核已通过，按请求的固定时间 2026-10-30T18:00+08:00 查询正式占用与候选档期。",
+      "next_action": "waiting_for_human",
+      "next_action_source": "workflow",
+      "next_decision_reason": "",
+      "cycle": 1
+    }
+  ],
+  "execution_limits": {
+    "max_model_calls": 12,
+    "max_tool_calls": 12
+  },
+  "error": null,
+  "run_id": "RUN-d8c6dee77f6c4cd2aac3045de9b0caa4",
+  "interrupt": null,
+  "human_actions": [
+    {
+      "interrupt_id": "341c1cad4d5f9f5fc1235201818a2e98",
+      "selected_at": "2026-10-30T19:00:00+08:00",
+      "kind": "choose_time",
+      "status": "recorded",
+      "recorded_at": "2026-10-29T10:02:46.529799+00:00"
+    },
+    {
+      "interrupt_id": "14bacf101334fc872ba886a62d240e7e",
+      "selected_at": "2026-10-30T20:00:00+08:00",
+      "kind": "choose_time",
+      "status": "recorded",
+      "recorded_at": "2026-10-29T10:02:46.580317+00:00"
+    }
+  ]
+}

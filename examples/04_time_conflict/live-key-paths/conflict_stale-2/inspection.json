@@ -1,0 +1,28 @@
+{
+  "case": "conflict_stale",
+  "passed": true,
+  "checks": {
+    "expected_runtime_mode": true,
+    "time_interrupt_without_new_draft": true,
+    "model_selected_query_after_passed_review": true,
+    "resume_http_200_step_4": true,
+    "stale_time_causes_new_interrupt": true,
+    "old_interrupt_rejected": true,
+    "resume_http_200_step_6": true,
+    "saved_latest_human_choice": true,
+    "original_time_requirement_preserved": true,
+    "completed_and_saved_one_draft": true,
+    "draft_read_matches_final_result": true,
+    "nothing_published": true,
+    "model_steps_match_count_and_budget": true,
+    "live_deepseek_metadata": true,
+    "source_catalog_unchanged": true
+  },
+  "failure": null,
+  "final_status": "completed",
+  "business_error": null,
+  "model_calls": 3,
+  "model_selected_tool_calls": 3,
+  "workflow_operations": 3,
+  "elapsed_seconds": 10.093
+}

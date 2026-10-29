@@ -111,6 +111,7 @@ CLI 待复核结果可以保存审核草稿；HTTP 则先等待人工审核。�
 模型异常和未完成必要工具步骤返回对应错误，不伪造业务完成。
 
 offline_test 是可控测试模型；api 是真实模型集成路径。两条 DeepSeek 调用记录见 react-acceptance.md。
+扩展的六类各两次实际记录见 examples/04_time_conflict/live-key-paths；模型补查重审、错误后停止与程序强制中断分别验收。
 
 执行上限由 MATERIAL_AGENT_MAX_MODEL_CALLS 配置，默认 12，范围 1–100；HTTP 请求不能覆盖。
 模型每次最多返回一个工具调用，因此该模型循环的实际工具调用也不会超过配置值；人工恢复后的确定性复查单独记录。

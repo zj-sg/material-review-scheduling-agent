@@ -1,0 +1,607 @@
+{
+  "mode": "api",
+  "status": "completed",
+  "model_calls": 6,
+  "model_steps": [
+    {
+      "step": 1,
+      "observation": null,
+      "response_id": "lc_run--01a1871c-f32e-7368-abbc-99eaf5401b38-0",
+      "content": "我先读取素材。",
+      "tool_calls": [
+        {
+          "name": "read_material",
+          "args": {
+            "reason": "按请求 REQ-KEY-78c527bf5a874286bd87f274349174ab 读取其绑定的素材 M02。"
+          },
+          "id": "call_00_ET_y9KKjZWcEdziEBEzUJce5276",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "metadata": {
+        "model_name": "deepseek-flash",
+        "model_provider": "deepseek",
+        "finish_reason": "tool_calls"
+      },
+      "usage": {
+        "input_tokens": 1404,
+        "output_tokens": 71,
+        "total_tokens": 1475,
+        "input_token_details": {
+          "cache_read": 1024
+        },
+        "output_token_details": {
+          "reasoning": 0
+        }
+      },
+      "status": "ok",
+      "decision_reason": "按请求 REQ-KEY-78c527bf5a874286bd87f274349174ab 读取其绑定的素材 M02。",
+      "cycle": 1
+    },
+    {
+      "step": 2,
+      "observation": {
+        "name": "read_material",
+        "tool_call_id": "call_00_ET_y9KKjZWcEdziEBEzUJce5276",
+        "status": "success",
+        "output": {
+          "status": "ok",
+          "data": {
+            "title": "新品介绍",
+            "content": "介绍新品功能与使用方法。",
+            "channel": "wechat",
+            "authorization_status": null,
+            "authorization_evidence": null,
+            "material_id": "M02"
+          },
+          "source": "local-json:D:/ProgramData/material-review-scheduling-agent/data/key-paths-live-20261029-extended/supplement_success-2/catalog.json#materials/M02",
+          "error": null
+        }
+      },
+      "response_id": "lc_run--01a1871c-fa2b-7514-91ee-205f815fb6cd-0",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "check_rules",
+          "args": {
+            "reason": "素材 M02 已读取，现按规则 demo-v1 校验必填字段与违禁词。"
+          },
+          "id": "call_00_pKBAH8pCwQoRGXS4XAFw4579",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "metadata": {
+        "model_name": "deepseek-flash",
+        "model_provider": "deepseek",
+        "finish_reason": "tool_calls"
+      },
+      "usage": {
+        "input_tokens": 1592,
+        "output_tokens": 147,
+        "total_tokens": 1739,
+        "input_token_details": {
+          "cache_read": 1408
+        },
+        "output_token_details": {
+          "reasoning": 87
+        }
+      },
+      "status": "ok",
+      "decision_reason": "素材 M02 已读取，现按规则 demo-v1 校验必填字段与违禁词。",
+      "cycle": 1
+    },
+    {
+      "step": 3,
+      "observation": {
+        "name": "check_rules",
+        "tool_call_id": "call_00_pKBAH8pCwQoRGXS4XAFw4579",
+        "status": "success",
+        "output": {
+          "status": "ok",
+          "data": {
+            "status": "needs_info",
+            "missing_fields": [
+              "authorization_status"
+            ],
+            "risks": []
+          },
+          "source": "rules:demo-v1",
+          "error": null
+        }
+      },
+      "response_id": "lc_run--01a1871c-ffd2-73ef-9b42-f9ba87852c5f-0",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "supplement_material",
+          "args": {
+            "fields": [
+              "authorization_status"
+            ],
+            "reason": "check_rules 返回缺失字段 authorization_status，需补查该实际字段后再复核。"
+          },
+          "id": "call_00_k4tk2LOO6Ui4DRyuH9764981",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "metadata": {
+        "model_name": "deepseek-flash",
+        "model_provider": "deepseek",
+        "finish_reason": "tool_calls"
+      },
+      "usage": {
+        "input_tokens": 1797,
+        "output_tokens": 190,
+        "total_tokens": 1987,
+        "input_token_details": {
+          "cache_read": 1536
+        },
+        "output_token_details": {
+          "reasoning": 113
+        }
+      },
+      "status": "ok",
+      "decision_reason": "check_rules 返回缺失字段 authorization_status，需补查该实际字段后再复核。",
+      "cycle": 1
+    },
+    {
+      "step": 4,
+      "observation": {
+        "name": "supplement_material",
+        "tool_call_id": "call_00_k4tk2LOO6Ui4DRyuH9764981",
+        "status": "success",
+        "output": {
+          "status": "ok",
+          "data": {
+            "title": null,
+            "content": null,
+            "channel": null,
+            "authorization_status": "authorized",
+            "authorization_evidence": "AUTH-AUTO-SYNTHETIC"
+          },
+          "source": "local-json:D:/ProgramData/material-review-scheduling-agent/data/key-paths-live-20261029-extended/supplement_success-2/catalog.json#supplemental_materials/M02",
+          "error": null
+        }
+      },
+      "response_id": "lc_run--01a1871d-0772-7126-8930-ccf3377cecb2-0",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "check_rules",
+          "args": {
+            "reason": "补查得到 authorization_status=authorized，现重新按规则复核素材 M02。"
+          },
+          "id": "call_00_ET_tfoupxXvLGPgtXpAj1396135",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "metadata": {
+        "model_name": "deepseek-flash",
+        "model_provider": "deepseek",
+        "finish_reason": "tool_calls"
+      },
+      "usage": {
+        "input_tokens": 2100,
+        "output_tokens": 55,
+        "total_tokens": 2155,
+        "input_token_details": {
+          "cache_read": 1920
+        },
+        "output_token_details": {
+          "reasoning": 0
+        }
+      },
+      "status": "ok",
+      "decision_reason": "补查得到 authorization_status=authorized，现重新按规则复核素材 M02。",
+      "cycle": 1
+    },
+    {
+      "step": 5,
+      "observation": {
+        "name": "check_rules",
+        "tool_call_id": "call_00_ET_tfoupxXvLGPgtXpAj1396135",
+        "status": "success",
+        "output": {
+          "status": "ok",
+          "data": {
+            "status": "passed",
+            "missing_fields": [],
+            "risks": []
+          },
+          "source": "rules:demo-v1",
+          "error": null
+        }
+      },
+      "response_id": "lc_run--01a1871d-0c21-716a-a680-3dd3065ab22c-0",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "query_slots",
+          "args": {
+            "reason": "规则复核已 passed，现查询 2026-10-30 18:00-21:00 的正式占用与候选时段。"
+          },
+          "id": "call_00_ET_poG95C2nH3QIOtwZFfHE0644",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "metadata": {
+        "model_name": "deepseek-flash",
+        "model_provider": "deepseek",
+        "finish_reason": "tool_calls"
+      },
+      "usage": {
+        "input_tokens": 2207,
+        "output_tokens": 67,
+        "total_tokens": 2274,
+        "input_token_details": {
+          "cache_read": 2048
+        },
+        "output_token_details": {
+          "reasoning": 0
+        }
+      },
+      "status": "ok",
+      "decision_reason": "规则复核已 passed，现查询 2026-10-30 18:00-21:00 的正式占用与候选时段。",
+      "cycle": 1
+    },
+    {
+      "step": 6,
+      "observation": {
+        "name": "query_slots",
+        "tool_call_id": "call_00_ET_poG95C2nH3QIOtwZFfHE0644",
+        "status": "success",
+        "output": {
+          "status": "ok",
+          "result": {
+            "request_id": "REQ-KEY-78c527bf5a874286bd87f274349174ab",
+            "material_id": "M02",
+            "evaluated_at": "2026-10-29T10:03:11.841695Z",
+            "review": {
+              "status": "passed",
+              "missing_fields": [],
+              "risks": []
+            },
+            "scheduling": {
+              "status": "available",
+              "requested_at": "2026-10-30T18:00:00+08:00",
+              "suggested_at": "2026-10-30T18:00:00+08:00",
+              "accepted_at": "2026-10-30T18:00:00+08:00",
+              "conflicts": []
+            },
+            "confirmation": {
+              "status": "not_required",
+              "pending_items": [],
+              "selected_at": null,
+              "confirmed_at": null,
+              "interrupt_id": null
+            },
+            "persistence": {
+              "status": "not_attempted",
+              "draft_id": null,
+              "error": null
+            },
+            "errors": [],
+            "publication_status": "not_published"
+          },
+          "candidates": {
+            "candidates": [
+              {
+                "start_at": "2026-10-30T18:00:00+08:00",
+                "end_at": "2026-10-30T19:00:00+08:00",
+                "requires_confirmation": false,
+                "reason": "时段符合原时间要求，且查询时无占用。"
+              }
+            ]
+          }
+        }
+      },
+      "response_id": "lc_run--01a1871d-1264-7171-bc0d-1a2a17bc0f1f-0",
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "save_draft",
+          "args": {
+            "reason": "审核 passed 且首选时段 18:00-19:00 无冲突，按请求 save_draft=true 保存草稿。"
+          },
+          "id": "call_00_XXQOZFocQZszLXJayPfP2204",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "metadata": {
+        "model_name": "deepseek-flash",
+        "model_provider": "deepseek",
+        "finish_reason": "tool_calls"
+      },
+      "usage": {
+        "input_tokens": 2611,
+        "output_tokens": 77,
+        "total_tokens": 2688,
+        "input_token_details": {
+          "cache_read": 2176
+        },
+        "output_token_details": {
+          "reasoning": 11
+        }
+      },
+      "status": "ok",
+      "decision_reason": "审核 passed 且首选时段 18:00-19:00 无冲突，按请求 save_draft=true 保存草稿。",
+      "cycle": 1
+    }
+  ],
+  "tool_calls": [
+    {
+      "name": "read_material",
+      "arguments": {
+        "reason": "按请求 REQ-KEY-78c527bf5a874286bd87f274349174ab 读取其绑定的素材 M02。"
+      },
+      "output": {
+        "status": "ok",
+        "data": {
+          "title": "新品介绍",
+          "content": "介绍新品功能与使用方法。",
+          "channel": "wechat",
+          "authorization_status": null,
+          "authorization_evidence": null,
+          "material_id": "M02"
+        },
+        "source": "local-json:D:/ProgramData/material-review-scheduling-agent/data/key-paths-live-20261029-extended/supplement_success-2/catalog.json#materials/M02",
+        "error": null
+      },
+      "tool_call_id": "call_00_ET_y9KKjZWcEdziEBEzUJce5276"
+    },
+    {
+      "name": "check_rules",
+      "arguments": {
+        "reason": "素材 M02 已读取，现按规则 demo-v1 校验必填字段与违禁词。"
+      },
+      "output": {
+        "status": "ok",
+        "data": {
+          "status": "needs_info",
+          "missing_fields": [
+            "authorization_status"
+          ],
+          "risks": []
+        },
+        "source": "rules:demo-v1",
+        "error": null
+      },
+      "tool_call_id": "call_00_pKBAH8pCwQoRGXS4XAFw4579"
+    },
+    {
+      "name": "supplement_material",
+      "arguments": {
+        "fields": [
+          "authorization_status"
+        ],
+        "reason": "check_rules 返回缺失字段 authorization_status，需补查该实际字段后再复核。"
+      },
+      "output": {
+        "status": "ok",
+        "data": {
+          "title": null,
+          "content": null,
+          "channel": null,
+          "authorization_status": "authorized",
+          "authorization_evidence": "AUTH-AUTO-SYNTHETIC"
+        },
+        "source": "local-json:D:/ProgramData/material-review-scheduling-agent/data/key-paths-live-20261029-extended/supplement_success-2/catalog.json#supplemental_materials/M02",
+        "error": null
+      },
+      "tool_call_id": "call_00_k4tk2LOO6Ui4DRyuH9764981"
+    },
+    {
+      "name": "check_rules",
+      "arguments": {
+        "reason": "补查得到 authorization_status=authorized，现重新按规则复核素材 M02。"
+      },
+      "output": {
+        "status": "ok",
+        "data": {
+          "status": "passed",
+          "missing_fields": [],
+          "risks": []
+        },
+        "source": "rules:demo-v1",
+        "error": null
+      },
+      "tool_call_id": "call_00_ET_tfoupxXvLGPgtXpAj1396135"
+    },
+    {
+      "name": "query_slots",
+      "arguments": {
+        "reason": "规则复核已 passed，现查询 2026-10-30 18:00-21:00 的正式占用与候选时段。"
+      },
+      "output": {
+        "status": "ok",
+        "result": {
+          "request_id": "REQ-KEY-78c527bf5a874286bd87f274349174ab",
+          "material_id": "M02",
+          "evaluated_at": "2026-10-29T10:03:11.841695Z",
+          "review": {
+            "status": "passed",
+            "missing_fields": [],
+            "risks": []
+          },
+          "scheduling": {
+            "status": "available",
+            "requested_at": "2026-10-30T18:00:00+08:00",
+            "suggested_at": "2026-10-30T18:00:00+08:00",
+            "accepted_at": "2026-10-30T18:00:00+08:00",
+            "conflicts": []
+          },
+          "confirmation": {
+            "status": "not_required",
+            "pending_items": [],
+            "selected_at": null,
+            "confirmed_at": null,
+            "interrupt_id": null
+          },
+          "persistence": {
+            "status": "not_attempted",
+            "draft_id": null,
+            "error": null
+          },
+          "errors": [],
+          "publication_status": "not_published"
+        },
+        "candidates": {
+          "candidates": [
+            {
+              "start_at": "2026-10-30T18:00:00+08:00",
+              "end_at": "2026-10-30T19:00:00+08:00",
+              "requires_confirmation": false,
+              "reason": "时段符合原时间要求，且查询时无占用。"
+            }
+          ]
+        }
+      },
+      "tool_call_id": "call_00_ET_poG95C2nH3QIOtwZFfHE0644"
+    },
+    {
+      "name": "save_draft",
+      "arguments": {
+        "reason": "审核 passed 且首选时段 18:00-19:00 无冲突，按请求 save_draft=true 保存草稿。"
+      },
+      "output": {
+        "request_id": "REQ-KEY-78c527bf5a874286bd87f274349174ab",
+        "material_id": "M02",
+        "evaluated_at": "2026-10-29T10:03:13.417772Z",
+        "review": {
+          "status": "passed",
+          "missing_fields": [],
+          "risks": []
+        },
+        "scheduling": {
+          "status": "available",
+          "requested_at": "2026-10-30T18:00:00+08:00",
+          "suggested_at": "2026-10-30T18:00:00+08:00",
+          "accepted_at": "2026-10-30T18:00:00+08:00",
+          "conflicts": []
+        },
+        "confirmation": {
+          "status": "not_required",
+          "pending_items": [],
+          "selected_at": null,
+          "confirmed_at": null,
+          "interrupt_id": null
+        },
+        "persistence": {
+          "status": "saved",
+          "draft_id": "DRAFT-5591e1ee169f47ba80c525e0686fb08b",
+          "error": null
+        },
+        "errors": [],
+        "publication_status": "not_published"
+      },
+      "tool_call_id": "call_00_XXQOZFocQZszLXJayPfP2204"
+    }
+  ],
+  "execution_steps": [
+    {
+      "step": 1,
+      "model_step": 1,
+      "tool": "read_material",
+      "tool_call_id": "call_00_ET_y9KKjZWcEdziEBEzUJce5276",
+      "arguments": {
+        "reason": "按请求 REQ-KEY-78c527bf5a874286bd87f274349174ab 读取其绑定的素材 M02。"
+      },
+      "return_summary": "status=ok; material_id=M02; authorization_status=None",
+      "decision_reason": "按请求 REQ-KEY-78c527bf5a874286bd87f274349174ab 读取其绑定的素材 M02。",
+      "next_action": "check_rules",
+      "next_action_source": "model",
+      "next_decision_reason": "素材 M02 已读取，现按规则 demo-v1 校验必填字段与违禁词。",
+      "cycle": 1
+    },
+    {
+      "step": 2,
+      "model_step": 2,
+      "tool": "check_rules",
+      "tool_call_id": "call_00_pKBAH8pCwQoRGXS4XAFw4579",
+      "arguments": {
+        "reason": "素材 M02 已读取，现按规则 demo-v1 校验必填字段与违禁词。"
+      },
+      "return_summary": "status=needs_info; missing_fields=['authorization_status']; risks=[]",
+      "decision_reason": "素材 M02 已读取，现按规则 demo-v1 校验必填字段与违禁词。",
+      "next_action": "supplement_material",
+      "next_action_source": "model",
+      "next_decision_reason": "check_rules 返回缺失字段 authorization_status，需补查该实际字段后再复核。",
+      "cycle": 1
+    },
+    {
+      "step": 3,
+      "model_step": 3,
+      "tool": "supplement_material",
+      "tool_call_id": "call_00_k4tk2LOO6Ui4DRyuH9764981",
+      "arguments": {
+        "fields": [
+          "authorization_status"
+        ],
+        "reason": "check_rules 返回缺失字段 authorization_status，需补查该实际字段后再复核。"
+      },
+      "return_summary": "status=ok; returned_fields=['title', 'content', 'channel', 'authorization_status', 'authorization_evidence']",
+      "decision_reason": "check_rules 返回缺失字段 authorization_status，需补查该实际字段后再复核。",
+      "next_action": "check_rules",
+      "next_action_source": "model",
+      "next_decision_reason": "补查得到 authorization_status=authorized，现重新按规则复核素材 M02。",
+      "cycle": 1
+    },
+    {
+      "step": 4,
+      "model_step": 4,
+      "tool": "check_rules",
+      "tool_call_id": "call_00_ET_tfoupxXvLGPgtXpAj1396135",
+      "arguments": {
+        "reason": "补查得到 authorization_status=authorized，现重新按规则复核素材 M02。"
+      },
+      "return_summary": "status=passed; missing_fields=[]; risks=[]",
+      "decision_reason": "补查得到 authorization_status=authorized，现重新按规则复核素材 M02。",
+      "next_action": "query_slots",
+      "next_action_source": "model",
+      "next_decision_reason": "规则复核已 passed，现查询 2026-10-30 18:00-21:00 的正式占用与候选时段。",
+      "cycle": 1
+    },
+    {
+      "step": 5,
+      "model_step": 5,
+      "tool": "query_slots",
+      "tool_call_id": "call_00_ET_poG95C2nH3QIOtwZFfHE0644",
+      "arguments": {
+        "reason": "规则复核已 passed，现查询 2026-10-30 18:00-21:00 的正式占用与候选时段。"
+      },
+      "return_summary": "scheduling=available; candidates=['2026-10-30T18:00:00+08:00']",
+      "decision_reason": "规则复核已 passed，现查询 2026-10-30 18:00-21:00 的正式占用与候选时段。",
+      "next_action": "save_draft",
+      "next_action_source": "model",
+      "next_decision_reason": "审核 passed 且首选时段 18:00-19:00 无冲突，按请求 save_draft=true 保存草稿。",
+      "cycle": 1
+    },
+    {
+      "step": 6,
+      "model_step": 6,
+      "tool": "save_draft",
+      "tool_call_id": "call_00_XXQOZFocQZszLXJayPfP2204",
+      "arguments": {
+        "reason": "审核 passed 且首选时段 18:00-19:00 无冲突，按请求 save_draft=true 保存草稿。"
+      },
+      "return_summary": "persistence=saved; draft_id=DRAFT-5591e1ee169f47ba80c525e0686fb08b",
+      "decision_reason": "审核 passed 且首选时段 18:00-19:00 无冲突，按请求 save_draft=true 保存草稿。",
+      "next_action": "completed",
+      "next_action_source": "workflow",
+      "next_decision_reason": "",
+      "cycle": 1
+    }
+  ],
+  "execution_limits": {
+    "max_model_calls": 12,
+    "max_tool_calls": 12
+  },
+  "human_actions": [],
+  "error": null
+}
