@@ -1,0 +1,84 @@
+{
+  "mode": "offline_test",
+  "real_model_tested": false,
+  "recorded_at": "2026-10-29T07:10:03.933688+00:00",
+  "python": "3.12.4 | packaged by Anaconda, Inc. | (main, Jun 18 2024, 15:03:56) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "source_sha256": "f7d13950e4fd9fe321af0d29390ad16fdf80a745eda85a616ac2763792b906d9",
+  "scenario_count": 7,
+  "request_count": 9,
+  "all_passed": true,
+  "scenarios": [
+    {
+      "scenario_id": "01_normal",
+      "passed": true,
+      "input": "examples/01_normal/input.json",
+      "actual": "examples/01_normal/actual.json",
+      "trace": "examples/01_normal/trace.json",
+      "exit_code": 0,
+      "draft_count": 1
+    },
+    {
+      "scenario_id": "02_missing_metadata",
+      "passed": true,
+      "input": "examples/02_missing_metadata/input.json",
+      "actual": "examples/02_missing_metadata/actual.json",
+      "trace": "examples/02_missing_metadata/trace.json",
+      "exit_code": 0,
+      "draft_count": 0
+    },
+    {
+      "scenario_id": "03_rule_risk",
+      "passed": true,
+      "input": "examples/03_rule_risk/input.json",
+      "actual": "examples/03_rule_risk/actual.json",
+      "trace": "examples/03_rule_risk/trace.json",
+      "exit_code": 0,
+      "draft_count": 1
+    },
+    {
+      "scenario_id": "04_time_conflict",
+      "passed": true,
+      "input": "examples/04_time_conflict/input.json",
+      "actual": "examples/04_time_conflict/actual.json",
+      "trace": "examples/04_time_conflict/trace.json",
+      "exit_code": 0,
+      "draft_count": 1
+    },
+    {
+      "scenario_id": "05_duplicate_request",
+      "passed": true,
+      "input": "examples/05_duplicate_request/input.json",
+      "actual": "examples/05_duplicate_request/actual.json",
+      "trace": "examples/05_duplicate_request/trace.json",
+      "exit_code": 0,
+      "draft_count": 1
+    },
+    {
+      "scenario_id": "06_save_failure",
+      "passed": true,
+      "input": "examples/06_save_failure/input.json",
+      "actual": "examples/06_save_failure/actual.json",
+      "trace": "examples/06_save_failure/trace.json",
+      "exit_code": 1,
+      "draft_count": 0
+    },
+    {
+      "scenario_id": "07_no_available_slot",
+      "passed": true,
+      "input": "examples/07_no_available_slot/input.json",
+      "actual": "examples/07_no_available_slot/actual.json",
+      "trace": "examples/07_no_available_slot/trace.json",
+      "exit_code": 0,
+      "draft_count": 1
+    }
+  ],
+  "interactive": {
+    "passed": true,
+    "input": "examples/04_time_conflict/interactive/input.json",
+    "actual": "examples/04_time_conflict/interactive/actual.json",
+    "trace": "examples/04_time_conflict/interactive/trace.json"
+  },
+  "source_sha256_policy": "Relative paths and source bytes normalized to LF line endings.",
+  "source_fingerprint_recorded_at": "2026-10-29T07:21:38.111765+00:00"
+}

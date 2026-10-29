@@ -1,0 +1,106 @@
+# 离线验收记录
+
+初期按用户选择仅做离线验收；2026-10-29 已补充两条真实 DeepSeek 路径，见本文最后一节。
+实际运行 LangGraph、素材工具、审核规则、时段查询和 SQLite 保存；
+历史离线记录中的模型决策由明确标注的 OfflineTestModel 提供，不能代替后续真实模型记录。
+
+## 结果
+
+当前 295 项自动化测试通过，启用 -W error 时无警告。
+步骤 6 完成时 236 项，HTTP 扩展后 257 项，时间选择中断扩展后新增 20 项。
+框架工具注册改造新增 4 项，并将模型与工具协议测试迁移到 LangChain 接口。
+依赖兼容检查通过。另通过独立 CLI 进程运行七类场景、九个请求步骤：
+
+| 场景 | 决策 | 保存与草稿数量 |
+| --- | --- | --- |
+| 正常 | ready | saved，1 份 |
+| 缺失信息 | request_info | not_attempted，0 份 |
+| 规则风险 | block / request_confirmation | 阻断不存；待复核存草稿，共 1 份 |
+| 时间冲突 | request_confirmation | 19:00 待确认，saved，1 份 |
+| 重复提交 | ready / ready | saved / already_exists，同一草稿，1 份 |
+| 保存失败 | failed | 事务回滚，failed，0 份 |
+| 无可用时段 | request_info | 保存无时段草稿，1 份 |
+
+机器可读记录：[validation-manifest.json](../examples/validation-manifest.json)。
+记录中的 verification_mode=offline_test、real_model_tested=false 明确表示未测试真实外部模型。
+保存失败场景的 CLI 退出码为 1，是预期的失败处理结果，验收本身通过。
+
+## 已验证的边界
+
+- 模型循环确实调用工具，没有把固定业务函数的输出冒充真实模型响应。
+- 不允许改写绑定请求、传入确认标记、查询其他素材或调用发布工具。
+- 未读取、未审核、未查询就尝试保存，会被拒绝；缺失信息须先尝试补查。
+- 模型只输出“已保存”不能产生草稿；最终状态从工具返回组装，模型自由文本不作事实依据。
+- 模型循环、工具调用次数受限；异常返回错误，不偷偷切换为离线模式。
+- 保存时占用变化，以事务内重查结果为准；重复请求仍只保留一份。
+- API Key 不出现在配置导出及模型错误信息中。
+- 使用 HTTP Mock 验证 LangChain 模型集成的实际 HTTP 工具协议、工具结果回传及 DeepSeek 推理字段保留。
+- 测试禁止外部网络连接，LangGraph 运行关闭外部 tracing。
+
+## 验证范围
+
+真实 DeepSeek 的正常和缺失两条决策路径已通过，其他场景的真实模型表现仍未逐项验收。
+七类场景及人工中断的确定性工具与服务已通过离线验收；不能将两条真实运行扩大表述为所有真实模型场景均通过。
+后续按用户要求增加 HTTP API 及时间选择中断；不增加页面、跨重启恢复、其他人工审批或多 Agent。
+
+## HTTP API 验收（2026-10-29）
+
+- 新增 21 项接口测试，使用 FastAPI TestClient 运行真实工作流和 SQLite，禁止外部模型连接。
+- 覆盖七类场景、状态码、幂等冲突、失败回滚、草稿查询、过期时间、配置缺失和请求边界。
+- 核对重启后正式排期与草稿不被初始化数据覆盖；模型客户端在退出和启动失败时关闭。
+- 实际启动 Uvicorn，通过本机 TCP/HTTP 验证 /health、/schedule、/drafts/{request_id}、/openapi.json。
+- 该阶段冲突请求建议 19:00、accepted_at=null、待确认且草稿已保存；现已改为先中断、选择后保存，见下。
+- 实际 HTTP 记录：[http-api-acceptance.json](../examples/04_time_conflict/interactive/history/http-api-acceptance.json)。该记录 mode=offline_test，未调用真实供应商。
+- 依赖检查通过，新增 FastAPI 0.162.0、Uvicorn 0.54.0，54 个安装包版本兼容。
+
+## 时间选择中断验收（2026-10-29）
+
+- 新增 20 项 HTTP 与中断测试，现有 HTTP 测试同步适配；累计 277 项通过，HTTP 模块 41 项。
+- 实际 LangGraph interrupt() 暂停在 choose_time 节点，检查点包含可序列化的请求、规则、候选和工具结果。
+- 原时段不可用时返回 waiting_for_human、run_id、interrupt_id 和完整候选列表，不新建草稿。
+- 用户选择第二个候选 20:00 后保存，原始 18:00 请求及其幂等内容不变，确认信息随草稿结果保存。
+- 所选时间被占用后，返回新中断 ID 和新候选；旧 ID、跨运行 ID、候选外时间及重复恢复均被拒绝。
+- 覆盖双请求并发恢复只执行一次、窗口内优选冲突、模型批量调用不能越过中断、查询后保存前新增冲突、恢复时素材出现阻断、原请求过期及恢复保存失败回滚。
+- 重启后等待中的内存运行失效，已有 SQLite 数据保留；没有新增数据库表。
+- 实际启动 Uvicorn，用本机 HTTP 验证暂停零草稿、选择第二项保存、占用变化后二次中断与再次选择保存。
+- 机器记录：[http-interrupt-acceptance.json](../examples/04_time_conflict/interactive/history/http-interrupt-acceptance.json)，mode=offline_test，真实模型未测。
+- 运行说明见 http-api.md。需要重启原有服务进程并刷新 /docs 才能看到新增接口。
+
+## 框架工具注册改造（2026-10-29）
+
+- 移除手写 TOOL_SCHEMAS、tool_schema()、AgentTools.invoke() 及手写调用分发循环。
+- 五个工具改用 @tool 和 Pydantic 参数模型；模型 bind_tools() 后调用 invoke()，图中的 ToolNode 负责实际执行和 ToolMessage 回传。
+- 使用 LangChain 标准 AIMessage、ToolMessage、SystemMessage、HumanMessage 及 add_messages 管理消息。
+- DeepSeek 使用 ChatDeepSeek 集成，通用兼容接口使用 ChatOpenAI；DeepSeek 子类只补充 reasoning_content 回传，不处理工具协议或执行。
+- 当前 LangChain 对空参数工具会跳过参数解析，已通过 ToolNode 的标准校验钩子保证额外字段被拒绝。
+- 单次响应只允许一个工具调用；批量工具调用整体拒绝，避免并行执行越过审核和人工确认边界。
+- 新增真实 BaseTool 绑定、无效工具 JSON 和两种模型集成构建测试；原业务、HTTP 和中断用例均通过，累计 281 项。
+- HTTP Mock 验证实际框架生成的五工具协议、parallel_tool_calls=false、四轮调用和 DeepSeek 推理字段回传，无真实供应商调用。
+- 实际 Uvicorn 端口通过冲突暂停、选择第二个候选、复查保存及草稿查询。记录：[framework-tools-acceptance.json](../examples/04_time_conflict/interactive/history/framework-tools-acceptance.json)。
+- 58 个安装包依赖兼容检查通过；无需修改既有 .env，更新代码后重启服务即可。
+
+实现参考 [LangChain 工具文档](https://docs.langchain.com/oss/python/langchain/tools) 和 [ChatDeepSeek 集成](https://docs.langchain.com/oss/python/integrations/chat/deepseek)。
+
+## 实际模型验收记录支持（2026-10-29）
+
+- 响应新增 model_steps，记录各轮模型实际观察到的工具返回、工具调用、结束响应、响应 ID、模型标识和可用 token 用量；不记录内部思维链。
+- 增加 examples/verify_react.py：先要求服务 mode=api，再提交默认 M02 缺失资料请求，保存原始请求、响应、逐轮摘要和验收检查。
+- 通过关联工具调用 ID 核对“观察缺失后选择补查，观察补查为空后结束”，并要求 DeepSeek 标识、无错误及真实未保存/发布状态。
+- 离线、只有工具名称、观察与调用 ID 不对应或模型调用失败，均不能判为真实模型验收通过。
+- 新增 5 项相关测试，含实际 LangChain HTTP Mock 协议、HTTP 日志字段和错误证据拒绝；累计 286 项测试通过。
+- 修正示例目录枚举，忽略 Python 缓存目录；七类九步示例静态校验及依赖检查通过。
+- 本次只准备并测试记录功能，没有发起真实模型调用。真实验收是否通过，以用户运行脚本后生成的 inspection.json 为准。
+- 使用步骤见 react-acceptance.md。
+
+## 两条真实决策路径与上限验收（2026-10-29）
+
+- 供应商 DeepSeek、模型 deepseek-flash、mode=api，使用本地已配置密钥实际调用，无内部思维过程导出。
+- 正常路径：M01 审核返回 passed，模型下一步选择 query_slots；看到 available 后结束。4 次模型调用、3 次工具调用。
+- 缺失路径：M02 审核返回 needs_info，模型下一步选择 supplement_material；看到 empty 后结束并请求补充。4 次模型调用、3 次工具调用。
+- 模型在 reason 参数中提供简短公开依据；execution_steps 将实际参数、返回摘要、后续动作和依据对应保存，模型/程序流转来源分别标注。
+- 两条真实记录、原始请求/响应及逐项校验已纳入 [交付记录目录](acceptance-runs/20261029-145149-53d9cebd/summary.md)，两条路径检查均通过。
+- 首轮尝试中 M02 返回 MODEL_ERROR（ValueError），未执行工具；失败原始响应保留在 data/react-evidence/20261029-144807-bdd8c9f5，不计为成功记录。后续强化单轮提示及无效响应记录后，两条路径重新运行通过。
+- MATERIAL_AGENT_MAX_MODEL_CALLS 默认 12，模型每轮至多一个工具；超限明确返回 incomplete/LIMIT_EXCEEDED/HTTP 409。
+- 独立 [离线上限运行记录](acceptance-runs/20261029-145149-53d9cebd/execution-limit-offline/summary.md) 将上限设为 2，实际 2 次模型、2 次工具后停止，零草稿。该记录不冒充真实模型路径。
+- 本次新增 9 项测试，累计 295 项通过，含上限 1/2/3 的 HTTP 未完成状态与模型公开依据参数校验。
+- 实际模型验收使用临时端口及独立数据库，未中断已有服务，也未修改原有草稿。

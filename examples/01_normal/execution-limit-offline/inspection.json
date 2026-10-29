@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "mode": "offline_test",
+  "checks": {
+    "http_409": true,
+    "explicit_incomplete": true,
+    "limit_exceeded_code": true,
+    "bounded_model_calls": true,
+    "bounded_tool_calls": true,
+    "no_saved_draft": true,
+    "offline_mode_labeled": true
+  }
+}

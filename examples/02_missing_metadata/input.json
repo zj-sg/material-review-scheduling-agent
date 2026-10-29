@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "02_missing_metadata",
+  "rules": {
+    "version": "demo-v1",
+    "timezone": "Asia/Shanghai",
+    "allowed_channels": [
+      "wechat",
+      "weibo"
+    ],
+    "required_material_fields": [
+      "material_id",
+      "title",
+      "content",
+      "channel",
+      "authorization_status"
+    ],
+    "blocked_phrases": [
+      "稳赚不赔"
+    ],
+    "slot_duration_minutes": 60,
+    "candidate_step_minutes": 60
+  },
+  "initial_state": {
+    "materials": [
+      {
+        "material_id": "M02",
+        "title": "新品介绍",
+        "content": "介绍新品功能与使用方法。",
+        "channel": "wechat",
+        "authorization_evidence": null
+      }
+    ],
+    "supplemental_materials": {},
+    "existing_schedule": []
+  },
+  "steps": [
+    {
+      "evaluated_at": "2026-11-02T09:00:00+08:00",
+      "request": {
+        "request_id": "REQ-MISSING-001",
+        "material_id": "M02",
+        "channel": "wechat",
+        "time_requirement": {
+          "mode": "fixed",
+          "requested_at": "2026-11-02T18:00:00+08:00",
+          "window_start": null,
+          "window_end": null
+        },
+        "search_window": {
+          "start": "2026-11-02T18:00:00+08:00",
+          "end": "2026-11-02T21:00:00+08:00"
+        },
+        "save_draft": true
+      },
+      "save_behavior": "success"
+    }
+  ]
+}

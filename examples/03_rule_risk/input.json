@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "scenario_id": "03_rule_risk",
+  "rules": {
+    "version": "demo-v1",
+    "timezone": "Asia/Shanghai",
+    "allowed_channels": [
+      "wechat",
+      "weibo"
+    ],
+    "required_material_fields": [
+      "material_id",
+      "title",
+      "content",
+      "channel",
+      "authorization_status"
+    ],
+    "blocked_phrases": [
+      "稳赚不赔"
+    ],
+    "slot_duration_minutes": 60,
+    "candidate_step_minutes": 60
+  },
+  "initial_state": {
+    "materials": [
+      {
+        "material_id": "M03",
+        "title": "新品介绍",
+        "content": "本产品稳赚不赔，欢迎购买。",
+        "channel": "wechat",
+        "authorization_status": "authorized",
+        "authorization_evidence": "AUTH-M03"
+      },
+      {
+        "material_id": "M04",
+        "title": "新品介绍",
+        "content": "介绍新品功能与使用方法。",
+        "channel": "wechat",
+        "authorization_status": "unknown",
+        "authorization_evidence": null
+      }
+    ],
+    "supplemental_materials": {},
+    "existing_schedule": []
+  },
+  "steps": [
+    {
+      "evaluated_at": "2026-11-02T09:00:00+08:00",
+      "request": {
+        "request_id": "REQ-RISK-BLOCK-001",
+        "material_id": "M03",
+        "channel": "wechat",
+        "time_requirement": {
+          "mode": "fixed",
+          "requested_at": "2026-11-02T18:00:00+08:00",
+          "window_start": null,
+          "window_end": null
+        },
+        "search_window": {
+          "start": "2026-11-02T18:00:00+08:00",
+          "end": "2026-11-02T21:00:00+08:00"
+        },
+        "save_draft": true
+      },
+      "save_behavior": "success"
+    },
+    {
+      "evaluated_at": "2026-11-02T09:00:00+08:00",
+      "request": {
+        "request_id": "REQ-RISK-REVIEW-001",
+        "material_id": "M04",
+        "channel": "wechat",
+        "time_requirement": {
+          "mode": "fixed",
+          "requested_at": "2026-11-02T18:00:00+08:00",
+          "window_start": null,
+          "window_end": null
+        },
+        "search_window": {
+          "start": "2026-11-02T18:00:00+08:00",
+          "end": "2026-11-02T21:00:00+08:00"
+        },
+        "save_draft": true
+      },
+      "save_behavior": "success"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "two_path_requirement_met": true,
+  "paths": [
+    {
+      "path": "normal",
+      "passed": true,
+      "review_followup": "query_slots",
+      "record": "D:\\ProgramData\\material-review-scheduling-agent\\data\\react-evidence\\20261029-145149-53d9cebd\\normal",
+      "status": "completed"
+    },
+    {
+      "path": "missing",
+      "passed": true,
+      "review_followup": "supplement_material",
+      "record": "D:\\ProgramData\\material-review-scheduling-agent\\data\\react-evidence\\20261029-145149-53d9cebd\\missing",
+      "status": "completed"
+    }
+  ]
+}

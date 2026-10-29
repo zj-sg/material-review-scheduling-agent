@@ -1,0 +1,17 @@
+{
+  "materials": [
+    {
+      "material_id": "M02",
+      "title": "新品介绍",
+      "content": "介绍新品功能与使用方法。",
+      "channel": "wechat",
+      "authorization_evidence": null
+    }
+  ],
+  "supplemental_materials": {
+    "M02": {
+      "authorization_status": "authorized",
+      "authorization_evidence": "AUTH-M02-VERIFIED"
+    }
+  }
+}

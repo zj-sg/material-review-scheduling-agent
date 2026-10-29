@@ -1,0 +1,174 @@
+{
+  "mode": "offline_test",
+  "catalog": "catalog.json",
+  "operations": [
+    {
+      "step": 1,
+      "operation": "HTTP",
+      "method": "POST",
+      "path": "/schedule",
+      "arguments": {
+        "request_id": "REQ-CONFLICT-001",
+        "material_id": "M01",
+        "channel": "wechat",
+        "time_requirement": {
+          "mode": "fixed",
+          "requested_at": "2026-10-30T18:00:00+08:00",
+          "window_start": null,
+          "window_end": null
+        },
+        "search_window": {
+          "start": "2026-10-30T18:00:00+08:00",
+          "end": "2026-10-30T21:00:00+08:00"
+        },
+        "save_draft": true
+      }
+    },
+    {
+      "step": 2,
+      "operation": "HTTP",
+      "method": "POST",
+      "path": "/runs/RUN-73c4ee5cbab84152a326c3243fd260a2/resume",
+      "arguments": {
+        "interrupt_id": "41c67e2426d0148cb86935edc10550f8",
+        "selected_at": "2026-10-30T20:00:00+08:00"
+      }
+    },
+    {
+      "step": 3,
+      "operation": "HTTP",
+      "method": "POST",
+      "path": "/schedule",
+      "arguments": {
+        "request_id": "REQ-CONFLICT-001",
+        "material_id": "M01",
+        "channel": "wechat",
+        "time_requirement": {
+          "mode": "fixed",
+          "requested_at": "2026-10-30T18:00:00+08:00",
+          "window_start": null,
+          "window_end": null
+        },
+        "search_window": {
+          "start": "2026-10-30T18:00:00+08:00",
+          "end": "2026-10-30T21:00:00+08:00"
+        },
+        "save_draft": true
+      }
+    },
+    {
+      "step": 4,
+      "operation": "HTTP",
+      "method": "POST",
+      "path": "/runs/RUN-2ea3ce19b5ff46dbac1046f869462d90/resume",
+      "arguments": {
+        "interrupt_id": "2c6eeef39933a1a187ca004a48926a8c",
+        "selected_at": "2026-10-30T20:00:00+08:00"
+      }
+    },
+    {
+      "step": 5,
+      "operation": "HTTP",
+      "method": "POST",
+      "path": "/schedule",
+      "arguments": {
+        "request_id": "REQ-CONFLICT-001-RACE",
+        "material_id": "M01",
+        "channel": "wechat",
+        "time_requirement": {
+          "mode": "fixed",
+          "requested_at": "2026-10-30T18:00:00+08:00",
+          "window_start": null,
+          "window_end": null
+        },
+        "search_window": {
+          "start": "2026-10-30T18:00:00+08:00",
+          "end": "2026-10-30T21:00:00+08:00"
+        },
+        "save_draft": true
+      }
+    },
+    {
+      "step": 6,
+      "operation": "service:replace_schedule",
+      "arguments": [
+        {
+          "schedule_id": "SCHEDULE-001",
+          "channel": "wechat",
+          "start_at": "2026-10-30T18:00:00+08:00",
+          "end_at": "2026-10-30T19:00:00+08:00"
+        },
+        {
+          "schedule_id": "LATE-19",
+          "channel": "wechat",
+          "start_at": "2026-10-30T19:00:00+08:00",
+          "end_at": "2026-10-30T20:00:00+08:00"
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "operation": "HTTP",
+      "method": "POST",
+      "path": "/runs/RUN-fcc9d11aa3154d7d98d87e713b80c268/resume",
+      "arguments": {
+        "interrupt_id": "5013d6683beda38f82d022523a7dcb61",
+        "selected_at": "2026-10-30T19:00:00+08:00"
+      }
+    },
+    {
+      "step": 8,
+      "operation": "HTTP",
+      "method": "POST",
+      "path": "/runs/RUN-fcc9d11aa3154d7d98d87e713b80c268/resume",
+      "arguments": {
+        "interrupt_id": "5013d6683beda38f82d022523a7dcb61",
+        "selected_at": "2026-10-30T19:00:00+08:00"
+      }
+    },
+    {
+      "step": 9,
+      "operation": "HTTP",
+      "method": "POST",
+      "path": "/runs/RUN-fcc9d11aa3154d7d98d87e713b80c268/resume",
+      "arguments": {
+        "interrupt_id": "5b11f4d8d4f922b4fc623a56619ded19",
+        "selected_at": "2026-10-30T20:00:00+08:00"
+      }
+    },
+    {
+      "step": 10,
+      "operation": "service:replace_schedule",
+      "arguments": []
+    },
+    {
+      "step": 11,
+      "operation": "HTTP",
+      "method": "POST",
+      "path": "/schedule",
+      "arguments": {
+        "request_id": "REQ-CONFLICT-001",
+        "material_id": "M01",
+        "channel": "wechat",
+        "time_requirement": {
+          "mode": "fixed",
+          "requested_at": "2026-10-30T18:00:00+08:00",
+          "window_start": null,
+          "window_end": null
+        },
+        "search_window": {
+          "start": "2026-10-30T18:00:00+08:00",
+          "end": "2026-10-30T21:00:00+08:00"
+        },
+        "save_draft": true
+      }
+    },
+    {
+      "step": 12,
+      "operation": "HTTP",
+      "method": "GET",
+      "path": "/drafts/REQ-CONFLICT-001",
+      "arguments": null
+    }
+  ]
+}

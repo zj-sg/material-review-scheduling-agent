@@ -1,0 +1,530 @@
+{
+  "scenario_id": "03_rule_risk",
+  "mode": "offline_test",
+  "model": null,
+  "runs": [
+    {
+      "mode": "offline_test",
+      "status": "completed",
+      "decision": "block",
+      "result": {
+        "request_id": "REQ-RISK-BLOCK-001",
+        "material_id": "M03",
+        "evaluated_at": "2026-11-02T09:00:00+08:00",
+        "review": {
+          "status": "blocked",
+          "missing_fields": [],
+          "risks": [
+            {
+              "rule_id": "R_TEXT_BLOCK",
+              "level": "block",
+              "field": "content",
+              "reason": "命中禁止表述：稳赚不赔。"
+            }
+          ]
+        },
+        "scheduling": {
+          "status": "not_evaluated",
+          "requested_at": "2026-11-02T18:00:00+08:00",
+          "suggested_at": null,
+          "accepted_at": null,
+          "conflicts": []
+        },
+        "confirmation": {
+          "status": "not_required",
+          "pending_items": [],
+          "selected_at": null,
+          "confirmed_at": null,
+          "interrupt_id": null
+        },
+        "persistence": {
+          "status": "not_attempted",
+          "draft_id": null,
+          "error": null
+        },
+        "errors": [],
+        "publication_status": "not_published"
+      },
+      "model_calls": 3,
+      "tool_calls": [
+        {
+          "name": "read_material",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "output": {
+            "status": "ok",
+            "data": {
+              "title": "新品介绍",
+              "content": "本产品稳赚不赔，欢迎购买。",
+              "channel": "wechat",
+              "authorization_status": "authorized",
+              "authorization_evidence": "AUTH-M03",
+              "material_id": "M03"
+            },
+            "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/03_rule_risk/input.json#materials/M03",
+            "error": null
+          },
+          "tool_call_id": "offline-2"
+        },
+        {
+          "name": "check_rules",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "output": {
+            "status": "ok",
+            "data": {
+              "status": "blocked",
+              "missing_fields": [],
+              "risks": [
+                {
+                  "rule_id": "R_TEXT_BLOCK",
+                  "level": "block",
+                  "field": "content",
+                  "reason": "命中禁止表述：稳赚不赔。"
+                }
+              ]
+            },
+            "source": "rules:demo-v1",
+            "error": null
+          },
+          "tool_call_id": "offline-4"
+        }
+      ],
+      "error": null,
+      "model_steps": [
+        {
+          "step": 1,
+          "observation": null,
+          "response_id": null,
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "read_material",
+              "args": {
+                "reason": "离线测试动作说明，不代表真实模型决策。"
+              },
+              "id": "offline-2",
+              "type": "tool_call"
+            }
+          ],
+          "invalid_tool_calls": [],
+          "metadata": {},
+          "usage": null,
+          "status": "ok",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+        },
+        {
+          "step": 2,
+          "observation": {
+            "name": "read_material",
+            "tool_call_id": "offline-2",
+            "status": "success",
+            "output": {
+              "status": "ok",
+              "data": {
+                "title": "新品介绍",
+                "content": "本产品稳赚不赔，欢迎购买。",
+                "channel": "wechat",
+                "authorization_status": "authorized",
+                "authorization_evidence": "AUTH-M03",
+                "material_id": "M03"
+              },
+              "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/03_rule_risk/input.json#materials/M03",
+              "error": null
+            }
+          },
+          "response_id": null,
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "check_rules",
+              "args": {
+                "reason": "离线测试动作说明，不代表真实模型决策。"
+              },
+              "id": "offline-4",
+              "type": "tool_call"
+            }
+          ],
+          "invalid_tool_calls": [],
+          "metadata": {},
+          "usage": null,
+          "status": "ok",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+        },
+        {
+          "step": 3,
+          "observation": {
+            "name": "check_rules",
+            "tool_call_id": "offline-4",
+            "status": "success",
+            "output": {
+              "status": "ok",
+              "data": {
+                "status": "blocked",
+                "missing_fields": [],
+                "risks": [
+                  {
+                    "rule_id": "R_TEXT_BLOCK",
+                    "level": "block",
+                    "field": "content",
+                    "reason": "命中禁止表述：稳赚不赔。"
+                  }
+                ]
+              },
+              "source": "rules:demo-v1",
+              "error": null
+            }
+          },
+          "response_id": null,
+          "content": "离线测试分支结束。",
+          "tool_calls": [],
+          "invalid_tool_calls": [],
+          "metadata": {},
+          "usage": null,
+          "status": "ok",
+          "decision_reason": "离线测试分支结束。"
+        }
+      ],
+      "execution_steps": [
+        {
+          "step": 1,
+          "model_step": 1,
+          "tool": "read_material",
+          "tool_call_id": "offline-2",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "return_summary": "status=ok; material_id=M03; authorization_status=authorized",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "check_rules",
+          "next_action_source": "model",
+          "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+        },
+        {
+          "step": 2,
+          "model_step": 2,
+          "tool": "check_rules",
+          "tool_call_id": "offline-4",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "return_summary": "status=blocked; missing_fields=[]; risks=['R_TEXT_BLOCK']",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "finish",
+          "next_action_source": "model",
+          "next_decision_reason": "离线测试分支结束。"
+        }
+      ],
+      "execution_limits": {
+        "max_model_calls": 12,
+        "max_tool_calls": 12
+      }
+    },
+    {
+      "mode": "offline_test",
+      "status": "completed",
+      "decision": "request_confirmation",
+      "result": {
+        "request_id": "REQ-RISK-REVIEW-001",
+        "material_id": "M04",
+        "evaluated_at": "2026-11-02T09:00:00+08:00",
+        "review": {
+          "status": "needs_review",
+          "missing_fields": [],
+          "risks": [
+            {
+              "rule_id": "R_AUTH_REVIEW",
+              "level": "review",
+              "field": "authorization_status",
+              "reason": "素材授权状态待核实，需要可信授权证据。"
+            }
+          ]
+        },
+        "scheduling": {
+          "status": "not_evaluated",
+          "requested_at": "2026-11-02T18:00:00+08:00",
+          "suggested_at": null,
+          "accepted_at": null,
+          "conflicts": []
+        },
+        "confirmation": {
+          "status": "pending",
+          "pending_items": [
+            {
+              "kind": "risk_resolution",
+              "field": "authorization_status",
+              "original_value": "unknown",
+              "proposed_value": null,
+              "message": "请补充可信授权证据并通过显式修订更新授权状态，再重新审核；单纯确认不能解除风险。"
+            }
+          ],
+          "selected_at": null,
+          "confirmed_at": null,
+          "interrupt_id": null
+        },
+        "persistence": {
+          "status": "saved",
+          "draft_id": "DRAFT-82be18d6b9154a5aae86a746c4d64191",
+          "error": null
+        },
+        "errors": [],
+        "publication_status": "not_published"
+      },
+      "model_calls": 3,
+      "tool_calls": [
+        {
+          "name": "read_material",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "output": {
+            "status": "ok",
+            "data": {
+              "title": "新品介绍",
+              "content": "介绍新品功能与使用方法。",
+              "channel": "wechat",
+              "authorization_status": "unknown",
+              "authorization_evidence": null,
+              "material_id": "M04"
+            },
+            "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/03_rule_risk/input.json#materials/M04",
+            "error": null
+          },
+          "tool_call_id": "offline-2"
+        },
+        {
+          "name": "check_rules",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "output": {
+            "status": "ok",
+            "data": {
+              "status": "needs_review",
+              "missing_fields": [],
+              "risks": [
+                {
+                  "rule_id": "R_AUTH_REVIEW",
+                  "level": "review",
+                  "field": "authorization_status",
+                  "reason": "素材授权状态待核实，需要可信授权证据。"
+                }
+              ]
+            },
+            "source": "rules:demo-v1",
+            "error": null
+          },
+          "tool_call_id": "offline-4"
+        },
+        {
+          "name": "save_draft",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "output": {
+            "request_id": "REQ-RISK-REVIEW-001",
+            "material_id": "M04",
+            "evaluated_at": "2026-11-02T09:00:00+08:00",
+            "review": {
+              "status": "needs_review",
+              "missing_fields": [],
+              "risks": [
+                {
+                  "rule_id": "R_AUTH_REVIEW",
+                  "level": "review",
+                  "field": "authorization_status",
+                  "reason": "素材授权状态待核实，需要可信授权证据。"
+                }
+              ]
+            },
+            "scheduling": {
+              "status": "not_evaluated",
+              "requested_at": "2026-11-02T18:00:00+08:00",
+              "suggested_at": null,
+              "accepted_at": null,
+              "conflicts": []
+            },
+            "confirmation": {
+              "status": "pending",
+              "pending_items": [
+                {
+                  "kind": "risk_resolution",
+                  "field": "authorization_status",
+                  "original_value": "unknown",
+                  "proposed_value": null,
+                  "message": "请补充可信授权证据并通过显式修订更新授权状态，再重新审核；单纯确认不能解除风险。"
+                }
+              ],
+              "selected_at": null,
+              "confirmed_at": null,
+              "interrupt_id": null
+            },
+            "persistence": {
+              "status": "saved",
+              "draft_id": "DRAFT-82be18d6b9154a5aae86a746c4d64191",
+              "error": null
+            },
+            "errors": [],
+            "publication_status": "not_published"
+          },
+          "tool_call_id": "offline-6"
+        }
+      ],
+      "error": null,
+      "model_steps": [
+        {
+          "step": 1,
+          "observation": null,
+          "response_id": null,
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "read_material",
+              "args": {
+                "reason": "离线测试动作说明，不代表真实模型决策。"
+              },
+              "id": "offline-2",
+              "type": "tool_call"
+            }
+          ],
+          "invalid_tool_calls": [],
+          "metadata": {},
+          "usage": null,
+          "status": "ok",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+        },
+        {
+          "step": 2,
+          "observation": {
+            "name": "read_material",
+            "tool_call_id": "offline-2",
+            "status": "success",
+            "output": {
+              "status": "ok",
+              "data": {
+                "title": "新品介绍",
+                "content": "介绍新品功能与使用方法。",
+                "channel": "wechat",
+                "authorization_status": "unknown",
+                "authorization_evidence": null,
+                "material_id": "M04"
+              },
+              "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/03_rule_risk/input.json#materials/M04",
+              "error": null
+            }
+          },
+          "response_id": null,
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "check_rules",
+              "args": {
+                "reason": "离线测试动作说明，不代表真实模型决策。"
+              },
+              "id": "offline-4",
+              "type": "tool_call"
+            }
+          ],
+          "invalid_tool_calls": [],
+          "metadata": {},
+          "usage": null,
+          "status": "ok",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+        },
+        {
+          "step": 3,
+          "observation": {
+            "name": "check_rules",
+            "tool_call_id": "offline-4",
+            "status": "success",
+            "output": {
+              "status": "ok",
+              "data": {
+                "status": "needs_review",
+                "missing_fields": [],
+                "risks": [
+                  {
+                    "rule_id": "R_AUTH_REVIEW",
+                    "level": "review",
+                    "field": "authorization_status",
+                    "reason": "素材授权状态待核实，需要可信授权证据。"
+                  }
+                ]
+              },
+              "source": "rules:demo-v1",
+              "error": null
+            }
+          },
+          "response_id": null,
+          "content": "",
+          "tool_calls": [
+            {
+              "name": "save_draft",
+              "args": {
+                "reason": "离线测试动作说明，不代表真实模型决策。"
+              },
+              "id": "offline-6",
+              "type": "tool_call"
+            }
+          ],
+          "invalid_tool_calls": [],
+          "metadata": {},
+          "usage": null,
+          "status": "ok",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+        }
+      ],
+      "execution_steps": [
+        {
+          "step": 1,
+          "model_step": 1,
+          "tool": "read_material",
+          "tool_call_id": "offline-2",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "return_summary": "status=ok; material_id=M04; authorization_status=unknown",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "check_rules",
+          "next_action_source": "model",
+          "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+        },
+        {
+          "step": 2,
+          "model_step": 2,
+          "tool": "check_rules",
+          "tool_call_id": "offline-4",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "return_summary": "status=needs_review; missing_fields=[]; risks=['R_AUTH_REVIEW']",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "save_draft",
+          "next_action_source": "model",
+          "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+        },
+        {
+          "step": 3,
+          "model_step": 3,
+          "tool": "save_draft",
+          "tool_call_id": "offline-6",
+          "arguments": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "return_summary": "persistence=saved; draft_id=DRAFT-82be18d6b9154a5aae86a746c4d64191",
+          "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+          "next_action": "completed",
+          "next_action_source": "workflow",
+          "next_decision_reason": ""
+        }
+      ],
+      "execution_limits": {
+        "max_model_calls": 12,
+        "max_tool_calls": 12
+      }
+    }
+  ],
+  "draft_count": 1
+}

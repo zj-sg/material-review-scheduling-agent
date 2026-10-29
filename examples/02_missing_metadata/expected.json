@@ -1,0 +1,56 @@
+{
+  "scenario_id": "02_missing_metadata",
+  "results": [
+    {
+      "request_id": "REQ-MISSING-001",
+      "material_id": "M02",
+      "evaluated_at": "2026-11-02T09:00:00+08:00",
+      "review": {
+        "status": "needs_info",
+        "missing_fields": [
+          "authorization_status"
+        ],
+        "risks": []
+      },
+      "scheduling": {
+        "status": "not_evaluated",
+        "requested_at": "2026-11-02T18:00:00+08:00",
+        "suggested_at": null,
+        "accepted_at": null,
+        "conflicts": []
+      },
+      "confirmation": {
+        "status": "pending",
+        "pending_items": [
+          {
+            "kind": "provide_metadata",
+            "field": "authorization_status",
+            "original_value": null,
+            "proposed_value": null,
+            "message": "补查后仍缺少授权状态，请补充授权状态及必要凭证。"
+          }
+        ]
+      },
+      "persistence": {
+        "status": "not_attempted",
+        "draft_id": null,
+        "error": null
+      },
+      "errors": [
+        {
+          "code": "MATERIAL_INCOMPLETE",
+          "message": "缺少 authorization_status，补查一次后仍未取得。"
+        }
+      ],
+      "publication_status": "not_published"
+    }
+  ],
+  "final_state": {
+    "draft_count": 0
+  },
+  "required_observations": [
+    "针对缺失授权状态补查一次",
+    "禁止根据素材正文推测授权",
+    "不查询时段，不调用草稿保存"
+  ]
+}

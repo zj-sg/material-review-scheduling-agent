@@ -1,0 +1,70 @@
+{
+  "scenario_id": "05_duplicate_request",
+  "results": [
+    {
+      "request_id": "REQ-DUPLICATE-001",
+      "material_id": "M05",
+      "evaluated_at": "2026-11-02T09:00:00+08:00",
+      "review": {
+        "status": "passed",
+        "missing_fields": [],
+        "risks": []
+      },
+      "scheduling": {
+        "status": "available",
+        "requested_at": "2026-11-02T18:00:00+08:00",
+        "suggested_at": "2026-11-02T18:00:00+08:00",
+        "accepted_at": "2026-11-02T18:00:00+08:00",
+        "conflicts": []
+      },
+      "confirmation": {
+        "status": "not_required",
+        "pending_items": []
+      },
+      "persistence": {
+        "status": "saved",
+        "draft_id": "DRAFT-DUPLICATE-001",
+        "error": null
+      },
+      "errors": [],
+      "publication_status": "not_published"
+    },
+    {
+      "request_id": "REQ-DUPLICATE-001",
+      "material_id": "M05",
+      "evaluated_at": "2026-11-02T09:01:00+08:00",
+      "review": {
+        "status": "passed",
+        "missing_fields": [],
+        "risks": []
+      },
+      "scheduling": {
+        "status": "available",
+        "requested_at": "2026-11-02T18:00:00+08:00",
+        "suggested_at": "2026-11-02T18:00:00+08:00",
+        "accepted_at": "2026-11-02T18:00:00+08:00",
+        "conflicts": []
+      },
+      "confirmation": {
+        "status": "not_required",
+        "pending_items": []
+      },
+      "persistence": {
+        "status": "already_exists",
+        "draft_id": "DRAFT-DUPLICATE-001",
+        "error": null
+      },
+      "errors": [],
+      "publication_status": "not_published"
+    }
+  ],
+  "final_state": {
+    "draft_count": 1
+  },
+  "required_observations": [
+    "两步在同一存储状态中执行，不能在第二步之前清空数据库",
+    "第二次返回同一个 draft_id，不创建第二份草稿",
+    "重新检查当前占用并更新当前结果，不能把旧建议直接当成仍然可用",
+    "重复请求不产生第二次有效插入"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "scenario_id": "01_normal",
+  "results": [
+    {
+      "request_id": "REQ-NORMAL-001",
+      "material_id": "M01",
+      "evaluated_at": "2026-11-02T09:00:00+08:00",
+      "review": {
+        "status": "passed",
+        "missing_fields": [],
+        "risks": []
+      },
+      "scheduling": {
+        "status": "available",
+        "requested_at": "2026-11-02T18:00:00+08:00",
+        "suggested_at": "2026-11-02T18:00:00+08:00",
+        "accepted_at": "2026-11-02T18:00:00+08:00",
+        "conflicts": []
+      },
+      "confirmation": {
+        "status": "not_required",
+        "pending_items": []
+      },
+      "persistence": {
+        "status": "saved",
+        "draft_id": "DRAFT-NORMAL-001",
+        "error": null
+      },
+      "errors": [],
+      "publication_status": "not_published"
+    }
+  ],
+  "final_state": {
+    "draft_count": 1
+  },
+  "required_observations": [
+    "完成素材读取与规则审核",
+    "保存前查询最新正式排期",
+    "结果仅表示已保存草稿"
+  ]
+}

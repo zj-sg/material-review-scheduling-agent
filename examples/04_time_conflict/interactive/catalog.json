@@ -1,0 +1,43 @@
+{
+  "rules": {
+    "version": "demo-v1",
+    "timezone": "Asia/Shanghai",
+    "allowed_channels": [
+      "wechat",
+      "weibo"
+    ],
+    "required_material_fields": [
+      "material_id",
+      "title",
+      "content",
+      "channel",
+      "authorization_status"
+    ],
+    "blocked_phrases": [
+      "稳赚不赔"
+    ],
+    "slot_duration_minutes": 60,
+    "candidate_step_minutes": 60
+  },
+  "initial_state": {
+    "materials": [
+      {
+        "material_id": "M01",
+        "title": "新品介绍",
+        "content": "介绍新品功能与使用方法。",
+        "channel": "wechat",
+        "authorization_status": "authorized",
+        "authorization_evidence": "AUTH-M01"
+      }
+    ],
+    "supplemental_materials": {},
+    "existing_schedule": [
+      {
+        "schedule_id": "SCHEDULE-001",
+        "channel": "wechat",
+        "start_at": "2026-10-30T18:00:00+08:00",
+        "end_at": "2026-10-30T19:00:00+08:00"
+      }
+    ]
+  }
+}

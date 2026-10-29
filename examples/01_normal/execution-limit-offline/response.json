@@ -1,0 +1,177 @@
+{
+  "mode": "offline_test",
+  "status": "incomplete",
+  "decision": "failed",
+  "result": {
+    "request_id": "LIMIT-669b0a7299d54c91a5448ae3db09a733",
+    "material_id": "M01",
+    "evaluated_at": "2026-10-29T06:53:54.256767Z",
+    "review": {
+      "status": "passed",
+      "missing_fields": [],
+      "risks": []
+    },
+    "scheduling": {
+      "status": "not_evaluated",
+      "requested_at": "2026-10-30T18:00:00+08:00",
+      "suggested_at": null,
+      "accepted_at": null,
+      "conflicts": []
+    },
+    "confirmation": {
+      "status": "not_required",
+      "pending_items": [],
+      "selected_at": null,
+      "confirmed_at": null,
+      "interrupt_id": null
+    },
+    "persistence": {
+      "status": "not_attempted",
+      "draft_id": null,
+      "error": null
+    },
+    "errors": [],
+    "publication_status": "not_published"
+  },
+  "model_calls": 2,
+  "tool_calls": [
+    {
+      "name": "read_material",
+      "arguments": {
+        "reason": "离线测试动作说明，不代表真实模型决策。"
+      },
+      "output": {
+        "status": "ok",
+        "data": {
+          "title": "新品介绍",
+          "content": "介绍新品功能与使用方法。",
+          "channel": "wechat",
+          "authorization_status": "authorized",
+          "authorization_evidence": "AUTH-M01",
+          "material_id": "M01"
+        },
+        "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/api-data.json#materials/M01",
+        "error": null
+      },
+      "tool_call_id": "offline-2"
+    },
+    {
+      "name": "check_rules",
+      "arguments": {
+        "reason": "离线测试动作说明，不代表真实模型决策。"
+      },
+      "output": {
+        "status": "ok",
+        "data": {
+          "status": "passed",
+          "missing_fields": [],
+          "risks": []
+        },
+        "source": "rules:demo-v1",
+        "error": null
+      },
+      "tool_call_id": "offline-4"
+    }
+  ],
+  "error": {
+    "code": "LIMIT_EXCEEDED",
+    "message": "达到 2 次模型调用上限，流程未完成；已执行 2 次工具调用。"
+  },
+  "model_steps": [
+    {
+      "step": 1,
+      "observation": null,
+      "response_id": null,
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "read_material",
+          "args": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "id": "offline-2",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "metadata": {},
+      "usage": null,
+      "status": "ok",
+      "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+    },
+    {
+      "step": 2,
+      "observation": {
+        "name": "read_material",
+        "tool_call_id": "offline-2",
+        "status": "success",
+        "output": {
+          "status": "ok",
+          "data": {
+            "title": "新品介绍",
+            "content": "介绍新品功能与使用方法。",
+            "channel": "wechat",
+            "authorization_status": "authorized",
+            "authorization_evidence": "AUTH-M01",
+            "material_id": "M01"
+          },
+          "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/api-data.json#materials/M01",
+          "error": null
+        }
+      },
+      "response_id": null,
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "check_rules",
+          "args": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "id": "offline-4",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "metadata": {},
+      "usage": null,
+      "status": "ok",
+      "decision_reason": "离线测试动作说明，不代表真实模型决策。"
+    }
+  ],
+  "execution_steps": [
+    {
+      "step": 1,
+      "model_step": 1,
+      "tool": "read_material",
+      "tool_call_id": "offline-2",
+      "arguments": {
+        "reason": "离线测试动作说明，不代表真实模型决策。"
+      },
+      "return_summary": "status=ok; material_id=M01; authorization_status=authorized",
+      "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+      "next_action": "check_rules",
+      "next_action_source": "model",
+      "next_decision_reason": "离线测试动作说明，不代表真实模型决策。"
+    },
+    {
+      "step": 2,
+      "model_step": 2,
+      "tool": "check_rules",
+      "tool_call_id": "offline-4",
+      "arguments": {
+        "reason": "离线测试动作说明，不代表真实模型决策。"
+      },
+      "return_summary": "status=passed; missing_fields=[]; risks=[]",
+      "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+      "next_action": "incomplete",
+      "next_action_source": "workflow",
+      "next_decision_reason": ""
+    }
+  ],
+  "execution_limits": {
+    "max_model_calls": 2,
+    "max_tool_calls": 2
+  },
+  "run_id": "RUN-7d6377dc686748519c128979506162c0",
+  "interrupt": null
+}

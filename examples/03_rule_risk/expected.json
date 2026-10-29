@@ -1,0 +1,91 @@
+{
+  "scenario_id": "03_rule_risk",
+  "results": [
+    {
+      "request_id": "REQ-RISK-BLOCK-001",
+      "material_id": "M03",
+      "evaluated_at": "2026-11-02T09:00:00+08:00",
+      "review": {
+        "status": "blocked",
+        "missing_fields": [],
+        "risks": [
+          {
+            "rule_id": "R_TEXT_BLOCK",
+            "level": "block",
+            "field": "content",
+            "reason": "命中禁止表述：稳赚不赔。"
+          }
+        ]
+      },
+      "scheduling": {
+        "status": "not_evaluated",
+        "requested_at": "2026-11-02T18:00:00+08:00",
+        "suggested_at": null,
+        "accepted_at": null,
+        "conflicts": []
+      },
+      "confirmation": {
+        "status": "not_required",
+        "pending_items": []
+      },
+      "persistence": {
+        "status": "not_attempted",
+        "draft_id": null,
+        "error": null
+      },
+      "errors": [],
+      "publication_status": "not_published"
+    },
+    {
+      "request_id": "REQ-RISK-REVIEW-001",
+      "material_id": "M04",
+      "evaluated_at": "2026-11-02T09:00:00+08:00",
+      "review": {
+        "status": "needs_review",
+        "missing_fields": [],
+        "risks": [
+          {
+            "rule_id": "R_AUTH_REVIEW",
+            "level": "review",
+            "field": "authorization_status",
+            "reason": "素材授权状态待核实，需要可信授权证据。"
+          }
+        ]
+      },
+      "scheduling": {
+        "status": "not_evaluated",
+        "requested_at": "2026-11-02T18:00:00+08:00",
+        "suggested_at": null,
+        "accepted_at": null,
+        "conflicts": []
+      },
+      "confirmation": {
+        "status": "pending",
+        "pending_items": [
+          {
+            "kind": "risk_resolution",
+            "field": "authorization_status",
+            "original_value": "unknown",
+            "proposed_value": null,
+            "message": "补充可信授权证据并重新审核，单纯确认不能解除风险。"
+          }
+        ]
+      },
+      "persistence": {
+        "status": "saved",
+        "draft_id": "DRAFT-REVIEW-001",
+        "error": null
+      },
+      "errors": [],
+      "publication_status": "not_published"
+    }
+  ],
+  "final_state": {
+    "draft_count": 1
+  },
+  "required_observations": [
+    "禁用表述命中时阻断并返回规则编号",
+    "待复核素材只保存审核草稿，时间保持未评估",
+    "禁止把风险确认等同于证据已补齐"
+  ]
+}

@@ -1,0 +1,445 @@
+{
+  "transport": "real HTTP on loopback with Uvicorn",
+  "mode": "offline_test",
+  "real_model_tested": false,
+  "health": {
+    "status": "ok",
+    "mode": "offline_test"
+  },
+  "first_run": {
+    "mode": "offline_test",
+    "status": "completed",
+    "decision": "request_confirmation",
+    "result": {
+      "request_id": "REQ-HTTP-001",
+      "material_id": "M01",
+      "evaluated_at": "2026-10-29T02:04:29.888534Z",
+      "review": {
+        "status": "passed",
+        "missing_fields": [],
+        "risks": []
+      },
+      "scheduling": {
+        "status": "alternative_proposed",
+        "requested_at": "2026-11-02T18:00:00+08:00",
+        "suggested_at": "2026-11-02T19:00:00+08:00",
+        "accepted_at": null,
+        "conflicts": [
+          {
+            "schedule_id": "SCHEDULE-001",
+            "channel": "wechat",
+            "start_at": "2026-11-02T18:00:00+08:00",
+            "end_at": "2026-11-02T19:00:00+08:00"
+          }
+        ]
+      },
+      "confirmation": {
+        "status": "pending",
+        "pending_items": [
+          {
+            "kind": "time_change",
+            "field": "time_requirement.requested_at",
+            "original_value": "2026-11-02T18:00:00+08:00",
+            "proposed_value": "2026-11-02T19:00:00+08:00",
+            "message": "原时段与排期 SCHEDULE-001 冲突。候选改变了硬性指定时间，需要用户确认。请确认具体建议时间。"
+          }
+        ]
+      },
+      "persistence": {
+        "status": "saved",
+        "draft_id": "DRAFT-c5a343737f314316a65783a3c6123f7b",
+        "error": null
+      },
+      "errors": [],
+      "publication_status": "not_published"
+    },
+    "model_calls": 4,
+    "tool_calls": [
+      {
+        "name": "read_material",
+        "arguments": {},
+        "output": {
+          "status": "ok",
+          "data": {
+            "title": "新品介绍",
+            "content": "介绍新品功能与使用方法。",
+            "channel": "wechat",
+            "authorization_status": "authorized",
+            "authorization_evidence": "AUTH-M01",
+            "material_id": "M01"
+          },
+          "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/api-data.json#materials/M01",
+          "error": null
+        }
+      },
+      {
+        "name": "check_rules",
+        "arguments": {},
+        "output": {
+          "status": "ok",
+          "data": {
+            "status": "passed",
+            "missing_fields": [],
+            "risks": []
+          },
+          "source": "rules:demo-v1",
+          "error": null
+        }
+      },
+      {
+        "name": "query_slots",
+        "arguments": {},
+        "output": {
+          "status": "ok",
+          "result": {
+            "request_id": "REQ-HTTP-001",
+            "material_id": "M01",
+            "evaluated_at": "2026-10-29T02:04:29.883535Z",
+            "review": {
+              "status": "passed",
+              "missing_fields": [],
+              "risks": []
+            },
+            "scheduling": {
+              "status": "alternative_proposed",
+              "requested_at": "2026-11-02T18:00:00+08:00",
+              "suggested_at": "2026-11-02T19:00:00+08:00",
+              "accepted_at": null,
+              "conflicts": [
+                {
+                  "schedule_id": "SCHEDULE-001",
+                  "channel": "wechat",
+                  "start_at": "2026-11-02T18:00:00+08:00",
+                  "end_at": "2026-11-02T19:00:00+08:00"
+                }
+              ]
+            },
+            "confirmation": {
+              "status": "pending",
+              "pending_items": [
+                {
+                  "kind": "time_change",
+                  "field": "time_requirement.requested_at",
+                  "original_value": "2026-11-02T18:00:00+08:00",
+                  "proposed_value": "2026-11-02T19:00:00+08:00",
+                  "message": "原时段与排期 SCHEDULE-001 冲突。候选改变了硬性指定时间，需要用户确认。请确认具体建议时间。"
+                }
+              ]
+            },
+            "persistence": {
+              "status": "not_attempted",
+              "draft_id": null,
+              "error": null
+            },
+            "errors": [],
+            "publication_status": "not_published"
+          },
+          "candidates": {
+            "candidates": [
+              {
+                "start_at": "2026-11-02T19:00:00+08:00",
+                "end_at": "2026-11-02T20:00:00+08:00",
+                "requires_confirmation": true,
+                "reason": "候选改变了硬性指定时间，需要用户确认。"
+              },
+              {
+                "start_at": "2026-11-02T20:00:00+08:00",
+                "end_at": "2026-11-02T21:00:00+08:00",
+                "requires_confirmation": true,
+                "reason": "候选改变了硬性指定时间，需要用户确认。"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "save_draft",
+        "arguments": {},
+        "output": {
+          "request_id": "REQ-HTTP-001",
+          "material_id": "M01",
+          "evaluated_at": "2026-10-29T02:04:29.888534Z",
+          "review": {
+            "status": "passed",
+            "missing_fields": [],
+            "risks": []
+          },
+          "scheduling": {
+            "status": "alternative_proposed",
+            "requested_at": "2026-11-02T18:00:00+08:00",
+            "suggested_at": "2026-11-02T19:00:00+08:00",
+            "accepted_at": null,
+            "conflicts": [
+              {
+                "schedule_id": "SCHEDULE-001",
+                "channel": "wechat",
+                "start_at": "2026-11-02T18:00:00+08:00",
+                "end_at": "2026-11-02T19:00:00+08:00"
+              }
+            ]
+          },
+          "confirmation": {
+            "status": "pending",
+            "pending_items": [
+              {
+                "kind": "time_change",
+                "field": "time_requirement.requested_at",
+                "original_value": "2026-11-02T18:00:00+08:00",
+                "proposed_value": "2026-11-02T19:00:00+08:00",
+                "message": "原时段与排期 SCHEDULE-001 冲突。候选改变了硬性指定时间，需要用户确认。请确认具体建议时间。"
+              }
+            ]
+          },
+          "persistence": {
+            "status": "saved",
+            "draft_id": "DRAFT-c5a343737f314316a65783a3c6123f7b",
+            "error": null
+          },
+          "errors": [],
+          "publication_status": "not_published"
+        }
+      }
+    ],
+    "error": null
+  },
+  "retry": {
+    "mode": "offline_test",
+    "status": "completed",
+    "decision": "request_confirmation",
+    "result": {
+      "request_id": "REQ-HTTP-001",
+      "material_id": "M01",
+      "evaluated_at": "2026-10-29T02:04:29.927322Z",
+      "review": {
+        "status": "passed",
+        "missing_fields": [],
+        "risks": []
+      },
+      "scheduling": {
+        "status": "alternative_proposed",
+        "requested_at": "2026-11-02T18:00:00+08:00",
+        "suggested_at": "2026-11-02T19:00:00+08:00",
+        "accepted_at": null,
+        "conflicts": [
+          {
+            "schedule_id": "SCHEDULE-001",
+            "channel": "wechat",
+            "start_at": "2026-11-02T18:00:00+08:00",
+            "end_at": "2026-11-02T19:00:00+08:00"
+          }
+        ]
+      },
+      "confirmation": {
+        "status": "pending",
+        "pending_items": [
+          {
+            "kind": "time_change",
+            "field": "time_requirement.requested_at",
+            "original_value": "2026-11-02T18:00:00+08:00",
+            "proposed_value": "2026-11-02T19:00:00+08:00",
+            "message": "原时段与排期 SCHEDULE-001 冲突。候选改变了硬性指定时间，需要用户确认。请确认具体建议时间。"
+          }
+        ]
+      },
+      "persistence": {
+        "status": "already_exists",
+        "draft_id": "DRAFT-c5a343737f314316a65783a3c6123f7b",
+        "error": null
+      },
+      "errors": [],
+      "publication_status": "not_published"
+    },
+    "model_calls": 4,
+    "tool_calls": [
+      {
+        "name": "read_material",
+        "arguments": {},
+        "output": {
+          "status": "ok",
+          "data": {
+            "title": "新品介绍",
+            "content": "介绍新品功能与使用方法。",
+            "channel": "wechat",
+            "authorization_status": "authorized",
+            "authorization_evidence": "AUTH-M01",
+            "material_id": "M01"
+          },
+          "source": "local-json:D:/ProgramData/material-review-scheduling-agent/examples/api-data.json#materials/M01",
+          "error": null
+        }
+      },
+      {
+        "name": "check_rules",
+        "arguments": {},
+        "output": {
+          "status": "ok",
+          "data": {
+            "status": "passed",
+            "missing_fields": [],
+            "risks": []
+          },
+          "source": "rules:demo-v1",
+          "error": null
+        }
+      },
+      {
+        "name": "query_slots",
+        "arguments": {},
+        "output": {
+          "status": "ok",
+          "result": {
+            "request_id": "REQ-HTTP-001",
+            "material_id": "M01",
+            "evaluated_at": "2026-10-29T02:04:29.922323Z",
+            "review": {
+              "status": "passed",
+              "missing_fields": [],
+              "risks": []
+            },
+            "scheduling": {
+              "status": "alternative_proposed",
+              "requested_at": "2026-11-02T18:00:00+08:00",
+              "suggested_at": "2026-11-02T19:00:00+08:00",
+              "accepted_at": null,
+              "conflicts": [
+                {
+                  "schedule_id": "SCHEDULE-001",
+                  "channel": "wechat",
+                  "start_at": "2026-11-02T18:00:00+08:00",
+                  "end_at": "2026-11-02T19:00:00+08:00"
+                }
+              ]
+            },
+            "confirmation": {
+              "status": "pending",
+              "pending_items": [
+                {
+                  "kind": "time_change",
+                  "field": "time_requirement.requested_at",
+                  "original_value": "2026-11-02T18:00:00+08:00",
+                  "proposed_value": "2026-11-02T19:00:00+08:00",
+                  "message": "原时段与排期 SCHEDULE-001 冲突。候选改变了硬性指定时间，需要用户确认。请确认具体建议时间。"
+                }
+              ]
+            },
+            "persistence": {
+              "status": "not_attempted",
+              "draft_id": null,
+              "error": null
+            },
+            "errors": [],
+            "publication_status": "not_published"
+          },
+          "candidates": {
+            "candidates": [
+              {
+                "start_at": "2026-11-02T19:00:00+08:00",
+                "end_at": "2026-11-02T20:00:00+08:00",
+                "requires_confirmation": true,
+                "reason": "候选改变了硬性指定时间，需要用户确认。"
+              },
+              {
+                "start_at": "2026-11-02T20:00:00+08:00",
+                "end_at": "2026-11-02T21:00:00+08:00",
+                "requires_confirmation": true,
+                "reason": "候选改变了硬性指定时间，需要用户确认。"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "save_draft",
+        "arguments": {},
+        "output": {
+          "request_id": "REQ-HTTP-001",
+          "material_id": "M01",
+          "evaluated_at": "2026-10-29T02:04:29.927322Z",
+          "review": {
+            "status": "passed",
+            "missing_fields": [],
+            "risks": []
+          },
+          "scheduling": {
+            "status": "alternative_proposed",
+            "requested_at": "2026-11-02T18:00:00+08:00",
+            "suggested_at": "2026-11-02T19:00:00+08:00",
+            "accepted_at": null,
+            "conflicts": [
+              {
+                "schedule_id": "SCHEDULE-001",
+                "channel": "wechat",
+                "start_at": "2026-11-02T18:00:00+08:00",
+                "end_at": "2026-11-02T19:00:00+08:00"
+              }
+            ]
+          },
+          "confirmation": {
+            "status": "pending",
+            "pending_items": [
+              {
+                "kind": "time_change",
+                "field": "time_requirement.requested_at",
+                "original_value": "2026-11-02T18:00:00+08:00",
+                "proposed_value": "2026-11-02T19:00:00+08:00",
+                "message": "原时段与排期 SCHEDULE-001 冲突。候选改变了硬性指定时间，需要用户确认。请确认具体建议时间。"
+              }
+            ]
+          },
+          "persistence": {
+            "status": "already_exists",
+            "draft_id": "DRAFT-c5a343737f314316a65783a3c6123f7b",
+            "error": null
+          },
+          "errors": [],
+          "publication_status": "not_published"
+        }
+      }
+    ],
+    "error": null
+  },
+  "stored_draft": {
+    "request_id": "REQ-HTTP-001",
+    "material_id": "M01",
+    "evaluated_at": "2026-10-29T02:04:29.927322Z",
+    "review": {
+      "status": "passed",
+      "missing_fields": [],
+      "risks": []
+    },
+    "scheduling": {
+      "status": "alternative_proposed",
+      "requested_at": "2026-11-02T18:00:00+08:00",
+      "suggested_at": "2026-11-02T19:00:00+08:00",
+      "accepted_at": null,
+      "conflicts": [
+        {
+          "schedule_id": "SCHEDULE-001",
+          "channel": "wechat",
+          "start_at": "2026-11-02T18:00:00+08:00",
+          "end_at": "2026-11-02T19:00:00+08:00"
+        }
+      ]
+    },
+    "confirmation": {
+      "status": "pending",
+      "pending_items": [
+        {
+          "kind": "time_change",
+          "field": "time_requirement.requested_at",
+          "original_value": "2026-11-02T18:00:00+08:00",
+          "proposed_value": "2026-11-02T19:00:00+08:00",
+          "message": "原时段与排期 SCHEDULE-001 冲突。候选改变了硬性指定时间，需要用户确认。请确认具体建议时间。"
+        }
+      ]
+    },
+    "persistence": {
+      "status": "already_exists",
+      "draft_id": "DRAFT-c5a343737f314316a65783a3c6123f7b",
+      "error": null
+    },
+    "errors": [],
+    "publication_status": "not_published"
+  },
+  "database": "D:\\ProgramData\\material-review-scheduling-agent\\data\\http-smoke-c1ca0cbe884d42d3ad9730f80ab26844.sqlite3"
+}

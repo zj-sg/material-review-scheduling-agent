@@ -1,0 +1,53 @@
+# 01 需求与成功标准
+
+## 用户与目标
+
+面向内容运营团队：读取待处理素材，识别资料缺失和审核风险，结合正式排期生成无冲突、可确认的排期草稿。
+交付边界是草稿保存，不接入外部平台、不执行真实发布。
+
+## 输入与输出
+
+请求包含 request_id、素材 ID、渠道、时间要求、候选查询范围和是否保存草稿。
+素材、可信补查资料、审核规则与初始化占用来自服务端合成文件 [data/api-data.json](../data/api-data.json)。
+正式占用初始化后以 SQLite scheduled_slots 表为准，待确认草稿不占用正式时段。
+
+输出分别给出审核状态、风险依据、原始时间、建议/接受时间、待确认项、真实保存状态和工具错误。
+publication_status 始终为 not_published；保存成功仅指数据库事务已经提交。
+
+## 范围与业务约束
+
+- 处理文本及素材元数据，固定北京时间。允许 fixed 指定时间或 window 原允许窗口。
+- 缺失必填信息时最多自动补查一次，再审核；未补齐则请求资料，不编造事实。
+- 明确未授权、命中阻断词或渠道不符必须阻断；授权未知为待复核，不能用时间确认解除风险。
+- 同渠道占用按半开区间比较，候选需完整容纳素材时长，不扩大查询范围或硬性窗口。
+- HTTP 原时段不可用且存在候选时暂停，由用户选择后复查；不能自行接受新时间。
+- 同一 request_id 对应同一原始输入，保存时重查占用、复用草稿 ID；不同输入使用新 ID。
+- 保存、查询或模型失败如实返回，不能将工具失败写成保存成功。
+
+## Agent 决策要求
+
+至少有“模型选择工具 → 工具执行 → 模型观察返回 → 调整下一动作或结束”的循环。
+框架流程和确定性校验提供执行骨架，真实模型通过绑定工具选择动作；离线测试模型不能作为真实 ReAct 证据。
+
+每轮工具参数中的 reason 是一句公开动作依据，不超过 240 字符，不要求内部思维过程。
+记录应包含步骤、实际参数、返回摘要、后续动作和依据，明确区分模型选择与程序流转。
+逻辑模型调用默认上限 12，每轮最多一个工具；达到上限返回 incomplete/LIMIT_EXCEEDED，保留已有记录。
+
+## 可验收标准
+
+| 验收点 | 成功标准 | 材料入口 |
+| --- | --- | --- |
+| 正常排期 | 审核通过、时间可用、真实保存草稿 | [01_normal](../examples/01_normal/trace.json) |
+| 素材缺失 | 尝试补查，仍缺失时返回所缺资料，不保存 | [02_missing_metadata](../examples/02_missing_metadata/trace.json) |
+| 规则风险 | 阻断不排期，待复核不冒充审核通过 | [03_rule_risk](../examples/03_rule_risk/trace.json) |
+| 时段冲突 | 保留 18:00 原要求，19:00/20:00 为待选候选；选择后复查 | [HTTP 交互记录](../examples/04_time_conflict/interactive/trace.json) |
+| 重复提交 | 同输入只留一份草稿，并重查当前占用 | [05_duplicate_request](../examples/05_duplicate_request/trace.json) |
+| 保存失败 | 明确失败、无伪造草稿 ID、事务回滚 | [06_save_failure](../examples/06_save_failure/trace.json) |
+| 无可用时段 | no_slot，要求新时间范围，不放宽原约束 | [07_no_available_slot](../examples/07_no_available_slot/trace.json) |
+| 两条模型路径 | passed 后查询、needs_info 后补查，两条真实运行均可追溯 | [正常](../examples/01_normal/live/summary.md)、[缺失](../examples/02_missing_metadata/live/summary.md) |
+| 有界执行 | 达到配置上限时明确未完成，停止继续调用 | [上限记录](../examples/01_normal/execution-limit-offline/summary.md) |
+
+## 不在本次范围
+
+不做真实发布、页面、批量多 Agent、草稿版本历史、完整风险审批或跨服务重启恢复。
+HTTP 人工中断目前只覆盖时间选择；资料缺失和待复核返回待办，不建立新的人工审批节点。

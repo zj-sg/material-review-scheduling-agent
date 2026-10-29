@@ -1,0 +1,49 @@
+{
+  "scenario_id": "06_save_failure",
+  "results": [
+    {
+      "request_id": "REQ-SAVE-FAIL-001",
+      "material_id": "M06",
+      "evaluated_at": "2026-11-02T09:00:00+08:00",
+      "review": {
+        "status": "passed",
+        "missing_fields": [],
+        "risks": []
+      },
+      "scheduling": {
+        "status": "available",
+        "requested_at": "2026-11-02T18:00:00+08:00",
+        "suggested_at": "2026-11-02T18:00:00+08:00",
+        "accepted_at": "2026-11-02T18:00:00+08:00",
+        "conflicts": []
+      },
+      "confirmation": {
+        "status": "not_required",
+        "pending_items": []
+      },
+      "persistence": {
+        "status": "failed",
+        "draft_id": null,
+        "error": {
+          "code": "DRAFT_SAVE_FAILED",
+          "message": "模拟存储提交失败，事务未提交。"
+        }
+      },
+      "errors": [
+        {
+          "code": "DRAFT_SAVE_FAILED",
+          "message": "模拟存储提交失败，事务未提交。"
+        }
+      ],
+      "publication_status": "not_published"
+    }
+  ],
+  "final_state": {
+    "draft_count": 0
+  },
+  "required_observations": [
+    "审核通过和时间可用不能代替存储成功",
+    "模拟事务提交失败并保持无已提交草稿",
+    "明确返回失败原因，禁止生成草稿 ID 或声称保存成功"
+  ]
+}

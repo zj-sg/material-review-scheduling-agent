@@ -1,0 +1,18 @@
+{
+  "passed": false,
+  "checks": {
+    "live_api_mode": true,
+    "deepseek_model_reported": false,
+    "completed_without_error": false,
+    "model_observed_missing_fields_and_chose_supplement": false,
+    "supplement_tool_actually_returned_empty": false,
+    "model_observed_empty_result_and_finished": false,
+    "observation_matches_selected_tool_call": false,
+    "model_call_count_matches_records": false,
+    "requested_missing_information": false,
+    "no_draft_or_publication": false,
+    "execution_records_include_all_required_fields": false,
+    "execution_within_configured_limits": true,
+    "http_200": false
+  }
+}

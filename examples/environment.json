@@ -1,0 +1,23 @@
+{
+  "python": "3.12.4 | packaged by Anaconda, Inc. | (main, Jun 18 2024, 15:03:56) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "sqlite": "3.45.3",
+  "packages": {
+    "pydantic": "2.14.1",
+    "pydantic-settings": "2.16.1",
+    "langgraph": "1.2.18",
+    "langchain-core": "1.7.0",
+    "langchain-deepseek": "1.1.1",
+    "langchain-openai": "1.7.3",
+    "openai": "2.54.0",
+    "fastapi": "0.162.0",
+    "uvicorn": "0.54.0",
+    "pytest": "9.2.0"
+  },
+  "clean_install_validation": {
+    "clean_install_passed": true,
+    "clean_test_exit_code": 0,
+    "offline_smoke_exit_code": 0,
+    "dotenv_absent": true
+  }
+}

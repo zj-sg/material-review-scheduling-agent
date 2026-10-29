@@ -1,0 +1,12 @@
+.venv/
+.env
+__pycache__/
+.pytest_cache/
+*.py[cod]
+# Commit only synthetic fixtures; keep local runs and databases private.
+/data/*
+!/data/api-data.json
+!/data/README.md
+*.sqlite3
+*.sqlite3-*
+*.db
