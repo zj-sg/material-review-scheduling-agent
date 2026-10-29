@@ -92,7 +92,7 @@ persistence、errors、publication_status。报告另附素材、规则版本与
 examples/01–06 分别覆盖正常、缺失、风险、冲突、重复、保存失败；07 补充无可用时段。
 各目录独立，目录内步骤顺序执行。
 expected.json 是最终预期，不是保存日志；evaluated_at、save_behavior 仅为回放控制。
-当前已实现审核、排期、草稿保存和单 Agent 工具循环；离线验收通过，正常与缺失两条真实 DeepSeek 路径也已运行通过。
+当前已实现审核、排期、草稿保存和单 Agent 工具循环；自动化回归 324 项通过。最新真实 DeepSeek 验收为六类各两次、12/12 项通过，累计 62 次模型逻辑调用、58 次模型选择的工具执行；仅代表本批合成样本，不代表生产环境成功率或稳定性。
 
 ## Agent 约定
 
@@ -110,7 +110,7 @@ CLI 待复核结果可以保存审核草稿；HTTP 则先等待人工审核。�
 达到调用上限时返回 status=incomplete 和 LIMIT_EXCEEDED，保留部分结果与调用记录，不自动补成成功。
 模型异常和未完成必要工具步骤返回对应错误，不伪造业务完成。
 
-offline_test 是可控测试模型；api 是真实模型集成路径。两条 DeepSeek 调用记录见 react-acceptance.md。
+offline_test 是可控测试模型；api 是真实模型集成路径。最新六类及首批两条历史 DeepSeek 调用记录见 react-acceptance.md。
 扩展的六类各两次实际记录见 examples/04_time_conflict/live-key-paths；模型补查重审、错误后停止与程序强制中断分别验收。
 
 执行上限由 MATERIAL_AGENT_MAX_MODEL_CALLS 配置，默认 12，范围 1–100；HTTP 请求不能覆盖。

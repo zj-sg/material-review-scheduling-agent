@@ -1,5 +1,14 @@
 # 03 评估、实际结果与限制
 
+## 当前验收结论
+
+- 自动化回归：**324 项通过**，其中 HTTP 与人工中断测试 **75 项**，见 [测试输出](../examples/test-results.txt) 和 [逐项报告](../examples/test-results.xml)。
+- 最新真实模型批次：DeepSeek / deepseek-flash，**六类各两次，12/12 项验收通过**，累计 **62 次模型逻辑调用、58 次模型选择的工具执行**，见 [汇总 JSON](../examples/04_time_conflict/live-key-paths/summary.json)。
+- 当前已用真实模型验证资料补充恢复和有凭证的风险审核通过；人工驳回/要求修改、来源变化后的批准失效、保存故障回滚及调用上限仍主要由离线测试覆盖。
+- 12/12 仅是这一批合成样本的验收结果；工具错误用例以正确失败并停止为通过标准，不代表全部业务请求保存成功，也不代表生产环境成功率或稳定性。
+
+下文的首批两条记录、295 项干净环境测试和离线交互记录保留为历史证据，均不替代上述当前结论，也不合并进最新批次的 12 次统计。
+
 ## 评审顺序
 
 1. 阅读 [需求](01-requirements.md) 和 [方案](02-solution.md)。
@@ -39,19 +48,6 @@ HTTP 人工流程另见 [实际输入](../examples/04_time_conflict/interactive/
 以上执行真实 FastAPI/LangGraph interrupt/Command/SQLite，模型为 offline_test，不作为真实模型效果证据。主场景 03 的旧 CLI 回放仍可保存待复核草稿；当前 HTTP 在待复核时先暂停、不新建草稿。
 新增 29 项测试覆盖恢复串联、共享数据隔离、旧结论因素材变化失效、禁止内容不可绕过和跨恢复累计预算；完整回归共 324 项通过，其中 HTTP 与人工中断共 75 项。
 
-## 两条真实 DeepSeek 决策路径
-
-供应商 DeepSeek，模型 deepseek-flash，2026-10-29 通过实际 API 运行；每条 4 轮模型调用、3 次工具执行。
-
-| 路径 | 观察 → 模型下一步 | 原始材料 |
-| --- | --- | --- |
-| 正常 M01 | check_rules=passed → query_slots；available → 结束 | [输入](../examples/01_normal/live/request.json) / [实际输出](../examples/01_normal/live/response.json) / [Trace](../examples/01_normal/live/trace.json) / [摘要](../examples/01_normal/live/summary.md) |
-| 缺失 M02 | needs_info → supplement_material；empty → 结束并请求补充 | [输入](../examples/02_missing_metadata/live/request.json) / [实际输出](../examples/02_missing_metadata/live/response.json) / [Trace](../examples/02_missing_metadata/live/trace.json) / [摘要](../examples/02_missing_metadata/live/summary.md) |
-
-Trace 对应实际工具调用 ID，包含参数、返回摘要、后续动作和模型给出的 reason。workflow 流转单独标注，不冒充模型动作。
-这两条真实记录采集于新增资料/风险中断之前；当前 HTTP 的 M02 会在模型请求补充后进入 waiting_for_human，而非以原记录的 completed 结束。当前版本的新增真实验收见下一节。
-两条请求均设置 save_draft=false，验证模型反馈循环；保存与回滚由上表单独验证，不将未保存说成保存成功。
-
 ## 扩展真实关键路径验收（2026-10-29）
 
 使用本地配置的 DeepSeek / deepseek-flash，真实 Uvicorn 回环 HTTP、真实模型工具调用及独立 SQLite。六类各两次，固定本批 12 次业务尝试，无自动场景重跑筛选成功记录。
@@ -74,6 +70,19 @@ ReAct 证据是实际模型轮次：补查返回 ok 后模型选择 check_rules�
 工具错误为合成补查源 OSError，经现有注册工具转换为真实 error 回执；未模拟供应商错误。占用变化通过服务端夹具直接更新独立数据库，未增加生产故障注入接口。
 
 复现命令为 `python examples/verify_key_paths.py --live --repeats 2`；默认不带 --live 时为离线演示，已经单独跑通全部六类。完整演示和模块讲解见 [demo.md](demo.md)。
+
+## 首批两条真实决策记录（历史批次）
+
+以下记录采集于新增资料/风险中断之前，用于保留最初的 ReAct 证据，不表示当前只有两条真实路径，也不计入最新 12 次批次。
+供应商 DeepSeek，模型 deepseek-flash，2026-10-29 通过实际 API 运行；每条 4 轮模型调用、3 次工具执行。
+
+| 路径 | 观察 → 模型下一步 | 原始材料 |
+| --- | --- | --- |
+| 正常 M01 | check_rules=passed → query_slots；available → 结束 | [输入](../examples/01_normal/live/request.json) / [实际输出](../examples/01_normal/live/response.json) / [Trace](../examples/01_normal/live/trace.json) / [摘要](../examples/01_normal/live/summary.md) |
+| 缺失 M02 | needs_info → supplement_material；empty → 结束并请求补充 | [输入](../examples/02_missing_metadata/live/request.json) / [实际输出](../examples/02_missing_metadata/live/response.json) / [Trace](../examples/02_missing_metadata/live/trace.json) / [摘要](../examples/02_missing_metadata/live/summary.md) |
+
+两条请求均设置 save_draft=false，只验证模型反馈循环。当前 HTTP 的 M02 在模型请求补充后进入 waiting_for_human；当前资料补充及风险通过后的真实恢复证据以上一节最新批次为准。
+所有批次均用实际 tool_call_id 关联模型观察、工具参数、返回摘要和公开 reason；workflow 流转单独标注，不冒充模型动作。
 
 ## 测试与复现
 

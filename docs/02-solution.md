@@ -31,18 +31,35 @@ flowchart TD
 模型执行骨架允许条件路由；具体工具调用来自模型响应，而不是预设动作日志。
 [workflow.py](../src/agents/workflow.py) 将实际 ToolMessage 送回模型，未完成、错误或调用上限不会被自动补成成功。
 
-## 真实动态决策
+## 当前真实验收与动态决策证据
 
-两条实际 DeepSeek 运行使用同一工作流、同一套工具，只改变素材 ID：
+最新批次使用 DeepSeek / deepseek-flash，六类各两次，**12/12 项验收通过**，累计 **62 次模型逻辑调用、58 次模型选择的工具执行**。完整场景和统计见 [评估文档](03-evaluation.md)、[实际汇总](../examples/04_time_conflict/live-key-paths/summary.json)。12/12 仅代表本批合成样本，不代表生产环境成功率或稳定性。
 
-| 工具观察 | 模型实际选择 | 证据 |
+以下动作有实际模型观察和下一轮模型响应，可以作为 ReAct 证据：
+
+| 实际工具观察 | 模型实际选择 | 当前批次证据 |
 | --- | --- | --- |
-| M01 check_rules=passed | query_slots，观察 available 后结束 | [正常 Trace](../examples/01_normal/live/trace.json) |
-| M02 check_rules=needs_info | supplement_material，观察 empty 后结束并请求补充 | [缺失 Trace](../examples/02_missing_metadata/live/trace.json) |
+| check_rules=passed | query_slots | [正常 Trace](../examples/04_time_conflict/live-key-paths/normal-1/trace.json) |
+| check_rules=needs_info | supplement_material | [补查 Trace](../examples/04_time_conflict/live-key-paths/supplement_success-1/trace.json) |
+| supplement_material=ok | check_rules，再观察 passed 后选择 query_slots | [补查后重审 Trace](../examples/04_time_conflict/live-key-paths/supplement_success-1/trace.json) |
+| supplement_material=empty | 无后续工具调用，结束并请求补充 | [人工补资料 Trace](../examples/04_time_conflict/live-key-paths/human_metadata-1/trace.json) |
+| supplement_material=error | 无后续工具调用，结束；业务返回 TOOL_ERROR | [工具错误 Trace](../examples/04_time_conflict/live-key-paths/tool_failure-1/trace.json) |
 
 每个工具都有 required reason 参数，记录模型给出的简短动作依据。模型的内部 reasoning_content 只由模型集成按协议回传，不导出到交付 Trace。
+各轮通过 tool_call_id 对应实际观察与动作；不能只根据最终业务状态认定模型作出了某个决定。
+
+## 人工中断的业务执行证据
+
 时段候选由 SlotSearchService 计算，审核由 RuleService 校验；模型选择业务动作，程序约束事实、权限和保存结果。
-三类强制人工中断本身不是模型决策证据，因此单独作为业务工作流验收。上表为首批记录；新增六类各两次真实运行，已覆盖补查成功后重审、工具错误后模型结束、资料补充和风险通过后的恢复，见 [评估文档](03-evaluation.md)。
+以下流程在真实模型服务中实际执行，但暂停、输入校验和事务复查本身由业务代码保证：
+
+| 业务流程 | 已有真实执行证据 | 职责边界 |
+| --- | --- | --- |
+| 冲突 → 选择前时段失效 → 再次中断 → 重新选择后保存 | [实际 HTTP 与占用事件](../examples/04_time_conflict/live-key-paths/conflict_stale-1/events.json) | 强制暂停、候选计算和所选时间复查属于程序职责，不表示模型自行改选时间 |
+| 资料缺失 → 人工补齐 → 同一运行重新审核和保存 | [补资料恢复事件](../examples/04_time_conflict/live-key-paths/human_metadata-1/events.json) | 字段校验和恢复由程序执行；恢复后的工具选择来自模型 |
+| 授权存疑 → 有凭证人工通过 → 重新审核和保存 | [风险通过恢复事件](../examples/04_time_conflict/live-key-paths/human_review-1/events.json) | 审核结论由人提交；程序重审，明确禁止项不可人工绕过 |
+
+人工驳回/要求修改、来源变化后的批准失效、保存故障回滚及调用上限仍主要由离线测试覆盖。首批两条真实记录保留为 [历史批次](03-evaluation.md#首批两条真实决策记录历史批次)，不限制当前真实验收范围。
 
 ## 模块职责与框架使用
 

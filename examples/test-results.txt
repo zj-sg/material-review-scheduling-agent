@@ -1,4 +1,5 @@
-Current working-tree regression; real key-path trials recorded separately
+Documentation consistency regression; no new live model calls
+Recorded at: 2026-10-29T10:17:42.176549+00:00
 Command: D:\ProgramData\material-review-scheduling-agent\.venv\Scripts\python.exe -X utf8 -m pytest -q -W error --tb=short --junitxml=examples/test-results.xml
 
 ........................................................................ [ 22%]
@@ -6,6 +7,6 @@ Command: D:\ProgramData\material-review-scheduling-agent\.venv\Scripts\python.ex
 ........................................................................ [ 66%]
 ........................................................................ [ 88%]
 ....................................                                     [100%]
-324 passed in 23.42s
+324 passed in 30.94s
 
 Exit code: 0
