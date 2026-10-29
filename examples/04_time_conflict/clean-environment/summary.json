@@ -1,0 +1,174 @@
+{
+  "recorded_at": "2026-10-29T10:44:10.951640+00:00",
+  "mode": "offline_test",
+  "live_model_called": false,
+  "steps": [
+    {
+      "name": "clone",
+      "command": [
+        "git",
+        "-c",
+        "http.proxy=http://127.0.0.1:10090",
+        "clone",
+        "--depth",
+        "1",
+        "https://github.com/zj-sg/material-review-scheduling-agent.git",
+        "D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\checkout"
+      ],
+      "cwd": "D:\\ProgramData\\material-review-scheduling-agent",
+      "exit_code": 0,
+      "log": "clone.txt"
+    },
+    {
+      "name": "create-venv",
+      "command": [
+        "D:\\anaconda\\python.exe",
+        "-m",
+        "venv",
+        "D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\environment"
+      ],
+      "cwd": "D:\\ProgramData\\material-review-scheduling-agent",
+      "exit_code": 0,
+      "log": "create-venv.txt"
+    },
+    {
+      "name": "python",
+      "command": [
+        "D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\environment\\Scripts\\python.exe",
+        "-c",
+        "import json,sys;print(json.dumps({'version':sys.version,'prefix':sys.prefix,'base_prefix':sys.base_prefix,'user_site_disabled':sys.flags.no_user_site==1}))"
+      ],
+      "cwd": "D:\\ProgramData\\material-review-scheduling-agent",
+      "exit_code": 0,
+      "log": "python.txt"
+    },
+    {
+      "name": "install",
+      "command": [
+        "D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\environment\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "--isolated",
+        "install",
+        "--disable-pip-version-check",
+        "-r",
+        "requirements.txt"
+      ],
+      "cwd": "D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\checkout",
+      "exit_code": 0,
+      "log": "install.txt"
+    },
+    {
+      "name": "pip-check",
+      "command": [
+        "D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\environment\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "cwd": "D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\checkout",
+      "exit_code": 0,
+      "log": "pip-check.txt"
+    },
+    {
+      "name": "freeze",
+      "command": [
+        "D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\environment\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "freeze"
+      ],
+      "cwd": "D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\checkout",
+      "exit_code": 0,
+      "log": "freeze.txt"
+    },
+    {
+      "name": "pytest",
+      "command": [
+        "D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\environment\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "pytest",
+        "-q",
+        "-W",
+        "error",
+        "--junitxml=clean-pytest.xml"
+      ],
+      "cwd": "D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\checkout",
+      "exit_code": 0,
+      "log": "pytest.txt"
+    },
+    {
+      "name": "http-demo",
+      "command": [
+        "D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\environment\\Scripts\\python.exe",
+        "-X",
+        "utf8",
+        "examples/verify_key_paths.py",
+        "--output",
+        "data/clean-http-demo"
+      ],
+      "cwd": "D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\checkout",
+      "exit_code": 0,
+      "log": "http-demo.txt"
+    }
+  ],
+  "all_passed": true,
+  "removed_project_environment_variables": [],
+  "source_commit": "06fbdf8f399dfb03d397bdad72e083b7a16caa16",
+  "source_tree": "df60f07229f024fdef4209e68853b0d95f3f2dbb",
+  "requirements_sha256": "fc6b60e80db8321aa3517daebca0136a4feb21b8de451531fedc4f478f6a8436",
+  "no_dotenv": true,
+  "no_preexisting_venv": true,
+  "no_preexisting_databases": true,
+  "python": {
+    "version": "3.12.4 | packaged by Anaconda, Inc. | (main, Jun 18 2024, 15:03:56) [MSC v.1929 64 bit (AMD64)]",
+    "prefix": "D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\environment",
+    "base_prefix": "D:\\anaconda",
+    "user_site_disabled": true
+  },
+  "system_site_packages_disabled": true,
+  "test_count": 324,
+  "http_and_human_test_count": 75,
+  "http_demo": {
+    "mode": "offline_test",
+    "passed": 6,
+    "total": 6,
+    "summary": "http-demo/summary.json",
+    "source_sha256": "bca087481ae0acc3be34757592afa0f4a2780ee2a66d3b33753a5e35bf3787a2",
+    "cases": [
+      {
+        "case": "normal",
+        "passed": true,
+        "record": "http-demo/normal-1"
+      },
+      {
+        "case": "conflict_stale",
+        "passed": true,
+        "record": "http-demo/conflict_stale-1"
+      },
+      {
+        "case": "supplement_success",
+        "passed": true,
+        "record": "http-demo/supplement_success-1"
+      },
+      {
+        "case": "human_metadata",
+        "passed": true,
+        "record": "http-demo/human_metadata-1"
+      },
+      {
+        "case": "human_review",
+        "passed": true,
+        "record": "http-demo/human_review-1"
+      },
+      {
+        "case": "tool_failure",
+        "passed": true,
+        "record": "http-demo/tool_failure-1"
+      }
+    ]
+  },
+  "completed_at": "2026-10-29T10:48:39.831968+00:00"
+}

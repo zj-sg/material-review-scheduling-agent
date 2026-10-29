@@ -1,0 +1,254 @@
+{
+  "mode": "offline_test",
+  "status": "failed",
+  "model_calls": 4,
+  "model_steps": [
+    {
+      "step": 1,
+      "observation": null,
+      "response_id": null,
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "read_material",
+          "args": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "id": "offline-2",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "metadata": {},
+      "usage": null,
+      "status": "ok",
+      "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+      "cycle": 1
+    },
+    {
+      "step": 2,
+      "observation": {
+        "name": "read_material",
+        "tool_call_id": "offline-2",
+        "status": "success",
+        "output": {
+          "status": "ok",
+          "data": {
+            "title": "新品介绍",
+            "content": "介绍新品功能与使用方法。",
+            "channel": "wechat",
+            "authorization_status": null,
+            "authorization_evidence": null,
+            "material_id": "M02"
+          },
+          "source": "local-json:D:/ProgramData/material-review-scheduling-agent/data/clean-verification-11c11383e6ca/checkout/data/clean-http-demo/tool_failure-1/catalog.json#materials/M02",
+          "error": null
+        }
+      },
+      "response_id": null,
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "check_rules",
+          "args": {
+            "reason": "离线测试动作说明，不代表真实模型决策。"
+          },
+          "id": "offline-4",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "metadata": {},
+      "usage": null,
+      "status": "ok",
+      "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+      "cycle": 1
+    },
+    {
+      "step": 3,
+      "observation": {
+        "name": "check_rules",
+        "tool_call_id": "offline-4",
+        "status": "success",
+        "output": {
+          "status": "ok",
+          "data": {
+            "status": "needs_info",
+            "missing_fields": [
+              "authorization_status"
+            ],
+            "risks": []
+          },
+          "source": "rules:demo-v1",
+          "error": null
+        }
+      },
+      "response_id": null,
+      "content": "",
+      "tool_calls": [
+        {
+          "name": "supplement_material",
+          "args": {
+            "reason": "离线测试动作说明，不代表真实模型决策。",
+            "fields": [
+              "authorization_status"
+            ]
+          },
+          "id": "offline-6",
+          "type": "tool_call"
+        }
+      ],
+      "invalid_tool_calls": [],
+      "metadata": {},
+      "usage": null,
+      "status": "ok",
+      "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+      "cycle": 1
+    },
+    {
+      "step": 4,
+      "observation": {
+        "name": "supplement_material",
+        "tool_call_id": "offline-6",
+        "status": "success",
+        "output": {
+          "status": "error",
+          "data": null,
+          "source": null,
+          "error": {
+            "code": "TOOL_ERROR",
+            "message": "素材补查失败（OSError），未将缺失信息视为已补齐。"
+          }
+        }
+      },
+      "response_id": null,
+      "content": "离线测试分支结束。",
+      "tool_calls": [],
+      "invalid_tool_calls": [],
+      "metadata": {},
+      "usage": null,
+      "status": "ok",
+      "decision_reason": "离线测试分支结束。",
+      "cycle": 1
+    }
+  ],
+  "tool_calls": [
+    {
+      "name": "read_material",
+      "arguments": {
+        "reason": "离线测试动作说明，不代表真实模型决策。"
+      },
+      "output": {
+        "status": "ok",
+        "data": {
+          "title": "新品介绍",
+          "content": "介绍新品功能与使用方法。",
+          "channel": "wechat",
+          "authorization_status": null,
+          "authorization_evidence": null,
+          "material_id": "M02"
+        },
+        "source": "local-json:D:/ProgramData/material-review-scheduling-agent/data/clean-verification-11c11383e6ca/checkout/data/clean-http-demo/tool_failure-1/catalog.json#materials/M02",
+        "error": null
+      },
+      "tool_call_id": "offline-2"
+    },
+    {
+      "name": "check_rules",
+      "arguments": {
+        "reason": "离线测试动作说明，不代表真实模型决策。"
+      },
+      "output": {
+        "status": "ok",
+        "data": {
+          "status": "needs_info",
+          "missing_fields": [
+            "authorization_status"
+          ],
+          "risks": []
+        },
+        "source": "rules:demo-v1",
+        "error": null
+      },
+      "tool_call_id": "offline-4"
+    },
+    {
+      "name": "supplement_material",
+      "arguments": {
+        "reason": "离线测试动作说明，不代表真实模型决策。",
+        "fields": [
+          "authorization_status"
+        ]
+      },
+      "output": {
+        "status": "error",
+        "data": null,
+        "source": null,
+        "error": {
+          "code": "TOOL_ERROR",
+          "message": "素材补查失败（OSError），未将缺失信息视为已补齐。"
+        }
+      },
+      "tool_call_id": "offline-6"
+    }
+  ],
+  "execution_steps": [
+    {
+      "step": 1,
+      "model_step": 1,
+      "tool": "read_material",
+      "tool_call_id": "offline-2",
+      "arguments": {
+        "reason": "离线测试动作说明，不代表真实模型决策。"
+      },
+      "return_summary": "status=ok; material_id=M02; authorization_status=None",
+      "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+      "next_action": "check_rules",
+      "next_action_source": "model",
+      "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+      "cycle": 1
+    },
+    {
+      "step": 2,
+      "model_step": 2,
+      "tool": "check_rules",
+      "tool_call_id": "offline-4",
+      "arguments": {
+        "reason": "离线测试动作说明，不代表真实模型决策。"
+      },
+      "return_summary": "status=needs_info; missing_fields=['authorization_status']; risks=[]",
+      "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+      "next_action": "supplement_material",
+      "next_action_source": "model",
+      "next_decision_reason": "离线测试动作说明，不代表真实模型决策。",
+      "cycle": 1
+    },
+    {
+      "step": 3,
+      "model_step": 3,
+      "tool": "supplement_material",
+      "tool_call_id": "offline-6",
+      "arguments": {
+        "reason": "离线测试动作说明，不代表真实模型决策。",
+        "fields": [
+          "authorization_status"
+        ]
+      },
+      "return_summary": "status=error; returned_fields=[]",
+      "decision_reason": "离线测试动作说明，不代表真实模型决策。",
+      "next_action": "finish",
+      "next_action_source": "model",
+      "next_decision_reason": "离线测试分支结束。",
+      "cycle": 1
+    }
+  ],
+  "execution_limits": {
+    "max_model_calls": 12,
+    "max_tool_calls": 12
+  },
+  "human_actions": [],
+  "error": {
+    "code": "TOOL_ERROR",
+    "message": "素材补查失败（OSError），未将缺失信息视为已补齐。"
+  }
+}

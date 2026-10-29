@@ -1,0 +1,9 @@
+Command: ["D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\environment\\Scripts\\python.exe", "-m", "pip", "check"]
+Working directory: D:\ProgramData\material-review-scheduling-agent\data\clean-verification-11c11383e6ca\checkout
+
+STDOUT
+No broken requirements found.
+
+STDERR
+
+Exit code: 0

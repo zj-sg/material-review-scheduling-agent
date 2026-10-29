@@ -1,0 +1,9 @@
+Command: ["D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\environment\\Scripts\\python.exe", "-c", "import json,sys;print(json.dumps({'version':sys.version,'prefix':sys.prefix,'base_prefix':sys.base_prefix,'user_site_disabled':sys.flags.no_user_site==1}))"]
+Working directory: D:\ProgramData\material-review-scheduling-agent
+
+STDOUT
+{"version": "3.12.4 | packaged by Anaconda, Inc. | (main, Jun 18 2024, 15:03:56) [MSC v.1929 64 bit (AMD64)]", "prefix": "D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\environment", "base_prefix": "D:\\anaconda", "user_site_disabled": true}
+
+STDERR
+
+Exit code: 0

@@ -71,6 +71,7 @@ Linux/macOS 将 Python 路径改为 `.venv/bin/python`；具体安装、CLI 和�
 ## 验证结果
 
 - **324 项自动化测试通过**：[原始输出](examples/test-results.txt)、[逐项报告](examples/test-results.xml)。
+- **干净环境验证通过**：从远程提交 `06fbdf8` 重新克隆，创建 Python 3.12.4 环境，安装锁定依赖后 324 项测试通过、六类离线 HTTP 演示通过。[完整记录](examples/04_time_conflict/clean-environment/summary.md)
 - 七类九步业务回放，覆盖正常、信息缺失、规则风险、时段冲突、重复提交、保存失败和无可用时段：[索引](examples/validation-manifest.json)。
 - **新增真实 DeepSeek 验收 12/12 通过**：六类各两次，包含冲突及时间失效、补查后重审、人工补资料、人工风险通过和工具错误后停止；共 62 次模型调用、58 次模型工具调用。[实际记录](examples/04_time_conflict/live-key-paths/summary.md)、[评估说明](docs/03-evaluation.md)。工具错误用例以正确失败并停止为通过标准；该比例仅描述本批合成样本。
 - 最初两条真实反馈循环也保留：[通过后查询](examples/01_normal/live/summary.md)、[缺失后补查](examples/02_missing_metadata/live/summary.md)。

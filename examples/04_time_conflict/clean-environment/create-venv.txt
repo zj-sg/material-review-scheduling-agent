@@ -1,0 +1,8 @@
+Command: ["D:\\anaconda\\python.exe", "-m", "venv", "D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\environment"]
+Working directory: D:\ProgramData\material-review-scheduling-agent
+
+STDOUT
+
+STDERR
+
+Exit code: 0

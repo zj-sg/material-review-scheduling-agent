@@ -1,0 +1,14 @@
+Command: ["D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\environment\\Scripts\\python.exe", "-X", "utf8", "-m", "pytest", "-q", "-W", "error", "--junitxml=clean-pytest.xml"]
+Working directory: D:\ProgramData\material-review-scheduling-agent\data\clean-verification-11c11383e6ca\checkout
+
+STDOUT
+........................................................................ [ 22%]
+........................................................................ [ 44%]
+........................................................................ [ 66%]
+........................................................................ [ 88%]
+....................................                                     [100%]
+324 passed in 23.36s
+
+STDERR
+
+Exit code: 0

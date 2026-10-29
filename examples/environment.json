@@ -19,5 +19,16 @@
     "clean_test_exit_code": 0,
     "offline_smoke_exit_code": 0,
     "dotenv_absent": true
+  },
+  "latest_clean_environment_validation": {
+    "summary": "examples/04_time_conflict/clean-environment/summary.json",
+    "source_commit": "06fbdf8f399dfb03d397bdad72e083b7a16caa16",
+    "python_version": "3.12.4 | packaged by Anaconda, Inc. | (main, Jun 18 2024, 15:03:56) [MSC v.1929 64 bit (AMD64)]",
+    "all_passed": true,
+    "test_count": 324,
+    "http_and_human_test_count": 75,
+    "offline_http_demo_passed": 6,
+    "offline_http_demo_total": 6,
+    "live_model_called": false
   }
 }

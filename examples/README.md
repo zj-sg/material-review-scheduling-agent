@@ -34,3 +34,4 @@ agent-example --offline 使用显式可控模型运行 LangGraph 和业务工具
 原有两条 live 记录采集于新增资料/风险人工中断前；新增真实验收位于 [04_time_conflict/live-key-paths](04_time_conflict/live-key-paths/summary.md)，包含正常、冲突与时间失效、补查成功重审、人工补资料、风险通过和工具错误各两次。summary.json 汇总 12/12 验收通过、62 次模型调用和 58 次模型工具执行，保留所有事件与失败检查。
 各目录的 events.json 包括真实 HTTP 及明确标注的合成占用/故障事件，trace.json 保存模型观察与后续动作，inspection.json 区分验收通过与业务错误；runner-source.py.txt 保存本批运行器源文件。脚本 `python examples/verify_key_paths.py --live --repeats 2` 可复测，不带 --live 则为离线演示。
 test-results.txt、test-results.xml 为实际测试输出；environment.json 记录验证环境。评审映射见 ../docs/03-evaluation.md。
+当前版本的最新干净安装、324 项测试及六类离线 HTTP 演示记录见 [04_time_conflict/clean-environment](04_time_conflict/clean-environment/summary.md)。该验证来自远程新克隆和全新 Python 3.12.4 环境，保留来源提交、依赖指纹、安装日志和原始响应；不增加真实模型统计。

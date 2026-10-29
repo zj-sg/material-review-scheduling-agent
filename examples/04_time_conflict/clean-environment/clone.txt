@@ -1,0 +1,9 @@
+Command: ["git", "-c", "http.proxy=http://127.0.0.1:10090", "clone", "--depth", "1", "https://github.com/zj-sg/material-review-scheduling-agent.git", "D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\checkout"]
+Working directory: D:\ProgramData\material-review-scheduling-agent
+
+STDOUT
+
+STDERR
+Cloning into 'D:\ProgramData\material-review-scheduling-agent\data\clean-verification-11c11383e6ca\checkout'...
+
+Exit code: 0

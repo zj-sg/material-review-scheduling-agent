@@ -9,6 +9,7 @@
 ## 结果
 
 当前 324 项自动化测试通过，启用 -W error 时无警告；其中 75 项覆盖 HTTP 与人工中断。
+当前 324 项已另在远程新克隆的 Python 3.12.4 干净环境中通过，安装及六类离线 HTTP 演示亦通过，见 [最新干净环境记录](../examples/04_time_conflict/clean-environment/summary.md)。早期 295 项安装验证保留为历史阶段记录。
 步骤 6 完成时 236 项，HTTP 扩展后 257 项，时间选择中断扩展后新增 20 项。
 框架工具注册改造新增 4 项，并将模型与工具协议测试迁移到 LangChain 接口。
 依赖兼容检查通过。另通过独立 CLI 进程运行七类场景、九个请求步骤：
@@ -127,3 +128,12 @@
 - 本批验收失败为 0；两次预期 TOOL_ERROR/HTTP 500 是故障处理验收通过，不是保存成功；小样本比例不代表生产稳定性。
 - 默认离线运行器的六类也已实际跑通，完整 pytest 回归仍为 324 项通过，未增加业务架构或持久化检查点。
 - README 调整为简介、架构、快速启动、核心演示、验证结果；[demo.md](demo.md) 提供一条命令和 Swagger 手动演示及模块讲解。
+
+## 当前版本干净环境验证（2026-10-29）
+
+- 从 GitHub main 的 `06fbdf8f399dfb03d397bdad72e083b7a16caa16` 浅克隆，未复制 .env、旧虚拟环境或运行数据库。
+- 使用 Python 3.12.4 创建新的 venv，禁用系统和用户级包复用，移除 MATERIAL_AGENT_* 环境变量影响，重新安装 requirements.txt 的 58 个锁定包；pip check 无依赖冲突。
+- 全量 `pytest -q -W error` 通过 324 项，其中 HTTP 与人工中断 75 项；实际输出、逐项 XML、依赖安装和 pip freeze 均归档。
+- 在该环境运行 examples/verify_key_paths.py，实际启动 Uvicorn，通过六类离线 HTTP 演示，覆盖正常保存、冲突及选择失效、补查重审、补资料恢复、风险人工通过恢复和工具错误停止。
+- 本次 mode=offline_test，未调用外部模型；不改变既有真实批次的 12/12、62 次模型调用和 58 次模型工具执行统计。
+- [汇总](../examples/04_time_conflict/clean-environment/summary.md)、[机器可读记录](../examples/04_time_conflict/clean-environment/summary.json)、[完整测试](../examples/04_time_conflict/clean-environment/pytest.txt)、[HTTP 实际记录](../examples/04_time_conflict/clean-environment/http-demo/summary.json)。

@@ -1,0 +1,43 @@
+Command: ["D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\environment\\Scripts\\python.exe", "-X", "utf8", "examples/verify_key_paths.py", "--output", "data/clean-http-demo"]
+Working directory: D:\ProgramData\material-review-scheduling-agent\data\clean-verification-11c11383e6ca\checkout
+
+STDOUT
+[offline_test] normal-1
+  GET /health: HTTP 200, status=ok, interrupt=None
+  POST /schedule: HTTP 200, status=completed, interrupt=None
+  GET /drafts/REQ-KEY-54e501a4dd984230ae956e8a9b6d8e3f: HTTP 200, status=None, interrupt=None
+  PASS; model_calls=4; tools=4; failure=None
+[offline_test] conflict_stale-1
+  GET /health: HTTP 200, status=ok, interrupt=None
+  POST /schedule: HTTP 200, status=waiting_for_human, interrupt=choose_time
+  POST /runs/RUN-a5e2566cfb9d42c99786720d9703a291/resume: HTTP 200, status=waiting_for_human, interrupt=choose_time
+  POST /runs/RUN-a5e2566cfb9d42c99786720d9703a291/resume: HTTP 409, status=None, interrupt=None
+  POST /runs/RUN-a5e2566cfb9d42c99786720d9703a291/resume: HTTP 200, status=completed, interrupt=None
+  GET /drafts/REQ-KEY-3db0989b03514dfa9e751afa3bb7af54: HTTP 200, status=None, interrupt=None
+  PASS; model_calls=3; tools=3; failure=None
+[offline_test] supplement_success-1
+  GET /health: HTTP 200, status=ok, interrupt=None
+  POST /schedule: HTTP 200, status=completed, interrupt=None
+  GET /drafts/REQ-KEY-082de72b75b44996851c1428ef9f6748: HTTP 200, status=None, interrupt=None
+  PASS; model_calls=6; tools=6; failure=None
+[offline_test] human_metadata-1
+  GET /health: HTTP 200, status=ok, interrupt=None
+  POST /schedule: HTTP 200, status=waiting_for_human, interrupt=provide_metadata
+  POST /runs/RUN-62655932df9d427b8e3a38c3b643cdf4/resume: HTTP 200, status=completed, interrupt=None
+  GET /drafts/REQ-KEY-85cda23d4ce543d89bb57d9a41a9643d: HTTP 200, status=None, interrupt=None
+  PASS; model_calls=8; tools=7; failure=None
+[offline_test] human_review-1
+  GET /health: HTTP 200, status=ok, interrupt=None
+  POST /schedule: HTTP 200, status=waiting_for_human, interrupt=review_risk
+  POST /runs/RUN-4d24cf6c2e304b72bb924725d7e2c7b4/resume: HTTP 200, status=completed, interrupt=None
+  GET /drafts/REQ-KEY-81ed55643d3e47fcaf946ead5a0921cf: HTTP 200, status=None, interrupt=None
+  PASS; model_calls=6; tools=6; failure=None
+[offline_test] tool_failure-1
+  GET /health: HTTP 200, status=ok, interrupt=None
+  POST /schedule: HTTP 500, status=failed, interrupt=None
+  PASS; model_calls=4; tools=3; failure=None
+Records: D:\ProgramData\material-review-scheduling-agent\data\clean-verification-11c11383e6ca\checkout\data\clean-http-demo
+
+STDERR
+
+Exit code: 0

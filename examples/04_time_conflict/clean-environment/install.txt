@@ -1,0 +1,231 @@
+Command: ["D:\\ProgramData\\material-review-scheduling-agent\\data\\clean-verification-11c11383e6ca\\environment\\Scripts\\python.exe", "-m", "pip", "--isolated", "install", "--disable-pip-version-check", "-r", "requirements.txt"]
+Working directory: D:\ProgramData\material-review-scheduling-agent\data\clean-verification-11c11383e6ca\checkout
+
+STDOUT
+Collecting annotated-doc==0.0.5 (from -r requirements.txt (line 3))
+  Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+Collecting annotated-types==0.8.0 (from -r requirements.txt (line 5))
+  Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+Collecting anyio==4.15.1 (from -r requirements.txt (line 7))
+  Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+Collecting certifi==2026.10.23 (from -r requirements.txt (line 14))
+  Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+Collecting charset-normalizer==3.5.2 (from -r requirements.txt (line 20))
+  Downloading charset_normalizer-3.5.2-cp312-cp312-win_amd64.whl.metadata (47 kB)
+     -------------------------------------- 47.3/47.3 kB 296.4 kB/s eta 0:00:00
+Collecting click==8.5.0 (from -r requirements.txt (line 22))
+  Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+Collecting colorama==0.4.6 (from -r requirements.txt (line 24))
+  Downloading colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+Collecting distro==1.9.0 (from -r requirements.txt (line 28))
+  Downloading distro-1.9.0-py3-none-any.whl.metadata (6.8 kB)
+Collecting fastapi==0.162.0 (from -r requirements.txt (line 32))
+  Downloading fastapi-0.162.0-py3-none-any.whl.metadata (26 kB)
+Collecting h11==0.16.0 (from -r requirements.txt (line 34))
+  Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting httpcore==1.0.9 (from -r requirements.txt (line 39))
+  Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+Collecting httpcore2==2.16.0 (from -r requirements.txt (line 41))
+  Downloading httpcore2-2.16.0-py3-none-any.whl.metadata (27 kB)
+Collecting httpx==0.28.1 (from -r requirements.txt (line 43))
+  Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+Collecting httpx2==2.16.0 (from -r requirements.txt (line 48))
+  Downloading httpx2-2.16.0-py3-none-any.whl.metadata (10 kB)
+Collecting idna==3.20 (from -r requirements.txt (line 50))
+  Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Collecting iniconfig==2.3.1 (from -r requirements.txt (line 56))
+  Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+Collecting jiter==0.18.0 (from -r requirements.txt (line 58))
+  Downloading jiter-0.18.0-cp312-cp312-win_amd64.whl.metadata (5.3 kB)
+Collecting jsonpatch==1.38 (from -r requirements.txt (line 60))
+  Downloading jsonpatch-1.38-py3-none-any.whl.metadata (3.7 kB)
+Collecting jsonpointer==3.6 (from -r requirements.txt (line 62))
+  Downloading jsonpointer-3.6-py3-none-any.whl.metadata (2.6 kB)
+Collecting langchain-core==1.7.0 (from -r requirements.txt (line 64))
+  Downloading langchain_core-1.7.0-py3-none-any.whl.metadata (4.8 kB)
+Collecting langchain-deepseek==1.1.1 (from -r requirements.txt (line 73))
+  Downloading langchain_deepseek-1.1.1-py3-none-any.whl.metadata (3.4 kB)
+Collecting langchain-openai==1.7.3 (from -r requirements.txt (line 75))
+  Downloading langchain_openai-1.7.3-py3-none-any.whl.metadata (3.6 kB)
+Collecting langchain-protocol==0.0.20 (from -r requirements.txt (line 79))
+  Downloading langchain_protocol-0.0.20-py3-none-any.whl.metadata (2.4 kB)
+Collecting langgraph==1.2.18 (from -r requirements.txt (line 83))
+  Downloading langgraph-1.2.18-py3-none-any.whl.metadata (4.9 kB)
+Collecting langgraph-checkpoint==4.3.1 (from -r requirements.txt (line 85))
+  Downloading langgraph_checkpoint-4.3.1-py3-none-any.whl.metadata (6.7 kB)
+Collecting langgraph-prebuilt==1.1.1 (from -r requirements.txt (line 89))
+  Downloading langgraph_prebuilt-1.1.1-py3-none-any.whl.metadata (6.9 kB)
+Collecting langgraph-sdk==0.4.10 (from -r requirements.txt (line 91))
+  Downloading langgraph_sdk-0.4.10-py3-none-any.whl.metadata (5.1 kB)
+Collecting langsmith==0.14.14 (from -r requirements.txt (line 93))
+  Downloading langsmith-0.14.14-py3-none-any.whl.metadata (38 kB)
+Collecting openai==2.54.0 (from -r requirements.txt (line 95))
+  Downloading openai-2.54.0-py3-none-any.whl.metadata (40 kB)
+     -------------------------------------- 40.9/40.9 kB 956.7 kB/s eta 0:00:00
+Collecting opentelemetry-api==1.45.1 (from -r requirements.txt (line 97))
+  Downloading opentelemetry_api-1.45.1-py3-none-any.whl.metadata (1.4 kB)
+Collecting orjson==3.13.0 (from -r requirements.txt (line 99))
+  Downloading orjson-3.13.0-cp312-cp312-win_amd64.whl.metadata (43 kB)
+     -------------------------------------- 43.3/43.3 kB 703.8 kB/s eta 0:00:00
+Collecting ormsgpack==1.13.0 (from -r requirements.txt (line 103))
+  Downloading ormsgpack-1.13.0-cp312-cp312-win_amd64.whl.metadata (3.3 kB)
+Collecting packaging==26.3 (from -r requirements.txt (line 105))
+  Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Collecting pluggy==1.7.0 (from -r requirements.txt (line 110))
+  Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+Collecting pydantic==2.14.1 (from -r requirements.txt (line 112))
+  Downloading pydantic-2.14.1-py3-none-any.whl.metadata (133 kB)
+     ------------------------------------ 133.0/133.0 kB 717.9 kB/s eta 0:00:00
+Collecting pydantic-core==2.50.1 (from -r requirements.txt (line 121))
+  Downloading pydantic_core-2.50.1-cp312-cp312-win_amd64.whl.metadata (6.7 kB)
+Collecting pydantic-settings==2.16.1 (from -r requirements.txt (line 123))
+  Downloading pydantic_settings-2.16.1-py3-none-any.whl.metadata (4.0 kB)
+Collecting pygments==2.21.0 (from -r requirements.txt (line 125))
+  Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting pytest==9.2.0 (from -r requirements.txt (line 127))
+  Downloading pytest-9.2.0-py3-none-any.whl.metadata (7.9 kB)
+Collecting python-dotenv==1.2.4 (from -r requirements.txt (line 129))
+  Downloading python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+Collecting pyyaml==6.0.3 (from -r requirements.txt (line 131))
+  Downloading pyyaml-6.0.3-cp312-cp312-win_amd64.whl.metadata (2.4 kB)
+Collecting regex==2026.9.29 (from -r requirements.txt (line 133))
+  Downloading regex-2026.9.29-cp312-cp312-win_amd64.whl.metadata (41 kB)
+     ---------------------------------------- 41.6/41.6 kB 1.0 MB/s eta 0:00:00
+Collecting requests==2.34.2 (from -r requirements.txt (line 135))
+  Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Collecting requests-toolbelt==1.0.0 (from -r requirements.txt (line 140))
+  Downloading requests_toolbelt-1.0.0-py2.py3-none-any.whl.metadata (14 kB)
+Collecting sniffio==1.3.1 (from -r requirements.txt (line 142))
+  Downloading sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+Collecting starlette==1.10.0 (from -r requirements.txt (line 146))
+  Downloading starlette-1.10.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting tenacity==9.2.1 (from -r requirements.txt (line 148))
+  Downloading tenacity-9.2.1-py3-none-any.whl.metadata (1.4 kB)
+Collecting tiktoken==0.14.0 (from -r requirements.txt (line 150))
+  Downloading tiktoken-0.14.0-cp312-cp312-win_amd64.whl.metadata (6.8 kB)
+Collecting tqdm==4.70.1 (from -r requirements.txt (line 152))
+  Downloading tqdm-4.70.1-py3-none-any.whl.metadata (57 kB)
+     ---------------------------------------- 57.4/57.4 kB 2.9 MB/s eta 0:00:00
+Collecting truststore==0.10.5 (from -r requirements.txt (line 154))
+  Downloading truststore-0.10.5-py3-none-any.whl.metadata (4.5 kB)
+Collecting typing-extensions==4.16.0 (from -r requirements.txt (line 158))
+  Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting typing-inspection==0.4.4 (from -r requirements.txt (line 173))
+  Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+Collecting urllib3==2.8.0 (from -r requirements.txt (line 178))
+  Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+Collecting uuid-utils==0.19.0 (from -r requirements.txt (line 180))
+  Downloading uuid_utils-0.19.0-cp310-abi3-win_amd64.whl.metadata (6.5 kB)
+Collecting uvicorn==0.54.0 (from -r requirements.txt (line 184))
+  Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting websockets==17.3 (from -r requirements.txt (line 186))
+  Downloading websockets-17.3-cp312-cp312-win_amd64.whl.metadata (6.5 kB)
+Collecting xxhash==4.0.2 (from -r requirements.txt (line 190))
+  Downloading xxhash-4.0.2-cp312-cp312-win_amd64.whl.metadata (18 kB)
+Collecting zstandard==0.25.0 (from -r requirements.txt (line 194))
+  Downloading zstandard-0.25.0-cp312-cp312-win_amd64.whl.metadata (3.3 kB)
+Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+   --------------------------------------- 132.1/132.1 kB 75.0 kB/s eta 0:00:00
+Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+   -------------------------------------- 135.1/135.1 kB 159.8 kB/s eta 0:00:00
+Downloading charset_normalizer-3.5.2-cp312-cp312-win_amd64.whl (207 kB)
+   -------------------------------------- 207.5/207.5 kB 287.1 kB/s eta 0:00:00
+Downloading click-8.5.0-py3-none-any.whl (125 kB)
+   -------------------------------------- 125.3/125.3 kB 668.7 kB/s eta 0:00:00
+Downloading colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Downloading distro-1.9.0-py3-none-any.whl (20 kB)
+Downloading fastapi-0.162.0-py3-none-any.whl (148 kB)
+   -------------------------------------- 148.9/148.9 kB 422.8 kB/s eta 0:00:00
+Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+   ---------------------------------------- 78.8/78.8 kB 729.2 kB/s eta 0:00:00
+Downloading httpcore2-2.16.0-py3-none-any.whl (85 kB)
+   ---------------------------------------- 85.1/85.1 kB 530.7 kB/s eta 0:00:00
+Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+   ---------------------------------------- 73.5/73.5 kB 673.2 kB/s eta 0:00:00
+Downloading httpx2-2.16.0-py3-none-any.whl (97 kB)
+   ---------------------------------------- 97.9/97.9 kB 466.2 kB/s eta 0:00:00
+Downloading idna-3.20-py3-none-any.whl (69 kB)
+   ---------------------------------------- 69.6/69.6 kB 474.7 kB/s eta 0:00:00
+Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+Downloading jiter-0.18.0-cp312-cp312-win_amd64.whl (225 kB)
+   -------------------------------------- 225.9/225.9 kB 600.7 kB/s eta 0:00:00
+Downloading jsonpatch-1.38-py3-none-any.whl (17 kB)
+Downloading jsonpointer-3.6-py3-none-any.whl (9.3 kB)
+Downloading langchain_core-1.7.0-py3-none-any.whl (574 kB)
+   -------------------------------------- 574.7/574.7 kB 821.6 kB/s eta 0:00:00
+Downloading langchain_deepseek-1.1.1-py3-none-any.whl (11 kB)
+Downloading langchain_openai-1.7.3-py3-none-any.whl (146 kB)
+   ---------------------------------------- 146.3/146.3 kB 1.1 MB/s eta 0:00:00
+Downloading langchain_protocol-0.0.20-py3-none-any.whl (7.3 kB)
+Downloading langgraph-1.2.18-py3-none-any.whl (260 kB)
+   ---------------------------------------- 260.8/260.8 kB 1.1 MB/s eta 0:00:00
+Downloading langgraph_checkpoint-4.3.1-py3-none-any.whl (58 kB)
+   ---------------------------------------- 58.1/58.1 kB 1.5 MB/s eta 0:00:00
+Downloading langgraph_prebuilt-1.1.1-py3-none-any.whl (42 kB)
+   ---------------------------------------- 42.3/42.3 kB ? eta 0:00:00
+Downloading langgraph_sdk-0.4.10-py3-none-any.whl (167 kB)
+   ---------------------------------------- 167.9/167.9 kB 1.0 MB/s eta 0:00:00
+Downloading langsmith-0.14.14-py3-none-any.whl (911 kB)
+   ---------------------------------------- 911.8/911.8 kB 1.4 MB/s eta 0:00:00
+Downloading openai-2.54.0-py3-none-any.whl (1.7 MB)
+   ---------------------------------------- 1.7/1.7 MB 2.2 MB/s eta 0:00:00
+Downloading opentelemetry_api-1.45.1-py3-none-any.whl (60 kB)
+   ---------------------------------------- 60.3/60.3 kB 3.1 MB/s eta 0:00:00
+Downloading orjson-3.13.0-cp312-cp312-win_amd64.whl (121 kB)
+   ---------------------------------------- 121.5/121.5 kB 3.6 MB/s eta 0:00:00
+Downloading ormsgpack-1.13.0-cp312-cp312-win_amd64.whl (157 kB)
+   ---------------------------------------- 157.8/157.8 kB 2.3 MB/s eta 0:00:00
+Downloading packaging-26.3-py3-none-any.whl (129 kB)
+   ---------------------------------------- 130.0/130.0 kB 2.5 MB/s eta 0:00:00
+Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+Downloading pydantic-2.14.1-py3-none-any.whl (488 kB)
+   ---------------------------------------- 488.1/488.1 kB 2.8 MB/s eta 0:00:00
+Downloading pydantic_core-2.50.1-cp312-cp312-win_amd64.whl (2.2 MB)
+   ---------------------------------------- 2.2/2.2 MB 3.6 MB/s eta 0:00:00
+Downloading pydantic_settings-2.16.1-py3-none-any.whl (80 kB)
+   ---------------------------------------- 80.8/80.8 kB 4.4 MB/s eta 0:00:00
+Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+   ---------------------------------------- 1.3/1.3 MB 4.7 MB/s eta 0:00:00
+Downloading pytest-9.2.0-py3-none-any.whl (411 kB)
+   ---------------------------------------- 411.8/411.8 kB 4.3 MB/s eta 0:00:00
+Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+Downloading pyyaml-6.0.3-cp312-cp312-win_amd64.whl (154 kB)
+   ---------------------------------------- 154.0/154.0 kB 4.6 MB/s eta 0:00:00
+Downloading regex-2026.9.29-cp312-cp312-win_amd64.whl (280 kB)
+   ---------------------------------------- 280.3/280.3 kB 5.7 MB/s eta 0:00:00
+Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+   ---------------------------------------- 73.1/73.1 kB 3.9 MB/s eta 0:00:00
+Downloading requests_toolbelt-1.0.0-py2.py3-none-any.whl (54 kB)
+   ---------------------------------------- 54.5/54.5 kB 2.8 MB/s eta 0:00:00
+Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+Downloading starlette-1.10.0-py3-none-any.whl (80 kB)
+   ---------------------------------------- 80.6/80.6 kB 901.7 kB/s eta 0:00:00
+Downloading tenacity-9.2.1-py3-none-any.whl (32 kB)
+Downloading tiktoken-0.14.0-cp312-cp312-win_amd64.whl (941 kB)
+   ---------------------------------------- 941.2/941.2 kB 5.4 MB/s eta 0:00:00
+Downloading tqdm-4.70.1-py3-none-any.whl (80 kB)
+   ---------------------------------------- 80.2/80.2 kB 4.7 MB/s eta 0:00:00
+Downloading truststore-0.10.5-py3-none-any.whl (19 kB)
+Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+   ---------------------------------------- 45.6/45.6 kB 2.2 MB/s eta 0:00:00
+Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+   ---------------------------------------- 135.7/135.7 kB 4.0 MB/s eta 0:00:00
+Downloading uuid_utils-0.19.0-cp310-abi3-win_amd64.whl (182 kB)
+   ---------------------------------------- 182.9/182.9 kB 3.8 MB/s eta 0:00:00
+Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+   ---------------------------------------- 87.4/87.4 kB 4.8 MB/s eta 0:00:00
+Downloading websockets-17.3-cp312-cp312-win_amd64.whl (219 kB)
+   ---------------------------------------- 219.0/219.0 kB 1.9 MB/s eta 0:00:00
+Downloading xxhash-4.0.2-cp312-cp312-win_amd64.whl (37 kB)
+Downloading zstandard-0.25.0-cp312-cp312-win_amd64.whl (506 kB)
+   ---------------------------------------- 506.3/506.3 kB 4.6 MB/s eta 0:00:00
+Installing collected packages: zstandard, xxhash, websockets, uuid-utils, urllib3, typing-extensions, truststore, tenacity, sniffio, regex, pyyaml, python-dotenv, pygments, pluggy, packaging, ormsgpack, orjson, jsonpointer, jiter, iniconfig, idna, h11, distro, colorama, click, charset-normalizer, certifi, annotated-types, annotated-doc, uvicorn, typing-inspection, tqdm, requests, pytest, pydantic-core, opentelemetry-api, langchain-protocol, jsonpatch, httpcore2, httpcore, anyio, tiktoken, starlette, requests-toolbelt, pydantic, httpx2, httpx, pydantic-settings, openai, langsmith, fastapi, langchain-core, langgraph-sdk, langgraph-checkpoint, langchain-openai, langgraph-prebuilt, langchain-deepseek, langgraph
+Successfully installed annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 certifi-2026.10.23 charset-normalizer-3.5.2 click-8.5.0 colorama-0.4.6 distro-1.9.0 fastapi-0.162.0 h11-0.16.0 httpcore-1.0.9 httpcore2-2.16.0 httpx-0.28.1 httpx2-2.16.0 idna-3.20 iniconfig-2.3.1 jiter-0.18.0 jsonpatch-1.38 jsonpointer-3.6 langchain-core-1.7.0 langchain-deepseek-1.1.1 langchain-openai-1.7.3 langchain-protocol-0.0.20 langgraph-1.2.18 langgraph-checkpoint-4.3.1 langgraph-prebuilt-1.1.1 langgraph-sdk-0.4.10 langsmith-0.14.14 openai-2.54.0 opentelemetry-api-1.45.1 orjson-3.13.0 ormsgpack-1.13.0 packaging-26.3 pluggy-1.7.0 pydantic-2.14.1 pydantic-core-2.50.1 pydantic-settings-2.16.1 pygments-2.21.0 pytest-9.2.0 python-dotenv-1.2.4 pyyaml-6.0.3 regex-2026.9.29 requests-2.34.2 requests-toolbelt-1.0.0 sniffio-1.3.1 starlette-1.10.0 tenacity-9.2.1 tiktoken-0.14.0 tqdm-4.70.1 truststore-0.10.5 typing-extensions-4.16.0 typing-inspection-0.4.4 urllib3-2.8.0 uuid-utils-0.19.0 uvicorn-0.54.0 websockets-17.3 xxhash-4.0.2 zstandard-0.25.0
+
+STDERR
+
+Exit code: 0

@@ -2,12 +2,13 @@
 
 ## 当前验收结论
 
-- 自动化回归：**324 项通过**，其中 HTTP 与人工中断测试 **75 项**，见 [测试输出](../examples/test-results.txt) 和 [逐项报告](../examples/test-results.xml)。
+- 自动化回归：**324 项通过**，其中 HTTP 与人工中断测试 **75 项**；从远程提交 `06fbdf8` 新克隆、创建 Python 3.12.4 干净环境后再次全部通过，见 [干净环境汇总](../examples/04_time_conflict/clean-environment/summary.md)、[原始测试输出](../examples/04_time_conflict/clean-environment/pytest.txt) 和 [逐项报告](../examples/04_time_conflict/clean-environment/pytest.xml)。
 - 最新真实模型批次：DeepSeek / deepseek-flash，**六类各两次，12/12 项验收通过**，累计 **62 次模型逻辑调用、58 次模型选择的工具执行**，见 [汇总 JSON](../examples/04_time_conflict/live-key-paths/summary.json)。
 - 当前已用真实模型验证资料补充恢复和有凭证的风险审核通过；人工驳回/要求修改、来源变化后的批准失效、保存故障回滚及调用上限仍主要由离线测试覆盖。
 - 12/12 仅是这一批合成样本的验收结果；工具错误用例以正确失败并停止为通过标准，不代表全部业务请求保存成功，也不代表生产环境成功率或稳定性。
 
 下文的首批两条记录、295 项干净环境测试和离线交互记录保留为历史证据，均不替代上述当前结论，也不合并进最新批次的 12 次统计。
+本次干净环境另跑六类离线 HTTP 演示，全部通过；它证明安装、业务工具和中断恢复可复现，不增加真实模型验收的次数。
 
 ## 评审顺序
 
@@ -91,14 +92,36 @@ ReAct 证据是实际模型轮次：补查返回 ok 后模型选择 check_rules�
 - [environment.json](../examples/environment.json)：实际 Python、平台、依赖及 SQLite 版本。
 - [install-results.txt](../examples/install-results.txt)、[clean-install-test-results.txt](../examples/clean-install-test-results.txt)：新增人工中断前，干净虚拟环境的依赖安装与 295 项测试原始输出。
 - [clean-install-smoke.json](../examples/clean-install-smoke.json)：不带 .env 的干净副本执行离线冲突示例的实际输出。
+- [当前干净环境汇总](../examples/04_time_conflict/clean-environment/summary.json)：远程来源提交、隔离条件、依赖指纹、命令与退出码、324 项测试及六类 HTTP 演示结果。
+- [当前安装日志](../examples/04_time_conflict/clean-environment/install.txt)、[pip check](../examples/04_time_conflict/clean-environment/pip-check.txt)、[安装版本](../examples/04_time_conflict/clean-environment/freeze.txt)：全新 Python 环境安装锁定依赖的实际记录。
+- [当前干净测试](../examples/04_time_conflict/clean-environment/pytest.txt)、[测试 XML](../examples/04_time_conflict/clean-environment/pytest.xml)、[HTTP 演示输出](../examples/04_time_conflict/clean-environment/http-demo.txt)、[HTTP 实际记录](../examples/04_time_conflict/clean-environment/http-demo/summary.json)。
 - 在项目根目录运行 `python -m pytest -q -W error`，或 `python examples/record_validation.py` 重新生成离线实际材料。
 - 已启动真实模型服务时，运行 `python examples/verify_react.py` 重新生成两条实际 API 记录。
 - 运行 `python examples/verify_key_paths.py --live --repeats 2` 可在隔离服务中重新生成六类真实验收；用例结果和失败均保留。
 
-交付前另建只包含准备提交文件的副本，不带本地 .env、虚拟环境或运行数据库，再创建 Python 3.12.4 环境并从 requirements.txt 安装依赖。
-该历史副本运行 295 项测试通过，离线冲突命令退出码为 0；原始输出保存在上述文件中。新增人工中断后的 324 项回归在当前虚拟环境执行，依赖未变，未重新做全新环境安装。
+早期的 295 项干净环境验证及离线冲突记录保留为历史证据。
+本次从 GitHub main 提交 `06fbdf8f399dfb03d397bdad72e083b7a16caa16` 重新克隆，副本无 .env、旧虚拟环境或运行数据库；创建 Python 3.12.4 venv，禁用系统和用户级包复用，移除 MATERIAL_AGENT_* 环境变量影响，重新安装 requirements.txt 中的 58 个锁定包。
+安装、pip check、`pytest -q -W error`（另保存 XML）均成功，**324 项通过**；随后实际启动隔离 Uvicorn，六类离线 HTTP 演示全部通过，包含人工中断与恢复。来源代码及依赖与当前工作区相同，本次只新增验证材料和文档，没有改动业务代码。
 
 执行上限默认 12；[上限输入](../examples/01_normal/execution-limit-offline/request.json)、[输出](../examples/01_normal/execution-limit-offline/response.json)、[摘要](../examples/01_normal/execution-limit-offline/summary.md) 在上限 2 时返回 incomplete/LIMIT_EXCEEDED/HTTP 409，零草稿。该上限记录为离线测试，未计入两条真实路径。
+
+## 干净环境复现步骤
+
+使用 Python 3.12，在新的目录克隆仓库，不复制开发机的 .env、虚拟环境或运行数据库：
+
+```powershell
+git clone https://github.com/zj-sg/material-review-scheduling-agent.git material-agent-clean
+cd material-agent-clean
+python --version
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip --isolated install --disable-pip-version-check -r requirements.txt
+.\.venv\Scripts\python.exe -m pip check
+.\.venv\Scripts\python.exe -X utf8 -m pytest -q -W error
+.\.venv\Scripts\python.exe -X utf8 examples/verify_key_paths.py
+```
+
+运行前确认 python --version 为 3.12.x；演示脚本默认使用离线模型，实际启动独立 Uvicorn、调用 HTTP 接口和 SQLite，覆盖时间选择、资料补充和风险审核通过后的暂停恢复，无需 API Key。
+脚本最后打印本次记录目录。离线演示结果与已有的 12 次真实 DeepSeek 记录分别保存，不能将离线模型调用计入真实模型统计。
 
 ## 失败与已知限制
 

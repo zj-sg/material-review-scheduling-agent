@@ -60,6 +60,7 @@ flowchart TD
 | 授权存疑 → 有凭证人工通过 → 重新审核和保存 | [风险通过恢复事件](../examples/04_time_conflict/live-key-paths/human_review-1/events.json) | 审核结论由人提交；程序重审，明确禁止项不可人工绕过 |
 
 人工驳回/要求修改、来源变化后的批准失效、保存故障回滚及调用上限仍主要由离线测试覆盖。首批两条真实记录保留为 [历史批次](03-evaluation.md#首批两条真实决策记录历史批次)，不限制当前真实验收范围。
+可安装性和暂停恢复另有 [干净环境证据](../examples/04_time_conflict/clean-environment/summary.md)：从远程重新克隆并新建 Python 3.12.4 环境，324 项测试和六类离线 HTTP 演示通过。这批验证不调用外部模型，与上述 12 次真实模型验收分别统计。
 
 ## 模块职责与框架使用
 
